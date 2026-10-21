@@ -280,6 +280,33 @@ footer .links a:hover{color:var(--teal)}
   .feat{left:50%;transform:translateX(-50%);bottom:-6%;width:92%;max-width:none}
   .tank{margin-bottom:24px}
 }
+/* compact mobile: products within reach */
+@media (max-width:600px){
+  .notice{font-size:.78rem;padding:6px 12px}
+  .hero{padding:20px 0 8px}
+  .hero .wrap{gap:0}
+  .hero .pill,.tank{display:none}
+  .hero h1{font-size:2.05rem;margin-top:0}
+  .hero p{font-size:1rem;margin:10px 0 16px}
+  .ctas{flex-wrap:nowrap;gap:8px}
+  .ctas .btn{flex:1;justify-content:center;padding:12px 10px;font-size:.92rem;border-radius:12px}
+  .trust{display:flex;gap:8px;margin-top:16px;overflow-x:auto;scrollbar-width:none}
+  .trust::-webkit-scrollbar{display:none}
+  .trust div{flex:none;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 10px;font-size:0}
+  .trust div b{font-size:.8rem;display:inline}
+  .trust svg{width:16px;height:16px;margin:0}
+  .cats{padding:14px 0 0}
+  .catrow{scroll-padding-inline:20px}
+  .cat{width:auto;flex-direction:row;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px}
+  .cat .ic{width:34px;height:28px;border-radius:999px}
+  .cat .ic svg{width:30px}
+  .cat b{font-size:.88rem;white-space:nowrap}
+  .cat span{display:none}
+  .shop{padding-top:18px}
+  .shophead{margin-bottom:14px;gap:10px}
+  .shophead h2{font-size:1.6rem}
+  .shophead p{display:none}
+}
 </style>
 </head>
 <body>
@@ -308,7 +335,7 @@ footer .links a:hover{color:var(--teal)}
         <p>Captive-bred cleanup crews, colourful morphs and everything they need to thrive. Raised in Kerala, shipped live across India.</p>
         <div class="ctas">
           <a class="btn primary" href="#shop">Shop isopods</a>
-          <a class="btn ghost" href="#how">How ordering works</a>
+          <a class="btn ghost" href="#how">How to order</a>
         </div>
         <div class="trust">
           <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><span><b>Live arrival</b>guaranteed</span></div>
