@@ -1412,11 +1412,11 @@ function sizeViewer(p){const mm=sizeMM(p); if(!mm) return "";
   return `<div class="sizeview"><div class="svrow"><div class="coin" style="width:${coin}px;height:${coin}px"><span>₹1</span></div><div class="svbug" style="width:${w.toFixed(0)}px">${p.cat==="iso"?isoSVG(p.art):art(p.art)}</div></div><p><b>Actual size</b> next to a ₹1 coin (20 mm). An adult ${p.name} grows to about ${p.size}.</p></div>`;}
 
 /* colony calculator */
-const CALC={tropical:{iso:"dw",n:[10,15,25,40],spr:[1,1,2,3],why:"Dwarf White lives in the substrate and is safe with almost any frog or gecko."},
+const CALC={tropical:{iso:"mor",alt:["gla","mpp","dw"],n:[10,15,25,40],spr:[1,1,2,3],why:"Cubaris murina love warm, humid vivariums, roll into a ball when disturbed and suit Kerala’s climate perfectly."},
             dry:{iso:"po",n:[10,15,25,40],spr:[1,1,1,2],why:"Powder Orange is tough, breeds fast and handles warm, drier setups. Keep one damp corner for them."},
             box:{iso:"po",n:[10,15,20,30],spr:[1,1,1,1],why:"Powder Orange breeds fastest, so your box fills up quickly."}};
 function calcRender(){const t=document.getElementById("cType"),z=document.getElementById("cSize"),o=document.getElementById("calcOut"); if(!t) return;
-  const c=CALC[t.value],k=+z.value,iso=byId(c.iso),tw=byId("tw"),n=c.n[k],sp=c.spr[k];
+  const c=CALC[t.value],k=+z.value,iso=[c.iso,...(c.alt||[])].map(byId).find(p=>p&&p.stock!=="out")||byId(c.iso),tw=byId("tw"),n=c.n[k],sp=c.spr[k];
   const tot=lineTotal(iso.id,n)+(tw?tw.price*sp:0);
   o.innerHTML=`<p class="calcrec"><b>${n} ${iso.name}</b>${tw?` + <b>${sp} springtail culture${sp>1?"s":""}</b>`:""}</p><p class="calcsub">About ${rupee(tot)}${isBulk(iso.id,n)?" including the 10% bulk discount":""}. ${c.why}</p><button class="btn primary" id="calcAdd">Add all to cart</button>`;
   document.getElementById("calcAdd").onclick=()=>{cart[iso.id]=(cart[iso.id]||0)+n;if(tw)cart.tw=(cart.tw||0)+sp;save();renderCart();flyToCart();toast(`Added ${n} ${iso.name}${tw?" + springtails":""}`);};
