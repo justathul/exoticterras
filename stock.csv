@@ -1,0 +1,17 @@
+id,name,price,stock,unit
+po,Powder Orange,40,Stock,piece
+dc,Dairy Cow,70,Limited stock,piece
+od,Orange Dalmatian,65,Stock,piece
+mp,Magic Potion,190,Stockout,piece
+dw,Dwarf White,30,Stock,piece
+rd,Rubber Ducky,360,Stockout,piece (min. 6)
+ges,Gestroi,100,Stock,piece
+mpp,Murina Papaya,80,Stock,piece
+gla,Glacier,60,Stock,piece
+mor,Murina Orange,60,Limited stock,piece
+tw,Temperate white springtails,250,Stock,culture
+mini,Mini terrarium,599,Stock,piece
+tkit,Terrarium starter kit,1499,Stock,kit
+bpack,Beginner isopod pack,879,Stock,pack
+cpack,Bioactive cleanup pack,499,Stock,pack
+fit,Fittonia,149,Stock,small pot
