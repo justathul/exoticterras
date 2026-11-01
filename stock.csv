@@ -1,7 +1,7 @@
 id,name,price,stock,unit
 po,Powder Orange,40,Stock,piece
 dc,Dairy Cow,70,Limited stock,piece
-od,Orange Dalmatian,65,Stock,piece
+od,Orange Dalmatian,80,Stock,piece
 mp,Magic Potion,190,Stockout,piece
 dw,Dwarf White,30,Stock,piece
 rd,Rubber Ducky,360,Stockout,piece (min. 6)
