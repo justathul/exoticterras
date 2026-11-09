@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url><loc>https://exoticterras.in/</loc><lastmod>2026-10-23</lastmod><priority>1.0</priority></url>
+  <url><loc>https://exoticterras.in/</loc><lastmod>2026-11-09</lastmod><priority>1.0</priority></url>
   <url><loc>https://exoticterras.in/isopods/powder-orange/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://exoticterras.in/images/po.jpg</image:loc></image:image></url>
   <url><loc>https://exoticterras.in/isopods/dairy-cow/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://exoticterras.in/images/dc.jpg</image:loc></image:image></url>
   <url><loc>https://exoticterras.in/isopods/orange-dalmatian/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://exoticterras.in/images/od.jpg</image:loc></image:image></url>
@@ -12,8 +12,20 @@
   <url><loc>https://exoticterras.in/isopods/glacier/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://exoticterras.in/images/gla.jpg</image:loc></image:image></url>
   <url><loc>https://exoticterras.in/isopods/murina-orange/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://exoticterras.in/images/mor.jpg</image:loc></image:image></url>
   <url><loc>https://exoticterras.in/springtails/temperate-white-springtails/</loc><lastmod>2026-10-23</lastmod><priority>0.6</priority><image:image><image:loc>https://exoticterras.in/images/tw.jpg</image:loc></image:image></url>
-  <url><loc>https://exoticterras.in/terrariums/mini-terrarium/</loc><lastmod>2026-10-23</lastmod><priority>0.6</priority></url>
-  <url><loc>https://exoticterras.in/terrariums/terrarium-starter-kit/</loc><lastmod>2026-10-23</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/mini-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/terrarium-starter-kit/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/closed-jar-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/open-bowl-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/glass-tank-paludarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/hexagon-geometric-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/glass-dome-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/glass-cube-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/bottle-garden-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/hanging-globe-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/wardian-case-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/bioactive-vivarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/tall-cylinder-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/pyramid-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
   <url><loc>https://exoticterras.in/packs/beginner-isopod-pack/</loc><lastmod>2026-10-23</lastmod><priority>0.6</priority></url>
   <url><loc>https://exoticterras.in/packs/bioactive-cleanup-pack/</loc><lastmod>2026-10-23</lastmod><priority>0.6</priority></url>
   <url><loc>https://exoticterras.in/plants/fittonia/</loc><lastmod>2026-10-23</lastmod><priority>0.6</priority><image:image><image:loc>https://exoticterras.in/images/fit.jpg</image:loc></image:image></url>
