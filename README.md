@@ -23,3 +23,9 @@ Static shop for exoticterras.in (GitHub Pages, custom domain in `CNAME`). Orders
 ## Notes
 - The 3D viewer loads three.js from cdnjs only when a model page is opened.
 - Prices in `stock.csv` can update the shop's prices when the sheet sync runs; rows with a blank price are skipped.
+
+## Things you can fill in (in `index.html`, near the `REVIEWS` line)
+- `REVIEWS`: add real reviews, or WhatsApp screenshots with `{img:"/images/reviews/name.jpg",name:"Anu",place:"Kochi"}`. The section shows a placeholder until you do.
+- `GOOGLE_REVIEW_URL`: your Google review link for the Leave a review button.
+- `INSTAGRAM_URL`: shows an Instagram link in the footer.
+- `GUIDES`: care guides. Each also has a static page in `guides/<slug>/` and a line in `sitemap.xml`.
