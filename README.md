@@ -16,7 +16,7 @@ Static shop for exoticterras.in (GitHub Pages, custom domain in `CNAME`). Orders
 
 ## Add a made-to-order terrarium (no fixed price)
 - In `PRODUCTS`, set `cat:"terra"`, `enquiry:true` (shows "Price on enquiry" and an Enquire button) and `model:"<type>"` for the 3D viewer.
-- 3D types in `build3D`: jar, mini (anything else draws the mini cube). A new shape needs a new branch there.
+- 3D types in `build3D`: jar, cube, tube, mini (anything else draws the mini cube). Add `shapes:[["jar","Jar"],["cube","Cube"]]` to a product to show shape buttons in the viewer. A new shape needs a new branch there.
 - Copy one of the `terrariums/*` pages for search, leave out `offers` in its JSON-LD, and add it to the sitemap, `stock.csv` and the home page terrarium list.
 - Add `USE` (care tips) and `INCL` (what you get) entries for the same id in `index.html`.
 

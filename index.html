@@ -556,6 +556,9 @@ body.on-guide main>section:not(.guide){display:none}
 .thumbs button{flex:none;width:68px;height:68px;padding:0;border-radius:12px;overflow:hidden;border:2px solid transparent;background:none}
 .thumbs button.on{border-color:var(--teal)}.thumbs img{width:100%;height:100%;object-fit:cover}
 .m3d{position:absolute;inset:0;cursor:grab}.m3d canvas{width:100%;height:100%;display:block}
+.shapesw{position:absolute;left:0;right:0;bottom:38px;display:flex;justify-content:center;gap:8px;z-index:3}
+.shapesw button{font:inherit;font-size:.85rem;font-weight:700;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+.shapesw button[aria-pressed="true"]{background:var(--teal);color:#08100C;border-color:var(--teal)}
 .m3d-hint{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:var(--muted);pointer-events:none}
 .dmedia .fav,.dmedia .badge{z-index:2}
 .dmedia video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -905,7 +908,7 @@ const PRODUCTS = [
   {id:"mini",cat:"terra",glass:true,model:"mini",photo:"/images/terrarium-concept.jpg",enquiry:true,name:"Mini terrarium",sci:"Ready-made living terrarium",unit:"piece",stock:"in",care:"Easy",desc:"A small, ready-made living terrarium in a clear glass cube with a moss arch, plants and a springtail cleanup crew. Perfect for a desk or shelf.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   {id:"btank",cat:"terra",glass:true,photo:"/images/btank.jpg",gallery:["/images/btank-angles.jpg","/images/btank-size.jpg"],name:"Black Frame Glass Terrarium Tank",sci:"Premium glass cube tank · 20 × 13 × 21 cm",price:1999,unit:"piece",stock:"in",facts:[["Size","20 × 13 × 21 cm"],["Material","Glass, black frame"],["Brand","Deco Point"]],desc:"A sleek black-framed glass terrarium that turns moss, ferns and a piece of driftwood into a living work of art. Compact at 20 × 13 × 21 cm, it sits happily on a desk, shelf or bedside table, and clear glass on every side shows off every layer you build.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   // model: interactive 3D viewer on the detail page (see build3D). enquiry:true = no fixed price, shows an Enquire button.
-  {id:"tjar",cat:"terra",glass:true,model:"jar",enquiry:true,name:"Custom closed terrarium",sci:"Sealed glass terrarium made to your design",unit:"piece",stock:"in",care:"Easy",desc:"A self-watering mini rainforest in a sealed glass container of your choice, such as a jar, cube or cylinder with a lid. Pick the size, moss, ferns and plants, and we build it to order with a springtail cleanup crew. The 3D preview shows a jar; other shapes are available.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
+  {id:"tjar",cat:"terra",glass:true,model:"jar",shapes:[["jar","Jar"],["cube","Cube"],["tube","Cylinder"]],enquiry:true,name:"Custom closed terrarium",sci:"Sealed glass terrarium made to your design",unit:"piece",stock:"in",care:"Easy",desc:"A self-watering mini rainforest in a sealed glass container of your choice, such as a jar, cube or cylinder with a lid. Pick the size, moss, ferns and plants, and we build it to order with a springtail cleanup crew. The 3D preview shows a jar; other shapes are available.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   {id:"bpack",cat:"pack",name:"Beginner isopod pack",sci:"15 Powder Orange + springtails + food",price:879,unit:"pack",stock:"in",care:"Easy",desc:"Everything to start your first colony: 15 Powder Orange, a temperate white springtail culture and a bag of isopod food. Save about 10%.",art:{tint:"#E07B2A",t:"box",c:"#E07B2A"}},
   {id:"cpack",cat:"pack",name:"Bioactive cleanup pack",sci:"15 Dwarf White + springtails",price:499,unit:"pack",stock:"in",care:"Easy",desc:"A ready cleanup crew for tropical vivariums: 15 Dwarf White isopods and a temperate white springtail culture. Save about 10%.",art:{tint:"#2A8C82",t:"box",c:"#F4F1EC"}},
   {id:"fit",cat:"plant",photo:"/images/fit.jpg",name:"Fittonia",sci:"Fittonia albivenis",price:149,unit:"small pot",stock:"in",desc:"Compact and humidity-loving, with veins that glow under light.",art:{t:"plant",c:"#3F7A3A",v:"#F2C4C4"}}
@@ -1238,6 +1241,20 @@ function build3D(type){
     add(cyl(.94,.94,.2,0xb4643a),0,.2,0); add(cyl(.94,.94,.05,0x1c1c1c),0,.325,0); add(cyl(.94,.94,.5,0x4a3220),0,.6,0);
     moss(0,.85,0,.94); fern(-.25,.85,.1,.8,.3); fern(.3,.85,-.2,.55,.24,0x4fa85a); rock(.35,.9,.35,.18); rosette(-.4,.85,-.35,.7);
     add(cyl(.66,.58,.32,0xb08a5e,24),0,2.3,0); add(cyl(.7,.7,.06,0x8a6a44,24),0,2.5,0); cam=7.2;
+  }else if(type==="cube"){ // closed glass cube with a lid
+    const bx=new T.BoxGeometry(2,2,2), cb=new T.Mesh(bx); cb.position.y=1.1; glass(cb);
+    const fl=new T.LineSegments(new T.EdgesGeometry(bx),new T.LineBasicMaterial({color:0xdff3ea,transparent:true,opacity:.7})); fl.position.y=1.1; root.add(fl);
+    add(new T.Mesh(new T.BoxGeometry(2.2,.1,2.2),M(0x2b2b2b)),0,.05,0);
+    add(new T.Mesh(new T.BoxGeometry(1.9,.18,1.9),M(0xb4643a)),0,.19,0);
+    add(new T.Mesh(new T.BoxGeometry(1.9,.4,1.9),M(0x4a3220)),0,.48,0);
+    moss(0,.68,0,.9); fern(-.4,.68,.2,1.0,.34); fern(.4,.68,-.3,.7,.28,0x4fa85a); rock(.45,.72,.5,.22); wood([[-.6,.68,-.5],[-.1,.98,-.4],[.5,.83,-.6]],.08); rosette(-.5,.68,-.5,.7);
+    add(new T.Mesh(new T.BoxGeometry(2.1,.14,2.1),M(0x2b2b2b)),0,2.17,0); add(cyl(.12,.12,.12,0xb08a5e,16),0,2.3,0);
+    cam=8;look=1.2;
+  }else if(type==="tube"){ // tall closed cylinder with a cork
+    const g=glass(new T.Mesh(new T.LatheGeometry([[0,0],[.4,0],[.55,.12],[.55,2.8]].map(p=>new T.Vector2(...p)),40))); g.position.y=.1;
+    add(cyl(.72,.72,.1,0x3a2a1c,40),0,.05,0);
+    add(cyl(.5,.5,.15,0xb4643a),0,.26,0); add(cyl(.5,.5,.4,0x4a3220),0,.53,0); moss(0,.73,0,.5); fern(-.1,.73,.05,1.6,.3); fern(.15,.73,-.1,1.0,.24,0x4fa85a); rock(.2,.78,.2,.12);
+    add(cyl(.5,.5,.25,0xb08a5e,24),0,3.02,0); cam=8.2;look=1.6;
   }else{ // mini: clear glass cube with a moss arch and a small plant
     const bx=new T.BoxGeometry(2,2,2), cb=new T.Mesh(bx); cb.position.y=1.06; glass(cb);
     const fl=new T.LineSegments(new T.EdgesGeometry(bx),new T.LineBasicMaterial({color:0xeaf8f1,transparent:true,opacity:.75})); fl.position.y=1.06; root.add(fl);
@@ -1269,6 +1286,7 @@ function mount3D(host,type){
   stop3D();
   loadThree().then(()=>{
     if(!host.isConnected) return;
+    stop3D();
     const T=THREE; let R;
     try{R=new T.WebGLRenderer({antialias:true,alpha:true});}catch(e){return;}
     R.setPixelRatio(Math.min(devicePixelRatio||1,2));
@@ -1298,6 +1316,11 @@ function mount3D(host,type){
     t3Stop=()=>{cancelAnimationFrame(raf);ro.disconnect();io.disconnect();R.dispose();el.remove();hint.remove();};
   }).catch(()=>{});
 }
+document.addEventListener("click",e=>{const b=e.target.closest(".shapesw button"); if(!b) return;
+  const w=b.parentElement,h=w.parentElement.querySelector(".m3d"); if(!h) return;
+  w.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+  h.dataset.m3d=b.dataset.shape; mount3D(h,b.dataset.shape);
+});
 function renderDetail(id){
   stop3D();
   const p=byId(id), v=document.getElementById("detail");
@@ -1309,7 +1332,7 @@ function renderDetail(id){
   v.innerHTML=`<div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="#shop">Shop</a><span>/</span><a href="#shop" data-cat="${p.cat}">${catName(p.cat)}</a><span>/</span><b>${p.name}</b></nav>
     <div class="dtop">
-      <div class="dleft"><div class="dmedia" style="--tint:${tint(p.art)}">${favBtn(p)}${p.rare?'<span class="badge rare">Rare</span>':p.care?`<span class="badge">${p.care} care</span>`:""}${p.model?art(p.art)+`<div class="m3d" data-m3d="${p.model}"></div>`:p.video?`<video src="${p.video}" autoplay muted loop playsinline></video>`:art(p.art)+(p.photo?`<img class="main" src="${p.photo}" alt="${p.name}">`:"")}</div>${(p.gallery||[]).length?`<div class="thumbs">${[p.photo,...p.gallery].filter(Boolean).map((u,n)=>`<button data-thumb="${u}" class="${n?"":"on"}" aria-label="Photo ${n+1}"><img src="${u}" alt=""></button>`).join("")}</div>`:""}</div>
+      <div class="dleft"><div class="dmedia" style="--tint:${tint(p.art)}">${favBtn(p)}${p.rare?'<span class="badge rare">Rare</span>':p.care?`<span class="badge">${p.care} care</span>`:""}${p.model?art(p.art)+`<div class="m3d" data-m3d="${p.model}"></div>${p.shapes?`<div class="shapesw" role="group" aria-label="Choose a shape">${p.shapes.map(([k,l],n)=>`<button type="button" data-shape="${k}" aria-pressed="${n?"false":"true"}">${l}</button>`).join("")}</div>`:""}`:p.video?`<video src="${p.video}" autoplay muted loop playsinline></video>`:art(p.art)+(p.photo?`<img class="main" src="${p.photo}" alt="${p.name}">`:"")}</div>${(p.gallery||[]).length?`<div class="thumbs">${[p.photo,...p.gallery].filter(Boolean).map((u,n)=>`<button data-thumb="${u}" class="${n?"":"on"}" aria-label="Photo ${n+1}"><img src="${u}" alt=""></button>`).join("")}</div>`:""}</div>
       <div class="dinfo">
         <div class="meta"><span class="care">${catName(p.cat)}</span>${stockLabel(p)}</div>
         <h1>${p.name}</h1>
