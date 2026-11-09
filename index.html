@@ -905,7 +905,7 @@ const PRODUCTS = [
   {id:"gla",cat:"iso",photo:"/images/gla.jpg",name:"Glacier",sci:"Cubaris murina ‘Glacier’",price:60,unit:"piece",stock:"in",care:"Easy",hum:"High",size:"1 cm",breed:"Moderate",desc:"Milky, translucent white like frosted glass. Glows against dark substrate.",art:{tint:"#7FA3B8",t:"iso",b:"#EEF2F4",s:"#94A2AB",p:"#C7D3DB",pat:"dots"}},
   {id:"mor",cat:"iso",photo:"/images/mor.jpg",name:"Murina Orange",sci:"Cubaris murina ‘Orange’",price:60,unit:"piece",stock:"low",care:"Easy",hum:"High",size:"1 cm",breed:"Moderate",desc:"Solid warm orange. A great first Cubaris for tropical setups.",art:{t:"iso",b:"#E8892E",s:"#9E5212",p:"#F4B27A",pat:"none"}},
   {id:"tw",cat:"spring",photo:"/images/tw.jpg",name:"Temperate white springtails",sci:"Folsomia candida",price:250,unit:"culture",stock:"in",care:"Easy",hum:"High",size:"2 mm",breed:"Very fast",desc:"They eat mould before it spreads. A must for any bioactive setup.",art:{tint:"#2A8C82",t:"spring",c:"#FFFFFF"}},
-  {id:"mini",cat:"terra",model:"mini",photo:"/images/terrarium-concept.jpg",enquiry:true,name:"Mini terrarium",sci:"Ready-made living terrarium",unit:"piece",stock:"in",care:"Easy",desc:"A small, ready-made living terrarium in a glass jar with plants, moss and a springtail cleanup crew. Perfect for a desk or shelf.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
+  {id:"mini",cat:"terra",model:"mini",photo:"/images/terrarium-concept.jpg",enquiry:true,name:"Mini terrarium",sci:"Ready-made living terrarium",unit:"piece",stock:"in",care:"Easy",desc:"A small, ready-made living terrarium in a clear glass cube with a moss arch, plants and a springtail cleanup crew. Perfect for a desk or shelf.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   {id:"tkit",cat:"terra",model:"kit",enquiry:true,name:"Terrarium starter kit",sci:"Build your own living terrarium",unit:"kit",stock:"in",care:"Easy",desc:"Glass jar with cork lid, drainage layer, substrate, moss, two plants, wood and a springtail culture. Everything to build a mini rainforest.",art:{tint:"#9ED44A",t:"jar",c:"#4FA85A"}},
   {id:"btank",cat:"terra",glass:true,photo:"/images/btank.jpg",gallery:["/images/btank-angles.jpg","/images/btank-size.jpg"],name:"Black Frame Glass Terrarium Tank",sci:"Premium glass cube tank · 20 × 13 × 21 cm",price:1999,unit:"piece",stock:"in",facts:[["Size","20 × 13 × 21 cm"],["Material","Glass, black frame"],["Brand","Deco Point"]],desc:"A sleek black-framed glass terrarium that turns moss, ferns and a piece of driftwood into a living work of art. Compact at 20 × 13 × 21 cm, it sits happily on a desk, shelf or bedside table, and clear glass on every side shows off every layer you build.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   // model: interactive 3D viewer on the detail page (see build3D). enquiry:true = no fixed price, shows an Enquire button.
@@ -1170,7 +1170,7 @@ const USE={
 const INCL={
   bpack:["15 Powder Orange isopods","Temperate white springtail culture","Isopod food source (50 g)","Simple setup guide"],
   cpack:["15 Dwarf White isopods","Temperate white springtail culture"],
-  mini:["Glass jar with lid","Living plants and moss","Drainage and substrate layers","Springtail cleanup crew","Care card"],
+  mini:["Clear glass cube with lid","Living plants and moss","Drainage and substrate layers","Springtail cleanup crew","Care card"],
   btank:["Glass terrarium tank with black-finished frame","Size 20 × 13 × 21 cm (L × W × H)","Works for open or closed terrarium setups"],
   tjar:["Glass jar with cork lid", "Drainage, charcoal and substrate layers", "Living moss and plants", "Springtail cleanup crew", "Care card", "Final size, plants and price confirmed on enquiry"],
   tbowl:["Open glass bowl", "Drainage and substrate layers", "Moss, rocks and succulents", "Care card", "Final size, plants and price confirmed on enquiry"],
@@ -1216,7 +1216,7 @@ function build3D(type){
   const frame=(geo,col,op)=>root.add(new T.LineSegments(new T.EdgesGeometry(geo),new T.LineBasicMaterial({color:col,transparent:true,opacity:op})));
   const cyl=(rt,rb,h,c,seg=32)=>new T.Mesh(new T.CylinderGeometry(rt,rb,h,seg),M(c));
   const o3=new T.Object3D(), col3=new T.Color();
-  const inst=(geo,mat,n,place)=>{const im=new T.InstancedMesh(geo,mat,n);for(let i=0;i<n;i++){place(o3,col3,i);o3.updateMatrix();im.setMatrixAt(i,o3.matrix);im.setColorAt(i,col3);}im.instanceColor.needsUpdate=true;return im;};
+  const inst=(geo,mat,n,place)=>{const im=new T.InstancedMesh(geo,mat,n);for(let i=0;i<n;i++){o3.rotation.order="XYZ";place(o3,col3,i);o3.updateMatrix();im.setMatrixAt(i,o3.matrix);im.setColorAt(i,col3);}im.instanceColor.needsUpdate=true;return im;};
   const mossMat=new T.MeshStandardMaterial({map:tx.moss,color:0x5f7a4c,roughness:1});
   const tuftGeo=new T.ConeGeometry(.026,.11,4);tuftGeo.translate(0,.055,0);
   const tuftMat=new T.MeshStandardMaterial({roughness:1});
@@ -1277,10 +1277,25 @@ function build3D(type){
     add(cyl(.72,.72,.1,0x3a2a1c,40),0,.05,0);
     add(cyl(.5,.5,.15,0xb4643a),0,.26,0); add(cyl(.5,.5,.4,0x4a3220),0,.53,0); moss(0,.73,0,.5); fern(-.1,.73,.05,1.6,.3); fern(.15,.73,-.1,1.0,.24,0x4fa85a); rock(.2,.78,.2,.12);
     add(cyl(.5,.5,.25,0xb08a5e,24),0,3.02,0); cam=8.2;look=1.6;
-  }else if(type==="mini"){ // small squat jar with metal lid
-    glass(new T.Mesh(new T.LatheGeometry([[0,0],[.85,0],[1.02,.15],[1.05,.8],[.98,1.0],[.8,1.08]].map(p=>new T.Vector2(...p)),40)));
-    add(cyl(.95,.95,.35,0x4a3220),0,.2,0); moss(0,.38,0,.95); fern(-.2,.38,.1,.55,.24); rock(.4,.45,.3,.14); rosette(.15,.38,-.35,.45);
-    add(cyl(.82,.82,.2,0xd8b45a,32),0,1.2,0); add(cyl(.86,.86,.05,0xb8963f,32),0,1.1,0); cam=6;look=.7;
+  }else if(type==="mini"){ // clear glass cube with a moss arch and a small plant
+    const bx=new T.BoxGeometry(2,2,2), cb=new T.Mesh(bx); cb.position.y=1.04; glass(cb);
+    const fl=new T.LineSegments(new T.EdgesGeometry(bx),new T.LineBasicMaterial({color:0xdff3ea,transparent:true,opacity:.6})); fl.position.y=1.04; root.add(fl);
+    add(new T.Mesh(new T.BoxGeometry(1.94,.46,1.94),M(0x4a3220)),0,.27,0);
+    const up=new T.Vector3(0,1,0), dir=new T.Vector3();
+    const clump=(x,y,z,r)=>{const g=new T.Group();g.position.set(x,y,z);
+      const m=new T.Mesh(new T.SphereGeometry(r,14,10),mossMat);m.scale.y=.85;g.add(m);
+      g.add(inst(tuftGeo,tuftMat,Math.round(300*r*r*4),(o,c)=>{const u=rnd()*2-1,a=rnd()*6.283,sq=Math.sqrt(1-u*u);dir.set(sq*Math.cos(a),u,sq*Math.sin(a));
+        o.position.set(dir.x*r,dir.y*r*.85,dir.z*r);o.quaternion.setFromUnitVectors(up,dir);o.scale.setScalar(.4+rnd()*.5);c.setHSL(.21+rnd()*.09,.4+rnd()*.28,.15+rnd()*.15);}));
+      root.add(g);};
+    for(let i=0;i<=14;i++){const a=i/14*Math.PI,x=Math.cos(a)*.7,y=.5+Math.sin(a)*.95;clump(x,y,-.2,.27+rnd()*.04);clump(x*1.02,y,.22,.27+rnd()*.04);clump(x*.98,y+.03,0,.27);}
+    moss(-.52,.46,.3,.46); moss(.54,.46,.25,.48); moss(0,.46,-.55,.4);
+    rock(.12,.54,.18,.17,0x4a3a2e);
+    const lm=new T.MeshStandardMaterial({color:0x4f9a3a,roughness:.35,side:T.DoubleSide}), stemM=M(0x3b6a35,.8);
+    const lf=(x,y,z,yaw,tilt,s)=>{const m=new T.Mesh(leafGeo,lm);m.rotation.order="YZX";m.rotation.set(0,yaw,tilt);m.scale.set(.3*s,.025,.15*s);add(m,x,y,z);};
+    add(cyl(.012,.016,.3,0x3b6a35,6),-.02,.66,.18); lf(-.02,.8,.18,.3,.5,1); lf(-.02,.76,.18,2.7,.55,.9); lf(-.02,.7,.18,4.9,.4,.75);
+    const dg=new T.SphereGeometry(1,8,6);
+    root.add(inst(dg,new T.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:.42,roughness:.05}),70,(o,c,i)=>{const front=i%2?1:-1;o.position.set((rnd()*2-1)*.88,.65+rnd()*1.3,front*.975);o.scale.setScalar(.012+rnd()*.03);o.scale.z*=.5;c.setRGB(1,1,1);}));
+    cam=7.6;look=1.05;
   }else{ // kit: empty jar plus the parts to build it
     add(new T.Mesh(new T.BoxGeometry(3.4,.08,2.2),M(0x3a2a1c)),0,.04,0);
     const jg=new T.Group(); jg.position.set(-.85,.08,-.1); jg.scale.setScalar(.8); root.add(jg);
