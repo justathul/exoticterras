@@ -10,8 +10,8 @@ mpp,Murina Papaya,70,Stock,piece
 gla,Glacier,60,Limited stock,piece
 mor,Murina Orange,60,Limited stock,piece
 tw,Temperate white springtails,250,Stockout,culture
-mini,Mini terrarium,599,Limited stock,piece
-tkit,Terrarium starter kit,1499,Stockout,kit
+mini,Mini terrarium,,Limited stock,piece
+tkit,Terrarium starter kit,,Stockout,kit
 tjar,Closed jar terrarium,,Stock,piece
 tbowl,Open bowl terrarium,,Stock,piece
 ttank,Glass tank paludarium,,Stock,piece
