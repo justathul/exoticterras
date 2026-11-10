@@ -1,5 +1,5 @@
 id,name,price,stock,unit
-po,Powder Orange,45,Stock,piece
+po,Powder Orange,40,Stock,piece
 dc,Dairy Cow,75,Limited stock,piece
 od,Orange Dalmatian,80,Stock,piece
 mp,Magic Potion,190,Stockout,piece
@@ -9,7 +9,7 @@ ges,Gestroi,99,Stock,piece
 mpp,Murina Papaya,70,Stock,piece
 gla,Glacier,60,Limited stock,piece
 mor,Murina Orange,60,Limited stock,piece
-tw,Temperate white springtails,299,Stockout,culture
+tw,Temperate white springtails,299,Limited stock,culture
 mini,Mini terrarium,,Limited stock,piece
 btank,Black Frame Glass Terrarium Tank,1999,Stock,piece
 tjar,Custom closed terrarium,,Stock,piece
