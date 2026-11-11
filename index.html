@@ -615,6 +615,19 @@ body.on-guide main>section:not(.guide){display:none}
 @keyframes twinkle{from{opacity:.25}to{opacity:1}}
 .tank.night .tankhint::after{content:" Night mode: isopods are more active after dark."}
 .builder{padding:8px 0 56px}
+.bshow{display:block;width:100%;max-width:460px;height:auto;margin-top:18px;border-radius:18px;border:1px solid var(--line)}
+@media (max-width:600px){
+  .builder{padding:4px 0 36px}
+  .builder .calcbox{padding:16px;gap:16px;border-radius:18px}
+  .builder .calcintro h2{font-size:1.4rem}
+  .builder .calcintro p{font-size:.92rem}
+  .bshow{max-width:none;margin-top:12px;border-radius:14px}
+  .builder .calcform select,.builder .calcform input{font-size:16px;padding:10px 12px}
+  .builder .calcout .btn{width:100%;justify-content:center}
+  .tconcept{max-width:none}
+  .hero .ctas .btn.primary{flex:1.3}
+  .hero .ctas .btn.ghost{flex:1;font-size:.85rem;padding:10px 6px}
+}
 .calcform input{font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%;min-width:0}
 .rev img{width:100%;height:auto;border-radius:12px;margin-bottom:10px}
 .sugg{margin-top:18px}.sugg h3{font-family:Fraunces,Georgia,serif;font-size:1.05rem;margin:0 0 8px}
@@ -629,7 +642,7 @@ body.on-guide main>section:not(.guide){display:none}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;transition-delay:var(--d,0ms)}
 .reveal.in{opacity:1;transform:none}
 </style>
-</head>
+<script defer src="/analytics.js"></script></head>
 <body>
 <div class="notice"><b>1-day delivery across Kerala</b> · Fast delivery all over India · Live arrival guaranteed</div>
 <header>
@@ -750,10 +763,10 @@ body.on-guide main>section:not(.guide){display:none}
 
   <section class="builder" id="builder">
     <div class="wrap"><div class="calcbox">
-      <div class="calcintro"><h2>Design your terrarium</h2><p>Choose a style, size and planting and we’ll turn it into a ready-made WhatsApp enquiry. We confirm the price before you pay. Delivered across India, or pick up directly.</p></div>
+      <div class="calcintro"><h2>Design your terrarium</h2><p>Choose a style, size and planting and we’ll turn it into a ready-made WhatsApp enquiry. We confirm the price before you pay. Delivered across India, or pick up directly.</p><img class="bshow" src="/images/customised-terrariums-showcase.jpg" alt="Customised terrariums by Exotic Terras: vertical rectangle, tall and short cylinders, cube and mini jars" width="1000" height="1000" loading="lazy"></div>
       <div class="calcform">
-        <label>Style<select id="bStyle"><option>Mini terrarium (moss-arch cube)</option><option>Custom closed terrarium</option><option>Black frame glass tank (₹1,999)</option></select></label>
-        <label>Container shape (for closed terrariums)<select id="bShape"><option>Jar with lid</option><option>Cube</option><option>Cylinder</option><option>Not sure, suggest for me</option></select></label>
+        <label>Style<select id="bStyle"><option>Mini terrarium (moss-arch cube)</option><option>Custom closed terrarium</option></select></label>
+        <label>Container shape<select id="bShape"><option>Tall and short cylinders</option><option>Vertical rectangular terrariums</option><option>Cube terrariums</option><option>Small glass jars</option><option>Not sure, suggest for me</option></select></label>
         <label>Size<select id="bSize"><option>Small (desk or shelf)</option><option selected>Medium</option><option>Large (statement piece)</option><option>Custom size, I’ll tell you</option></select></label>
         <label>Planting<select id="bPlant"><option>Moss and ferns (humid)</option><option>Tropical foliage</option><option>Succulents (dry, open)</option><option>Not sure, suggest for me</option></select></label>
         <label>Cleanup crew<select id="bCrew"><option>None</option><option>Springtails</option><option>Springtails and isopods (bioactive)</option></select></label>
@@ -1538,7 +1551,70 @@ const GUIDES=[
 <ul><li>Want something low-maintenance for a desk or shelf? Choose closed.</li><li>Love succulents or like to tend your plants? Choose open.</li><li>Want a bioactive setup with a cleanup crew? A closed or semi-closed tank works best.</li></ul>
 <h2>Does size matter?</h2>
 <p>Larger tanks hold stable conditions more easily, which makes them more forgiving. Very small jars can swing quickly in temperature and humidity, so keep them out of direct sun.</p>
-<p>We build terrariums to order and deliver them across India. Message us with your preferred size, plants and budget and we’ll suggest a design.</p>`}
+<p>We build terrariums to order and deliver them across India. Message us with your preferred size, plants and budget and we’ll suggest a design.</p>`},
+ {slug:"how-much-do-isopods-cost-in-india",title:"How much do isopods cost in India? Price guide",read:"4 min read",
+  desc:"Typical isopod prices in India, from ₹30 starter species to rare Cubaris, what changes the price, and what to check before you buy.",
+  body:`<p>Isopod prices in India range from about ₹30 for a common starter species to several hundred rupees for a rare one. The price depends mostly on how fast the species breeds and how hard it is to keep. Here is what you can expect to pay, and what to check before you order.</p>
+<h2>Typical prices per isopod</h2>
+<ul><li><b>₹30–₹45:</b> Dwarf White and Powder Orange. Fast breeders, very hardy, ideal first colonies.</li><li><b>₹60–₹80:</b> Glacier, Murina Orange, Murina Papaya, Dairy Cow and Orange Dalmatian. Easy to keep and popular for display tanks.</li><li><b>₹99–₹190:</b> Gestroi and Magic Potion. Slower to multiply, so they cost more.</li><li><b>₹300 and up:</b> Rubber Ducky and other rare Cubaris. These breed slowly and need very humid, stable conditions, so most sellers ask for a minimum quantity.</li></ul>
+<p>These are our prices at the time of writing. <a href="/#shop">Check the shop</a> for what is available today.</p>
+<h2>Why prices differ</h2>
+<ul><li><b>Breeding speed.</b> A species that doubles its colony every couple of months is cheap. One that produces a few babies at a time is not.</li><li><b>Rarity and morph.</b> New colour morphs and imported lines cost more until more keepers breed them.</li><li><b>Care difficulty.</b> Species that need high humidity and steady temperatures are riskier to ship and keep, which raises the price.</li><li><b>Quantity.</b> Starter groups of 10 or more usually work out cheaper per isopod than buying one or two.</li></ul>
+<h2>How many should you buy?</h2>
+<p>For a bioactive terrarium, 10–20 isopods is a good start. For a breeding colony, start with at least 10, because a larger group finds mates and settles faster. A single isopod will not start a colony.</p>
+<h2>What to check before you buy</h2>
+<ul><li>Are they captive-bred? Wild-collected animals can carry parasites and may be protected.</li><li>Is there a live-arrival guarantee? Isopods can be shipped safely across India when packed well, but a good seller stands behind the delivery.</li><li>Do you get the species name? A real seller gives you the scientific name so you can look up care.</li><li>Is the count clear? Know exactly how many you are paying for.</li></ul>
+<h2>Cheapest way to start</h2>
+<p>If you want the lowest cost and the fastest colony, begin with Powder Orange. For a mix of species at a lower price, look at our <a href="/packs/beginner-isopod-pack/">beginner isopod pack</a>. Whatever you pick, a proper <a href="/guides/isopod-enclosure-setup/">enclosure</a> matters more than the species.</p>`},
+ {slug:"best-isopods-for-beginners-india",title:"Best isopods for beginners in India",read:"5 min read",
+  desc:"The easiest isopod species for first-time keepers in India: Powder Orange, Dairy Cow, Orange Dalmatian, Dwarf White and easy Cubaris.",
+  body:`<p>Most isopods are easy once the enclosure is right, but a few species forgive mistakes far better than others. If this is your first colony, choose from the list below and leave the rare species for later.</p>
+<h2>1. Powder Orange (Porcellionides pruinosus)</h2>
+<p>The best first isopod. They are hardy, breed very fast, tolerate a wide range of moisture and eat almost anything. They are small, about 1 cm, so they suit a cleanup crew in tropical or humid tanks as much as a colony box.</p>
+<h2>2. Dairy Cow (Porcellio laevis)</h2>
+<p>Large, active and boldly patterned in black and white. They are easy to keep and breed well, but they are fast and tend to be wriggly, and they like a drier corner and regular protein.</p>
+<h2>3. Orange Dalmatian (Porcellio laevis ‘Orange Dalmatian’)</h2>
+<p>The same easy care as Dairy Cow, with orange and spotted patterns. A good choice if you want something to watch in a display setup.</p>
+<h2>4. Dwarf White (Trichorhina tomentosa)</h2>
+<p>Tiny, pale and extremely fast breeders. They prefer high humidity and are excellent in tropical vivariums, where they clean up while staying mostly out of sight.</p>
+<h2>5. Easy Cubaris: Murina Papaya, Glacier and Murina Orange</h2>
+<p>These are popular for their look and are easy as long as you keep the substrate damp. Breeding is moderate, so they are less suited to quick colony building than Powder Orange, but they are a good step up once you have kept something simpler.</p>
+<h2>What to avoid at first</h2>
+<p>Rubber Ducky and similar rare Cubaris need very high humidity, stable conditions and patience. Slow breeders such as Gestroi are fine for a keeper with some experience, but a beginner will probably enjoy faster species more.</p>
+<h2>Not sure which one?</h2>
+<p>Use the “Which isopod is right for me?” quiz on the <a href="/#shop">shop page</a>, or pick the <a href="/packs/beginner-isopod-pack/">beginner isopod pack</a>. Before you order, read how to <a href="/guides/isopod-enclosure-setup/">set up an isopod enclosure</a>, and if you live in Kerala, see <a href="/guides/isopod-care-kerala-climate/">isopod care in a hot, humid climate</a>.</p>`},
+ {slug:"springtails-vs-isopods",title:"Springtails vs isopods: what’s the difference?",read:"4 min read",
+  desc:"Springtails and isopods both clean terrariums, but they do different jobs. Learn what each eats, which one you need, and why most tanks need both.",
+  body:`<p>Springtails and isopods are the two standard cleanup crew animals for terrariums and vivariums. They look nothing alike and they do different jobs. Most bioactive setups work best with both.</p>
+<h2>The short answer</h2>
+<ul><li><b>Springtails</b> are tiny (1–2 mm), jump when disturbed and mainly eat mould and fungus.</li><li><b>Isopods</b> are larger (0.5–2 cm), crawl, and mainly eat dead leaves, rotting wood and waste.</li></ul>
+<h2>What springtails do best</h2>
+<p>Springtails eat mould before it spreads. They are the first line of defence in a new terrarium, when fresh wood and soil are most likely to grow white fungus. They live in the soil and leaf litter, breed fast in damp conditions and never harm plants. See our <a href="/guides/springtails-cleanup-crew-guide/">springtail guide</a> for how to keep a culture going.</p>
+<h2>What isopods do best</h2>
+<p>Isopods break down larger material: fallen leaves, wood, dead plant parts and leftover food. They also eat droppings in reptile and frog enclosures, and their own waste feeds your plants. In a dry or reptile setup they are the main cleanup animal, since springtails need more humidity.</p>
+<h2>Which one do you need?</h2>
+<ul><li><b>Closed or very humid terrarium:</b> springtails first, with a few small isopods such as Dwarf White or Powder Orange.</li><li><b>Dart frog vivarium:</b> both. Springtails also double as food for baby frogs.</li><li><b>Dry reptile enclosure (crested gecko, leopard gecko):</b> isopods, with springtails in the damper corner.</li><li><b>Display tank you want to watch:</b> isopods, because they are bigger and easier to see.</li></ul>
+<h2>Do they compete?</h2>
+<p>No. They eat different things and live at different scales, so they can share a tank without problems. Together they cover mould, leaf litter and waste, which is why we recommend both in our <a href="/guides/how-to-build-a-bioactive-terrarium/">bioactive terrarium guide</a>.</p>
+<h2>Where to start</h2>
+<p>Add springtails when you set the tank up, then add isopods once the leaf litter has started to soften. You can find both in the <a href="/#shop">shop</a>.</p>`},
+ {slug:"what-to-feed-isopods",title:"What to feed isopods: food and calcium guide",read:"4 min read",
+  desc:"What isopods eat, how often to feed them, which foods to avoid and how to give calcium and protein so your colony grows well.",
+  body:`<p>Isopods are scavengers and will eat many things, but a colony grows fastest on a steady mix of leaf litter, fresh food, protein and calcium. Here is a simple routine that works.</p>
+<h2>The base: leaf litter and rotting wood</h2>
+<p>Dry leaves and soft, rotting hardwood are the main food. Keep the surface covered with leaves so they always have something to eat, and top up when it gets thin. Oak, almond and jackfruit leaves all work as long as they are pesticide-free.</p>
+<h2>Fresh food, once or twice a week</h2>
+<ul><li>Carrot, sweet potato, cucumber, pumpkin or zucchini slices.</li><li>Leafy greens, in small amounts.</li><li>Dried mushrooms or a piece of cooked, unseasoned vegetable.</li></ul>
+<p>Take out anything left after a day or two, especially in hot weather, so it does not mould or attract flies and ants.</p>
+<h2>Protein</h2>
+<p>A little protein helps breeding and stops isopods nibbling each other. Add a pinch of fish flakes, a dried shrimp or a bit of dry cat food once a week. Large species such as Dairy Cow and Orange Dalmatian especially benefit.</p>
+<h2>Calcium</h2>
+<p>Isopods need calcium to harden their shell after moulting. Mix crushed eggshell or cuttlebone powder into the substrate, or leave a piece of cuttlebone on top. Replace it when it gets dirty.</p>
+<h2>What to avoid</h2>
+<ul><li>Salty, oily, spicy or processed human food.</li><li>Anything sprayed with pesticides, including leaves from roadsides.</li><li>Large amounts of wet food in a closed box with little airflow.</li></ul>
+<h2>Signs you are feeding right</h2>
+<p>You should see isopods under food within a day, babies in the leaf litter, and no mouldy food left behind. If food keeps going to waste, feed less. If isopods gather on food and bite each other, add more protein.</p>
+<p>For the full setup, read <a href="/guides/isopod-enclosure-setup/">how to set up an isopod enclosure</a>. If you are choosing species, see <a href="/guides/best-isopods-for-beginners-india/">the best isopods for beginners</a>.</p>`}
 ];
 
 /* ===== extra features ===== */
