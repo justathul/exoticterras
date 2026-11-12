@@ -561,13 +561,17 @@ body.on-guide main>section:not(.guide){display:none}
 .mphoto{display:none}.dmedia.showphoto .mphoto{display:block;z-index:1}.dmedia.showphoto .m3d,.dmedia.showphoto .shapesw,.dmedia.showphoto>svg{display:none}
 .thumbs button.tb3d{display:grid;place-items:center;font:inherit;font-weight:800;font-size:.9rem;color:var(--ink);background:var(--chip)}
 /* offers box */
-.offerbar{background:linear-gradient(90deg,#16260F,#1B3412);border-bottom:1px solid var(--teal);color:#F1FBE6}
-.offerbar .wrap{display:flex;align-items:center;gap:12px;padding-top:9px;padding-bottom:9px}
-.ob-tag{flex:none;font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:var(--teal);color:#08100C;border-radius:999px;padding:4px 10px}
-.ob-list{display:flex;flex-wrap:wrap;gap:6px 18px;flex:1;min-width:0;font-size:.9rem}
-.ob-list a,.ob-list span{color:inherit;text-decoration:none}.ob-list a:hover{text-decoration:underline}
-.ob-list i{font-style:normal;color:var(--teal);margin-right:6px}
-.ob-edit{flex:none;font:inherit;font-size:.78rem;font-weight:700;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.offerbar{padding:12px 0 12px}
+.offerbar .wrap{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:18px;border:1px solid rgba(158,212,74,.55);background:radial-gradient(120% 220% at 0% 0%,rgba(158,212,74,.28),transparent 55%),linear-gradient(135deg,#142512,#0E1A10);box-shadow:0 0 0 1px rgba(158,212,74,.08),0 8px 30px -10px rgba(158,212,74,.45);position:relative;overflow:hidden;max-width:1160px}
+.offerbar .wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.09) 50%,transparent 65%);transform:translateX(-120%);animation:obShine 5s ease-in-out infinite;pointer-events:none}
+@keyframes obShine{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@media (prefers-reduced-motion:reduce){.offerbar .wrap::after{animation:none}}
+.ob-tag{flex:none;font-weight:800;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:var(--teal);color:#08100C;border-radius:999px;padding:6px 12px;box-shadow:0 0 18px rgba(158,212,74,.55)}
+.ob-list{display:flex;flex-wrap:wrap;gap:8px;flex:1;min-width:0;font-size:.92rem;font-weight:600}
+.ob-list a,.ob-list span{display:inline-flex;align-items:center;color:#F1FBE6;text-decoration:none;background:rgba(158,212,74,.12);border:1px solid rgba(158,212,74,.35);border-radius:999px;padding:6px 14px}
+.ob-list a:hover{background:rgba(158,212,74,.25)}
+.ob-list i{font-style:normal;color:var(--teal);margin-right:8px}
+.ob-edit{flex:none;position:relative;z-index:1;font:inherit;font-size:.78rem;font-weight:700;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
 .oe-back{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:grid;place-items:center;padding:16px}
 .oe{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:20px;max-width:640px;width:100%;max-height:90vh;overflow:auto;padding:20px}
 .oe h3{margin:0 0 4px}.oe p{margin:0 0 12px;color:var(--muted);font-size:.88rem}
@@ -575,7 +579,7 @@ body.on-guide main>section:not(.guide){display:none}
 .oe-row input[type=text]{font:inherit;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
 .oe-row button,.oe-act button{font:inherit;font-weight:700;border-radius:10px;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:8px 12px;cursor:pointer}
 .oe-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.oe-act .pri{background:var(--teal);color:#08100C;border-color:var(--teal)}
-@media (max-width:600px){.offerbar .wrap{align-items:flex-start}.oe-row{grid-template-columns:auto 1fr auto}.oe-row .lk{grid-column:2/4}}
+@media (max-width:600px){.offerbar .wrap{align-items:flex-start;flex-direction:column;gap:10px}.oe-row{grid-template-columns:auto 1fr auto}.oe-row .lk{grid-column:2/4}}
 .m3d-hint{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:var(--muted);pointer-events:none}
 .dmedia .fav,.dmedia .badge{z-index:2}
 .dmedia video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -662,8 +666,8 @@ body.on-guide main>section:not(.guide){display:none}
 </style>
 <script defer src="/analytics.js"></script></head>
 <body>
-<div class="offerbar" id="offerbar" hidden><div class="wrap"><span class="ob-tag">Offers</span><div class="ob-list" id="obList"></div><button class="ob-edit" id="obEdit" type="button" hidden>Edit offers</button></div></div>
 <div class="notice"><b>1-day delivery across Kerala</b> · Fast delivery all over India · Live arrival guaranteed</div>
+<div class="offerbar" id="offerbar" hidden><div class="wrap"><span class="ob-tag">Offers</span><div class="ob-list" id="obList"></div><button class="ob-edit" id="obEdit" type="button" hidden>Edit offers</button></div></div>
 <header>
   <div class="wrap bar">
     <a class="logo" href="#top" aria-label="Exotic Terras home">
@@ -1208,6 +1212,14 @@ function t3Textures(T){
     x.strokeStyle="rgba(255,255,255,.55)";x.lineWidth=3;x.beginPath();x.moveTo(0,64);x.lineTo(250,64);x.stroke();
     for(let i=0;i<1400;i++){x.fillStyle="rgba(0,0,0,"+R()*.07+")";x.fillRect(R()*256,R()*128,2,2);}x.restore();
     const t=new T.CanvasTexture(c);t.anisotropy=4;return t;})();
+  tx.fitt=(vein,base,edge)=>{const k="f"+vein+base;if(tx[k])return tx[k];const c=document.createElement("canvas");c.width=256;c.height=160;const x=c.getContext("2d");
+    x.beginPath();x.moveTo(0,80);x.bezierCurveTo(30,-6,190,0,256,80);x.bezierCurveTo(190,160,30,166,0,80);x.closePath();
+    const g=x.createRadialGradient(110,80,10,120,80,150);g.addColorStop(0,base);g.addColorStop(1,edge);x.fillStyle=g;x.fill();
+    x.save();x.clip();x.strokeStyle=vein;x.lineCap="round";
+    x.lineWidth=3.2;x.beginPath();x.moveTo(0,80);x.lineTo(250,80);x.stroke();
+    for(let i=0;i<7;i++){const u=18+i*30;x.lineWidth=2.2-i*.14;x.beginPath();x.moveTo(u,80);x.quadraticCurveTo(u+26,52,u+60,14+i*2);x.moveTo(u,80);x.quadraticCurveTo(u+26,108,u+60,146-i*2);x.stroke();}
+    x.globalAlpha=.35;x.lineWidth=1;for(let i=0;i<260;i++){const px=R()*250,py=R()*160,a=R()*6.28;x.beginPath();x.moveTo(px,py);x.lineTo(px+Math.cos(a)*9,py+Math.sin(a)*9);x.stroke();}
+    x.restore();const t=new T.CanvasTexture(c);t.anisotropy=4;return (tx[k]=t);};
   tx.table=cvs(512,(x,w)=>{x.fillStyle="#140b05";x.fillRect(0,0,w,w);const n=12,bh=w/n;for(let i=0;i<n;i++){const y=i*bh;x.fillStyle="hsl(25,"+(32+R()*14)+"%,"+(11+R()*8)+"%)";x.fillRect(0,y,w,bh-2);for(let j=0;j<26;j++){x.strokeStyle="rgba(30,15,5,"+(.08+R()*.16)+")";x.beginPath();x.moveTo(0,y+R()*bh);x.bezierCurveTo(w*.3,y+R()*bh,w*.6,y+R()*bh,w,y+R()*bh);x.stroke();}}
     x.globalCompositeOperation="destination-in";const g=x.createRadialGradient(w/2,w/2,w*.16,w/2,w/2,w/2);g.addColorStop(0,"rgba(0,0,0,.9)");g.addColorStop(.55,"rgba(0,0,0,.55)");g.addColorStop(1,"rgba(0,0,0,0)");x.fillStyle=g;x.fillRect(0,0,w,w);});
   tx.table.wrapS=tx.table.wrapT=T.ClampToEdgeWrapping;
@@ -1239,23 +1251,29 @@ function build3D(type){
     root.add(g);};
   const leafGeo=new T.PlaneGeometry(1,1,8,2);leafGeo.rotateX(-Math.PI/2);leafGeo.translate(.5,0,0);
   {const p=leafGeo.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i);p.setY(i,-.34*x*x+.16*x*(1-x)*2-Math.abs(z)*.5*(1-x*.3));}leafGeo.computeVertexNormals();}
-  const leafMat=(c,r=.5)=>new T.MeshStandardMaterial({map:tx.leaf,color:c,roughness:r,side:T.DoubleSide,alphaTest:.45,envMapIntensity:.45});
-  const fernMat=leafMat(0xa8b0a0,.6);
-  const fern=(x,y,z,h,sz,base=0x3f8a45)=>{const g=new T.Group();g.position.set(x,y,z);
-    const nf=7,lf=9,b=new T.Color(base),hsl={};b.getHSL(hsl);
-    const fr=[];for(let f=0;f<nf;f++){const a=f/nf*6.283+rnd()*.6,reach=sz*(1.4+rnd()*.8),fh=h*(.65+rnd()*.35);
-      const pts=[0,.33,.66,1].map(t=>new T.Vector3(Math.cos(a)*reach*t*t*1.1,fh*Math.sin(t*1.45),Math.sin(a)*reach*t*t*1.1));
-      const cu=new T.CatmullRomCurve3(pts);g.add(new T.Mesh(new T.TubeGeometry(cu,12,.012,5),M(0x3b6a35,.8)));fr.push({a,cu});}
+  const leafMat=(c,r=.5,map=tx.leaf)=>new T.MeshStandardMaterial({map:map,color:c,emissive:0x0b2208,roughness:r,side:T.DoubleSide,alphaTest:.45,envMapIntensity:.45});
+  const fernMat=leafMat(0xc8d0c0,.6);
+  const fern=(x,y,z,h,sz,base=0x2f7a3a)=>{const g=new T.Group();g.position.set(x,y,z);
+    const nf=11,lf=17,b=new T.Color(base),hsl={};b.getHSL(hsl);
+    const fr=[];for(let f=0;f<nf;f++){const a=f/nf*6.283+rnd()*.5,reach=sz*(1.3+rnd()*.9),fh=h*(.55+rnd()*.45);
+      const pts=[0,.33,.66,1].map(t=>new T.Vector3(Math.cos(a)*reach*t*t*1.1,fh*Math.sin(t*1.5),Math.sin(a)*reach*t*t*1.1));
+      const cu=new T.CatmullRomCurve3(pts);g.add(new T.Mesh(new T.TubeGeometry(cu,14,.011,5),M(0x2f5a2a,.8)));fr.push({a,cu});}
     const n=nf*lf*2;
-    g.add(inst(leafGeo,fernMat,n,(o,c,i)=>{const f=fr[(i/(lf*2))|0],k=((i%(lf*2))/2)|0,side=i%2?1:-1,t=.18+k/(lf)*.8,p=f.cu.getPoint(Math.min(t,1));
-      const ang=f.a+side*Math.PI/2,w=sz*.5*(1-t*.55);o.position.copy(p);o.rotation.set(0,Math.atan2(-Math.sin(ang),Math.cos(ang)),-.28);o.scale.set(w*2,1,w*.9);
-      c.setHSL(hsl.h+(rnd()-.5)*.04,hsl.s,hsl.l*(.8+rnd()*.5));}));
+    g.add(inst(leafGeo,fernMat,n,(o,c,i)=>{const f=fr[(i/(lf*2))|0],k=((i%(lf*2))/2)|0,side=i%2?1:-1,t=.14+k/lf*.84,p=f.cu.getPoint(Math.min(t,1));
+      const ang=f.a+side*(1.15+t*.25),w=sz*.42*Math.sin(Math.PI*Math.min(1,t*1.05+.08))*(1-t*.2)+.03;o.position.copy(p);o.rotation.order="YZX";o.rotation.set(0,Math.atan2(-Math.sin(ang),Math.cos(ang)),-.3-t*.5+(rnd()-.5)*.2);o.scale.set(w*1.7,1,w*.5);
+      c.setHSL(hsl.h+(rnd()-.5)*.05,hsl.s*(.8+rnd()*.3),hsl.l*(.65+rnd()*.5));}));
     root.add(g);};
   const petalGeo=leafGeo;
   const petalMat=leafMat(0xb8bcb0,.5);
   const rosette=(x,y,z,s,col=0x7fb069)=>{const g=new T.Group();g.position.set(x,y,z);g.scale.setScalar(s);
-    const rings=[[10,.22,.42,.15],[8,.6,.34,.13],[6,1.0,.26,.11],[4,1.3,.18,.09]],b=new T.Color(col),hsl={};b.getHSL(hsl);
-    rings.forEach((r,ri)=>{g.add(inst(petalGeo,petalMat,r[0],(o,c,i)=>{o.rotation.order="YZX";o.rotation.set(0,i/r[0]*6.283+ri*.4,r[1]);o.position.set(0,.03+ri*.05,0);o.scale.set(r[2]*2.2,1,r[3]*3.2);c.setHSL(hsl.h,hsl.s*(1-ri*.08),Math.min(.8,hsl.l*(.85+ri*.12)+rnd()*.04));}));});
+    const hsl={};new T.Color(col).getHSL(hsl);const pink=hsl.h>.9||hsl.h<.05, yel=hsl.h>.1&&hsl.h<.18;
+    const map=pink?tx.fitt("#f3a6c0","#2d5a2c","#183a1a"):yel?tx.fitt("#fff1a8","#4d7a2a","#2c4c1a"):tx.fitt("#e9f5df","#3f7f36","#244f22");
+    const mat=leafMat(0xc4c4c4,.42,map);
+    const N=19;
+    g.add(inst(leafGeo,mat,N,(o,c,i)=>{const ring=i<6?0:i<13?1:2,cnt=[6,7,6][ring],j=ring===0?i:ring===1?i-6:i-13;
+      const a=j/cnt*6.283+ring*.55+rnd()*.35,lift=[.22,.55,.95][ring]+rnd()*.15;
+      o.rotation.order="YZX";o.rotation.set(0,a,lift);o.position.set(Math.cos(a)*.03,.04+ring*.1,-Math.sin(a)*.03);
+      const L=[.95,.88,.7][ring]*(.85+rnd()*.3);o.scale.set(L,1,L*.72);const v=.82+rnd()*.3;c.setRGB(v,v,v);}));
     root.add(g);};
   const rock=(x,y,z,r,c=0x8b8f8c)=>{const geo=new T.IcosahedronGeometry(r,2),p=geo.attributes.position,v=new T.Vector3(),ph=rnd()*9;
     for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const k=1+.2*(Math.sin(v.x*9/r*.3+ph)*Math.cos(v.z*8/r*.3+ph)+.5*Math.sin(v.y*13/r*.3+ph));p.setXYZ(i,v.x*k,v.y*k,v.z*k);}
