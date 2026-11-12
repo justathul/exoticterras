@@ -560,26 +560,7 @@ body.on-guide main>section:not(.guide){display:none}
 .shapesw button[aria-pressed="true"]{background:var(--teal);color:#08100C;border-color:var(--teal)}
 .mphoto{display:none}.dmedia.showphoto .mphoto{display:block;z-index:1}.dmedia.showphoto .m3d,.dmedia.showphoto .shapesw,.dmedia.showphoto>svg{display:none}
 .thumbs button.tb3d{display:grid;place-items:center;font:inherit;font-weight:800;font-size:.9rem;color:var(--ink);background:var(--chip)}
-/* offers box */
-.offerbar{padding:12px 0 12px}
-.offerbar .wrap{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:18px;border:1px solid rgba(158,212,74,.55);background:radial-gradient(120% 220% at 0% 0%,rgba(158,212,74,.28),transparent 55%),linear-gradient(135deg,#142512,#0E1A10);box-shadow:0 0 0 1px rgba(158,212,74,.08),0 8px 30px -10px rgba(158,212,74,.45);position:relative;overflow:hidden;max-width:1160px}
-.offerbar .wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.09) 50%,transparent 65%);transform:translateX(-120%);animation:obShine 5s ease-in-out infinite;pointer-events:none}
-@keyframes obShine{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
-@media (prefers-reduced-motion:reduce){.offerbar .wrap::after{animation:none}}
-.ob-tag{flex:none;font-weight:800;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:var(--teal);color:#08100C;border-radius:999px;padding:6px 12px;box-shadow:0 0 18px rgba(158,212,74,.55)}
-.ob-list{display:flex;flex-wrap:wrap;gap:8px;flex:1;min-width:0;font-size:.92rem;font-weight:600}
-.ob-list a,.ob-list span{display:inline-flex;align-items:center;color:#F1FBE6;text-decoration:none;background:rgba(158,212,74,.12);border:1px solid rgba(158,212,74,.35);border-radius:999px;padding:6px 14px}
-.ob-list a:hover{background:rgba(158,212,74,.25)}
-.ob-list i{font-style:normal;color:var(--teal);margin-right:8px}
-.ob-edit{flex:none;position:relative;z-index:1;font:inherit;font-size:.78rem;font-weight:700;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
-.oe-back{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:grid;place-items:center;padding:16px}
-.oe{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:20px;max-width:640px;width:100%;max-height:90vh;overflow:auto;padding:20px}
-.oe h3{margin:0 0 4px}.oe p{margin:0 0 12px;color:var(--muted);font-size:.88rem}
-.oe-row{display:grid;grid-template-columns:auto 1fr 130px auto;gap:8px;align-items:center;margin-bottom:8px}
-.oe-row input[type=text]{font:inherit;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
-.oe-row button,.oe-act button{font:inherit;font-weight:700;border-radius:10px;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:8px 12px;cursor:pointer}
-.oe-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.oe-act .pri{background:var(--teal);color:#08100C;border-color:var(--teal)}
-@media (max-width:600px){.offerbar .wrap{align-items:flex-start;flex-direction:column;gap:10px}.oe-row{grid-template-columns:auto 1fr auto}.oe-row .lk{grid-column:2/4}}
+img[src$="bpack.jpg"]{object-position:center top}
 .m3d-hint{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:var(--muted);pointer-events:none}
 .dmedia .fav,.dmedia .badge{z-index:2}
 .dmedia video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -667,7 +648,6 @@ body.on-guide main>section:not(.guide){display:none}
 <script defer src="/analytics.js"></script></head>
 <body>
 <div class="notice"><b>1-day delivery across Kerala</b> · Fast delivery all over India · Live arrival guaranteed</div>
-<div class="offerbar" id="offerbar" hidden><div class="wrap"><span class="ob-tag">Offers</span><div class="ob-list" id="obList"></div><button class="ob-edit" id="obEdit" type="button" hidden>Edit offers</button></div></div>
 <header>
   <div class="wrap bar">
     <a class="logo" href="#top" aria-label="Exotic Terras home">
@@ -933,7 +913,7 @@ const PRODUCTS = [
   {id:"btank",cat:"terra",glass:true,photo:"/images/btank.jpg",gallery:["/images/btank-angles.jpg","/images/btank-size.jpg"],name:"Black Frame Glass Terrarium Tank",sci:"Premium glass cube tank · 20 × 13 × 21 cm",price:1999,unit:"piece",stock:"in",facts:[["Size","20 × 13 × 21 cm"],["Material","Glass, black frame"],["Brand","Deco Point"]],desc:"A sleek black-framed glass terrarium that turns moss, ferns and a piece of driftwood into a living work of art. Compact at 20 × 13 × 21 cm, it sits happily on a desk, shelf or bedside table, and clear glass on every side shows off every layer you build.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   // model: interactive 3D viewer on the detail page (see build3D). enquiry:true = no fixed price, shows an Enquire button.
   {id:"tjar",cat:"terra",glass:true,model:"rect",photo:"/images/customised-terrariums-showcase.jpg",shapes:[["rect","Vertical rectangle"],["tube","Tall cylinder"],["cube","Cube"],["tubes","Short cylinder"],["jar","Cork jar"],["jar2","Glass-lid jar"]],enquiry:true,name:"Custom closed terrarium",sci:"Sealed glass terrarium made to your design",unit:"piece",stock:"in",care:"Easy",desc:"A self-watering mini rainforest in a sealed glass container of your choice, such as a jar, cube or cylinder with a lid. Pick the size, moss, ferns and plants, and we build it to order with a springtail cleanup crew. Use the 3D preview to try each shape: vertical rectangle, tall or short cylinder, cube and mini jars.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
-  {id:"bpack",cat:"pack",name:"Beginner isopod pack",sci:"10 Powder Orange + springtails + food",price:599,unit:"pack",stock:"low",care:"Easy",desc:"Everything to start your first colony: 10 Powder Orange, a temperate white springtail culture and a bag of isopod food. Cheaper than buying them separately.",art:{tint:"#E07B2A",t:"box",c:"#E07B2A"}},
+  {id:"bpack",cat:"pack",photo:"/images/bpack.jpg",name:"Beginner isopod pack",sci:"10 Powder Orange + springtails + food",price:599,unit:"pack",stock:"low",care:"Easy",desc:"Everything to start your first colony: 10 Powder Orange, a temperate white springtail culture and a bag of isopod food. Cheaper than buying them separately.",art:{tint:"#E07B2A",t:"box",c:"#E07B2A"}},
   {id:"fit",cat:"plant",photo:"/images/fit.jpg",name:"Fittonia",sci:"Fittonia albivenis",price:49,unit:"small pot",stock:"out",desc:"Compact and humidity-loving, with veins that glow under light.",art:{t:"plant",c:"#3F7A3A",v:"#F2C4C4"}}
 ];
 
@@ -1927,51 +1907,7 @@ async function loadSheet(){
   }catch(e){}
 }
 
-/* ===== top offers box: edit offers.csv on GitHub, or open /#edit-offers to edit here ===== */
-const OFFERS_CSV="/offers.csv";
-let OFFERS=[{text:"Beginner isopod pack: 10 Powder Orange + springtails + food for Rs 599",link:"#p-bpack",on:true}];
-const escO=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function offersToCSV(l){const q=v=>/[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;return "text,link,active\n"+l.map(o=>[q(o.text),q(o.link||""),o.on?"yes":"no"].join(",")).join("\n")+"\n";}
-let OWNER=false; try{OWNER=localStorage.getItem("et-owner")==="1";}catch(e){}
-function renderOffers(){
-  const bar=document.getElementById("offerbar"),box=document.getElementById("obList"),on=OFFERS.filter(o=>o.on&&o.text.trim());
-  bar.hidden=!on.length&&!OWNER;
-  if(!on.length&&OWNER){box.innerHTML='<span>No running offers. Tap Edit offers to add one.</span>';}
-  else box.innerHTML=on.map(o=>{const t=`<i>&#9733;</i>${escO(o.text)}`;return o.link?`<a href="${escO(o.link)}">${t}</a>`:`<span>${t}</span>`;}).join("");
-  document.getElementById("obEdit").hidden=!OWNER;
-}
-function setOffers(rows){OFFERS=rows;renderOffers();}
-async function loadOffers(){
-  let local=null; try{local=JSON.parse(localStorage.getItem("et-offers")||"null");}catch(e){}
-  if(OWNER&&Array.isArray(local)){setOffers(local);return;}
-  try{const res=await fetch(OFFERS_CSV+"?t="+Date.now(),{cache:"no-store"}); if(!res.ok) throw 0;
-    const rows=parseCSV(await res.text()); const head=(rows.shift()||[]).map(x=>x.trim().toLowerCase()); const col=k=>head.indexOf(k);
-    const list=rows.filter(r=>(r[col("text")]||"").trim()).map(r=>({text:r[col("text")].trim(),link:(r[col("link")]||"").trim(),on:!/^(no|off|false|0)$/i.test((r[col("active")]||"yes").trim())}));
-    setOffers(list);
-  }catch(e){renderOffers();}
-}
-function openOfferEditor(){
-  const back=document.createElement("div");back.className="oe-back";
-  let rows=OFFERS.map(o=>({...o}));
-  const draw=()=>{back.innerHTML=`<div class="oe" role="dialog" aria-label="Edit offers"><h3>Edit running offers</h3><p>Tick to show an offer. Link is optional (#shop, #p-bpack, or a full URL). Preview applies on this device only. To publish for everyone, copy the CSV and paste it into <b>offers.csv</b> on GitHub.</p>
-    ${rows.map((o,i)=>`<div class="oe-row"><input type="checkbox" data-i="${i}" data-f="on" ${o.on?"checked":""} aria-label="Show"><input type="text" data-i="${i}" data-f="text" value="${escO(o.text)}" placeholder="Offer text"><input class="lk" type="text" data-i="${i}" data-f="link" value="${escO(o.link||"")}" placeholder="link"><button type="button" data-del="${i}" aria-label="Remove">&times;</button></div>`).join("")}
-    <div class="oe-act"><button type="button" data-add>+ Add offer</button><button type="button" class="pri" data-prev>Preview here</button><button type="button" data-copy>Copy offers.csv</button><button type="button" data-gh>Open offers.csv on GitHub</button><button type="button" data-close>Close</button></div></div>`;};
-  draw();document.body.appendChild(back);
-  back.addEventListener("input",e=>{const t=e.target,i=t.dataset.i;if(i==null)return;rows[i][t.dataset.f]=t.dataset.f==="on"?t.checked:t.value;});
-  back.addEventListener("click",async e=>{const t=e.target;
-    if(t===back||t.dataset.close!=null){back.remove();return;}
-    if(t.dataset.add!=null){rows.push({text:"",link:"",on:true});draw();return;}
-    if(t.dataset.del!=null){rows.splice(+t.dataset.del,1);draw();return;}
-    if(t.dataset.prev!=null){const l=rows.filter(o=>o.text.trim());try{localStorage.setItem("et-offers",JSON.stringify(l));}catch(e){}setOffers(l);t.textContent="Previewed";return;}
-    if(t.dataset.copy!=null){const c=offersToCSV(rows.filter(o=>o.text.trim()));try{await navigator.clipboard.writeText(c);t.textContent="Copied";}catch(e){prompt("Copy this into offers.csv",c);}return;}
-    if(t.dataset.gh!=null){open("https://github.com/justathul/exoticterras/edit/main/offers.csv","_blank");}
-  });
-}
-document.getElementById("obEdit").addEventListener("click",openOfferEditor);
-function ownerCheck(){if(location.hash==="#edit-offers"){OWNER=true;try{localStorage.setItem("et-owner","1");}catch(e){}history.replaceState(null,"",location.pathname);renderOffers();openOfferEditor();}}
-addEventListener("hashchange",ownerCheck);
 renderGrid();renderCart();route();
-loadOffers();ownerCheck();
 loadSheet();
 </script>
 </body>
