@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url><loc>https://exoticterras.in/</loc><lastmod>2026-11-09</lastmod><priority>1.0</priority></url>
+  <url><loc>https://exoticterras.in/</loc><lastmod>2026-11-12</lastmod><priority>1.0</priority></url>
   <url><loc>https://exoticterras.in/isopods/powder-orange/</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority><image:image><image:loc>https://exoticterras.in/images/po.jpg</image:loc></image:image></url>
   <url><loc>https://exoticterras.in/isopods/dairy-cow/</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority><image:image><image:loc>https://exoticterras.in/images/dc.jpg</image:loc></image:image></url>
   <url><loc>https://exoticterras.in/isopods/orange-dalmatian/</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority><image:image><image:loc>https://exoticterras.in/images/od.jpg</image:loc></image:image></url>
@@ -14,8 +14,8 @@
   <url><loc>https://exoticterras.in/springtails/temperate-white-springtails/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority><image:image><image:loc>https://exoticterras.in/images/tw.jpg</image:loc></image:image></url>
   <url><loc>https://exoticterras.in/terrariums/mini-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
   <url><loc>https://exoticterras.in/terrariums/black-frame-glass-terrarium-tank/</loc><lastmod>2026-11-09</lastmod><priority>0.7</priority><image:image><image:loc>https://exoticterras.in/images/btank.jpg</image:loc></image:image><image:image><image:loc>https://exoticterras.in/images/btank-angles.jpg</image:loc></image:image><image:image><image:loc>https://exoticterras.in/images/btank-size.jpg</image:loc></image:image></url>
-  <url><loc>https://exoticterras.in/terrariums/custom-closed-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
-  <url><loc>https://exoticterras.in/packs/beginner-isopod-pack/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://exoticterras.in/terrariums/custom-closed-terrarium/</loc><lastmod>2026-11-12</lastmod><priority>0.6</priority><image:image><image:loc>https://exoticterras.in/images/customised-terrariums-showcase.jpg</image:loc></image:image></url>
+  <url><loc>https://exoticterras.in/packs/beginner-isopod-pack/</loc><lastmod>2026-11-12</lastmod><priority>0.6</priority><image:image><image:loc>https://exoticterras.in/images/bpack.jpg</image:loc></image:image></url>
   <url><loc>https://exoticterras.in/plants/fittonia/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority><image:image><image:loc>https://exoticterras.in/images/fit.jpg</image:loc></image:image></url>
   <url><loc>https://exoticterras.in/guides/isopod-enclosure-setup/</loc><lastmod>2026-11-09</lastmod><priority>0.7</priority></url>
   <url><loc>https://exoticterras.in/guides/isopods-for-reptile-vivariums-india/</loc><lastmod>2026-11-09</lastmod><priority>0.7</priority></url>
@@ -23,5 +23,9 @@
   <url><loc>https://exoticterras.in/guides/how-to-build-a-bioactive-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.7</priority></url>
   <url><loc>https://exoticterras.in/guides/springtails-cleanup-crew-guide/</loc><lastmod>2026-11-09</lastmod><priority>0.7</priority></url>
   <url><loc>https://exoticterras.in/guides/open-vs-closed-terrarium/</loc><lastmod>2026-11-09</lastmod><priority>0.7</priority></url>
+  <url><loc>https://exoticterras.in/guides/how-much-do-isopods-cost-in-india/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://exoticterras.in/guides/best-isopods-for-beginners-india/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://exoticterras.in/guides/springtails-vs-isopods/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://exoticterras.in/guides/what-to-feed-isopods/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://exoticterras.in/faq/</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
 </urlset>

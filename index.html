@@ -1435,10 +1435,11 @@ function renderDetail(id){
   const mh=v.querySelector("[data-m3d]"); if(mh) mount3D(mh,mh.dataset.m3d);
   document.body.classList.add("on-detail");
   document.title=`${p.name} – ${SHOP}`;
+  {const md=document.querySelector('meta[name=description]');if(md)md.content=(p.name+": "+(p.desc||"")).slice(0,155);}
   window.scrollTo(0,0);
 }
-function showHome(){stop3D();document.body.classList.remove("on-detail","on-legal","on-guide");document.title=HOME_TITLE;}
-const HOME_TITLE=document.title;
+function showHome(){stop3D();{const md=document.querySelector('meta[name=description]');if(md&&window.HOME_DESC)md.content=HOME_DESC;}document.body.classList.remove("on-detail","on-legal","on-guide");document.title=HOME_TITLE;}
+const HOME_TITLE=document.title;window.HOME_DESC=(document.querySelector('meta[name=description]')||{}).content;
 function route(){
   const h=location.hash.slice(1);
   if(h.startsWith("guide-")){showGuide(h.slice(6));return;}
