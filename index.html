@@ -555,9 +555,27 @@ body.on-guide main>section:not(.guide){display:none}
 .thumbs button{flex:none;width:68px;height:68px;padding:0;border-radius:12px;overflow:hidden;border:2px solid transparent;background:none}
 .thumbs button.on{border-color:var(--teal)}.thumbs img{width:100%;height:100%;object-fit:cover}
 .m3d{position:absolute;inset:0;cursor:grab}.m3d canvas{width:100%;height:100%;display:block}
-.shapesw{position:absolute;left:0;right:0;bottom:38px;display:flex;justify-content:center;gap:8px;z-index:3}
-.shapesw button{font:inherit;font-size:.85rem;font-weight:700;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+.shapesw{position:absolute;left:0;right:0;bottom:34px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:0 10px;z-index:3}
+.shapesw button{font:inherit;font-size:.85rem;font-weight:700;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:6px 11px;cursor:pointer;font-size:.78rem}
 .shapesw button[aria-pressed="true"]{background:var(--teal);color:#08100C;border-color:var(--teal)}
+.mphoto{display:none}.dmedia.showphoto .mphoto{display:block;z-index:1}.dmedia.showphoto .m3d,.dmedia.showphoto .shapesw,.dmedia.showphoto>svg{display:none}
+.thumbs button.tb3d{display:grid;place-items:center;font:inherit;font-weight:800;font-size:.9rem;color:var(--ink);background:var(--chip)}
+/* offers box */
+.offerbar{background:linear-gradient(90deg,#16260F,#1B3412);border-bottom:1px solid var(--teal);color:#F1FBE6}
+.offerbar .wrap{display:flex;align-items:center;gap:12px;padding-top:9px;padding-bottom:9px}
+.ob-tag{flex:none;font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:var(--teal);color:#08100C;border-radius:999px;padding:4px 10px}
+.ob-list{display:flex;flex-wrap:wrap;gap:6px 18px;flex:1;min-width:0;font-size:.9rem}
+.ob-list a,.ob-list span{color:inherit;text-decoration:none}.ob-list a:hover{text-decoration:underline}
+.ob-list i{font-style:normal;color:var(--teal);margin-right:6px}
+.ob-edit{flex:none;font:inherit;font-size:.78rem;font-weight:700;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.oe-back{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:grid;place-items:center;padding:16px}
+.oe{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:20px;max-width:640px;width:100%;max-height:90vh;overflow:auto;padding:20px}
+.oe h3{margin:0 0 4px}.oe p{margin:0 0 12px;color:var(--muted);font-size:.88rem}
+.oe-row{display:grid;grid-template-columns:auto 1fr 130px auto;gap:8px;align-items:center;margin-bottom:8px}
+.oe-row input[type=text]{font:inherit;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+.oe-row button,.oe-act button{font:inherit;font-weight:700;border-radius:10px;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:8px 12px;cursor:pointer}
+.oe-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.oe-act .pri{background:var(--teal);color:#08100C;border-color:var(--teal)}
+@media (max-width:600px){.offerbar .wrap{align-items:flex-start}.oe-row{grid-template-columns:auto 1fr auto}.oe-row .lk{grid-column:2/4}}
 .m3d-hint{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:var(--muted);pointer-events:none}
 .dmedia .fav,.dmedia .badge{z-index:2}
 .dmedia video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -644,6 +662,7 @@ body.on-guide main>section:not(.guide){display:none}
 </style>
 <script defer src="/analytics.js"></script></head>
 <body>
+<div class="offerbar" id="offerbar" hidden><div class="wrap"><span class="ob-tag">Offers</span><div class="ob-list" id="obList"></div><button class="ob-edit" id="obEdit" type="button" hidden>Edit offers</button></div></div>
 <div class="notice"><b>1-day delivery across Kerala</b> · Fast delivery all over India · Live arrival guaranteed</div>
 <header>
   <div class="wrap bar">
@@ -766,7 +785,7 @@ body.on-guide main>section:not(.guide){display:none}
       <div class="calcintro"><h2>Design your terrarium</h2><p>Choose a style, size and planting and we’ll turn it into a ready-made WhatsApp enquiry. We confirm the price before you pay. Delivered across India, or pick up directly.</p><img class="bshow" src="/images/customised-terrariums-showcase.jpg" alt="Customised terrariums by Exotic Terras: vertical rectangle, tall and short cylinders, cube and mini jars" width="1000" height="1000" loading="lazy"></div>
       <div class="calcform">
         <label>Style<select id="bStyle"><option>Mini terrarium (moss-arch cube)</option><option>Custom closed terrarium</option></select></label>
-        <label>Container shape<select id="bShape"><option>Tall and short cylinders</option><option>Vertical rectangular terrariums</option><option>Cube terrariums</option><option>Small glass jars</option><option>Not sure, suggest for me</option></select></label>
+        <label>Container shape<select id="bShape"><option>Vertical rectangle</option><option>Tall cylinder</option><option>Short cylinder</option><option>Cube (square)</option><option>Mini jar with cork lid</option><option>Mini jar with glass lid</option><option>Not sure, suggest for me</option></select></label>
         <label>Size<select id="bSize"><option>Small (desk or shelf)</option><option selected>Medium</option><option>Large (statement piece)</option><option>Custom size, I’ll tell you</option></select></label>
         <label>Planting<select id="bPlant"><option>Moss and ferns (humid)</option><option>Tropical foliage</option><option>Succulents (dry, open)</option><option>Not sure, suggest for me</option></select></label>
         <label>Cleanup crew<select id="bCrew"><option>None</option><option>Springtails</option><option>Springtails and isopods (bioactive)</option></select></label>
@@ -909,7 +928,7 @@ const PRODUCTS = [
   {id:"mini",cat:"terra",glass:true,model:"mini",photo:"/images/terrarium-concept.jpg",enquiry:true,name:"Mini terrarium",sci:"Ready-made living terrarium",unit:"piece",stock:"in",care:"Easy",desc:"A small, ready-made living terrarium in a clear glass cube with a moss arch, plants and a springtail cleanup crew. Perfect for a desk or shelf.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   {id:"btank",cat:"terra",glass:true,photo:"/images/btank.jpg",gallery:["/images/btank-angles.jpg","/images/btank-size.jpg"],name:"Black Frame Glass Terrarium Tank",sci:"Premium glass cube tank · 20 × 13 × 21 cm",price:1999,unit:"piece",stock:"in",facts:[["Size","20 × 13 × 21 cm"],["Material","Glass, black frame"],["Brand","Deco Point"]],desc:"A sleek black-framed glass terrarium that turns moss, ferns and a piece of driftwood into a living work of art. Compact at 20 × 13 × 21 cm, it sits happily on a desk, shelf or bedside table, and clear glass on every side shows off every layer you build.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   // model: interactive 3D viewer on the detail page (see build3D). enquiry:true = no fixed price, shows an Enquire button.
-  {id:"tjar",cat:"terra",glass:true,model:"jar",shapes:[["jar","Jar"],["cube","Cube"],["tube","Cylinder"]],enquiry:true,name:"Custom closed terrarium",sci:"Sealed glass terrarium made to your design",unit:"piece",stock:"in",care:"Easy",desc:"A self-watering mini rainforest in a sealed glass container of your choice, such as a jar, cube or cylinder with a lid. Pick the size, moss, ferns and plants, and we build it to order with a springtail cleanup crew. The 3D preview shows a jar; other shapes are available.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
+  {id:"tjar",cat:"terra",glass:true,model:"rect",photo:"/images/customised-terrariums-showcase.jpg",shapes:[["rect","Vertical rectangle"],["tube","Tall cylinder"],["cube","Cube"],["tubes","Short cylinder"],["jar","Cork jar"],["jar2","Glass-lid jar"]],enquiry:true,name:"Custom closed terrarium",sci:"Sealed glass terrarium made to your design",unit:"piece",stock:"in",care:"Easy",desc:"A self-watering mini rainforest in a sealed glass container of your choice, such as a jar, cube or cylinder with a lid. Pick the size, moss, ferns and plants, and we build it to order with a springtail cleanup crew. Use the 3D preview to try each shape: vertical rectangle, tall or short cylinder, cube and mini jars.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   {id:"bpack",cat:"pack",name:"Beginner isopod pack",sci:"10 Powder Orange + springtails + food",price:599,unit:"pack",stock:"low",care:"Easy",desc:"Everything to start your first colony: 10 Powder Orange, a temperate white springtail culture and a bag of isopod food. Cheaper than buying them separately.",art:{tint:"#E07B2A",t:"box",c:"#E07B2A"}},
   {id:"fit",cat:"plant",photo:"/images/fit.jpg",name:"Fittonia",sci:"Fittonia albivenis",price:49,unit:"small pot",stock:"out",desc:"Compact and humidity-loving, with veins that glow under light.",art:{t:"plant",c:"#3F7A3A",v:"#F2C4C4"}}
 ];
@@ -1160,7 +1179,7 @@ const INCL={
   bpack:["10 Powder Orange isopods","Temperate white springtail culture","Isopod food source (50 g)","Simple setup guide"],
   mini:["Clear glass cube with lid","Living plants and moss","Drainage and substrate layers","Springtail cleanup crew","Care card"],
   btank:["Glass terrarium tank with black-finished frame","Size 20 × 13 × 21 cm (L × W × H)","Works for open or closed terrarium setups"],
-  tjar:["Closed glass container with lid (jar, cube or cylinder, your choice)", "Drainage, charcoal and substrate layers", "Living moss and plants", "Springtail cleanup crew", "Care card", "Final shape, size, plants and price confirmed on enquiry"],
+  tjar:["Closed glass container with lid (vertical rectangle, cube, tall or short cylinder, or mini jar, your choice)", "Drainage, charcoal and substrate layers", "Living moss and plants", "Springtail cleanup crew", "Care card", "Final shape, size, plants and price confirmed on enquiry"],
 };
 const catName=id=>(CATS.find(c=>c.id===id)||{}).name||"";
 /* ===== 3D terrarium models (three.js, built in code, no model files) ===== */
@@ -1181,6 +1200,14 @@ function t3Textures(T){
   tx.bark=cvs(256,(x,w)=>{x.fillStyle="#6b4a2e";x.fillRect(0,0,w,w);for(let i=0;i<420;i++){x.strokeStyle="rgba("+((30+R()*40)|0)+","+((18+R()*24)|0)+",8,"+(.25+R()*.4)+")";x.lineWidth=1+R()*3;const px=R()*w;x.beginPath();x.moveTo(px,0);x.bezierCurveTo(px+R()*14-7,w*.3,px+R()*14-7,w*.6,px+R()*10-5,w);x.stroke();}});
   tx.bark.repeat.set(1,4);
   tx.rock=cvs(256,(x,w)=>{x.fillStyle="#bdbdb6";x.fillRect(0,0,w,w);for(let i=0;i<900;i++){const v=(120+R()*110)|0;x.fillStyle="rgba("+v+","+v+","+(v-6)+","+(.15+R()*.3)+")";x.beginPath();x.arc(R()*w,R()*w,2+R()*14,0,6.3);x.fill();}for(let i=0;i<120;i++){x.fillStyle="rgba(40,40,36,.35)";x.fillRect(R()*w,R()*w,1+R()*3,1);}});
+  tx.leaf=(()=>{const c=document.createElement("canvas");c.width=256;c.height=128;const x=c.getContext("2d");
+    x.beginPath();x.moveTo(0,64);x.bezierCurveTo(50,-4,170,6,256,64);x.bezierCurveTo(170,122,50,132,0,64);x.closePath();
+    const g=x.createLinearGradient(0,0,256,0);g.addColorStop(0,"#d8d8d8");g.addColorStop(.5,"#ffffff");g.addColorStop(1,"#e6e6e6");x.fillStyle=g;x.fill();
+    x.save();x.clip();x.strokeStyle="rgba(0,0,0,.22)";x.lineWidth=1.4;
+    for(let i=1;i<9;i++){const u=i*26;x.beginPath();x.moveTo(u,64);x.quadraticCurveTo(u+30,34,u+58,6);x.moveTo(u,64);x.quadraticCurveTo(u+30,94,u+58,122);x.stroke();}
+    x.strokeStyle="rgba(255,255,255,.55)";x.lineWidth=3;x.beginPath();x.moveTo(0,64);x.lineTo(250,64);x.stroke();
+    for(let i=0;i<1400;i++){x.fillStyle="rgba(0,0,0,"+R()*.07+")";x.fillRect(R()*256,R()*128,2,2);}x.restore();
+    const t=new T.CanvasTexture(c);t.anisotropy=4;return t;})();
   tx.table=cvs(512,(x,w)=>{x.fillStyle="#140b05";x.fillRect(0,0,w,w);const n=12,bh=w/n;for(let i=0;i<n;i++){const y=i*bh;x.fillStyle="hsl(25,"+(32+R()*14)+"%,"+(11+R()*8)+"%)";x.fillRect(0,y,w,bh-2);for(let j=0;j<26;j++){x.strokeStyle="rgba(30,15,5,"+(.08+R()*.16)+")";x.beginPath();x.moveTo(0,y+R()*bh);x.bezierCurveTo(w*.3,y+R()*bh,w*.6,y+R()*bh,w,y+R()*bh);x.stroke();}}
     x.globalCompositeOperation="destination-in";const g=x.createRadialGradient(w/2,w/2,w*.16,w/2,w/2,w/2);g.addColorStop(0,"rgba(0,0,0,.9)");g.addColorStop(.55,"rgba(0,0,0,.55)");g.addColorStop(1,"rgba(0,0,0,0)");x.fillStyle=g;x.fillRect(0,0,w,w);});
   tx.table.wrapS=tx.table.wrapT=T.ClampToEdgeWrapping;
@@ -1201,17 +1228,19 @@ function build3D(type){
   const o3=new T.Object3D(), col3=new T.Color();
   const inst=(geo,mat,n,place)=>{const im=new T.InstancedMesh(geo,mat,n);for(let i=0;i<n;i++){o3.rotation.order="XYZ";place(o3,col3,i);o3.updateMatrix();im.setMatrixAt(i,o3.matrix);im.setColorAt(i,col3);}im.instanceColor.needsUpdate=true;return im;};
   const mossMat=new T.MeshStandardMaterial({map:tx.moss,color:0x5f7a4c,roughness:1});
-  const tuftGeo=new T.ConeGeometry(.026,.11,4);tuftGeo.translate(0,.055,0);
+  const tuftGeo=new T.ConeGeometry(.016,.085,4);tuftGeo.translate(0,.04,0);
   const tuftMat=new T.MeshStandardMaterial({roughness:1});
   const moss=(x,y,z,r)=>{const g=new T.Group();g.position.set(x,y,z);
     const d=new T.Mesh(new T.SphereGeometry(r,28,14,0,Math.PI*2,0,Math.PI/2),mossMat);d.scale.y=.42;g.add(d);
-    const n=Math.round(620*r*r);
+    const n=Math.round(1700*r*r);
     g.add(inst(tuftGeo,tuftMat,n,(o,c)=>{const a=rnd()*6.283,q=Math.sqrt(rnd())*r*.97,py=r*.42*Math.sqrt(Math.max(0,1-(q/r)*(q/r)));
       o.position.set(Math.cos(a)*q,py-.02,Math.sin(a)*q);const lean=(q/r)*.5;o.rotation.set(Math.sin(a)*lean+(rnd()-.5)*.5,rnd()*6.283,-Math.cos(a)*lean+(rnd()-.5)*.5);o.scale.setScalar(.6+rnd()*.8);
-      c.setHSL(.21+rnd()*.09,.34+rnd()*.26,.14+rnd()*.15);}));
+      c.setHSL(.22+rnd()*.08,.4+rnd()*.25,.1+rnd()*.13);}));
     root.add(g);};
-  const leafGeo=new T.SphereGeometry(1,8,6);leafGeo.translate(1,0,0);
-  const fernMat=new T.MeshStandardMaterial({roughness:.65,side:T.DoubleSide});
+  const leafGeo=new T.PlaneGeometry(1,1,8,2);leafGeo.rotateX(-Math.PI/2);leafGeo.translate(.5,0,0);
+  {const p=leafGeo.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i);p.setY(i,-.34*x*x+.16*x*(1-x)*2-Math.abs(z)*.5*(1-x*.3));}leafGeo.computeVertexNormals();}
+  const leafMat=(c,r=.5)=>new T.MeshStandardMaterial({map:tx.leaf,color:c,roughness:r,side:T.DoubleSide,alphaTest:.45,envMapIntensity:.45});
+  const fernMat=leafMat(0xa8b0a0,.6);
   const fern=(x,y,z,h,sz,base=0x3f8a45)=>{const g=new T.Group();g.position.set(x,y,z);
     const nf=7,lf=9,b=new T.Color(base),hsl={};b.getHSL(hsl);
     const fr=[];for(let f=0;f<nf;f++){const a=f/nf*6.283+rnd()*.6,reach=sz*(1.4+rnd()*.8),fh=h*(.65+rnd()*.35);
@@ -1219,40 +1248,74 @@ function build3D(type){
       const cu=new T.CatmullRomCurve3(pts);g.add(new T.Mesh(new T.TubeGeometry(cu,12,.012,5),M(0x3b6a35,.8)));fr.push({a,cu});}
     const n=nf*lf*2;
     g.add(inst(leafGeo,fernMat,n,(o,c,i)=>{const f=fr[(i/(lf*2))|0],k=((i%(lf*2))/2)|0,side=i%2?1:-1,t=.18+k/(lf)*.8,p=f.cu.getPoint(Math.min(t,1));
-      const ang=f.a+side*Math.PI/2,w=sz*.5*(1-t*.55);o.position.copy(p);o.rotation.set(0,Math.atan2(-Math.sin(ang),Math.cos(ang)),-.28);o.scale.set(w,w*.1,w*.4);
+      const ang=f.a+side*Math.PI/2,w=sz*.5*(1-t*.55);o.position.copy(p);o.rotation.set(0,Math.atan2(-Math.sin(ang),Math.cos(ang)),-.28);o.scale.set(w*2,1,w*.9);
       c.setHSL(hsl.h+(rnd()-.5)*.04,hsl.s,hsl.l*(.8+rnd()*.5));}));
     root.add(g);};
-  const petalGeo=new T.SphereGeometry(1,10,8);petalGeo.translate(1,0,0);
-  const petalMat=new T.MeshStandardMaterial({roughness:.55});
+  const petalGeo=leafGeo;
+  const petalMat=leafMat(0xb8bcb0,.5);
   const rosette=(x,y,z,s,col=0x7fb069)=>{const g=new T.Group();g.position.set(x,y,z);g.scale.setScalar(s);
     const rings=[[10,.22,.42,.15],[8,.6,.34,.13],[6,1.0,.26,.11],[4,1.3,.18,.09]],b=new T.Color(col),hsl={};b.getHSL(hsl);
-    rings.forEach((r,ri)=>{g.add(inst(petalGeo,petalMat,r[0],(o,c,i)=>{o.rotation.order="YZX";o.rotation.set(0,i/r[0]*6.283+ri*.4,r[1]);o.position.set(0,.03+ri*.05,0);o.scale.set(r[2],r[2]*.16,r[3]);c.setHSL(hsl.h,hsl.s*(1-ri*.08),Math.min(.8,hsl.l*(.85+ri*.12)+rnd()*.04));}));});
+    rings.forEach((r,ri)=>{g.add(inst(petalGeo,petalMat,r[0],(o,c,i)=>{o.rotation.order="YZX";o.rotation.set(0,i/r[0]*6.283+ri*.4,r[1]);o.position.set(0,.03+ri*.05,0);o.scale.set(r[2]*2.2,1,r[3]*3.2);c.setHSL(hsl.h,hsl.s*(1-ri*.08),Math.min(.8,hsl.l*(.85+ri*.12)+rnd()*.04));}));});
     root.add(g);};
   const rock=(x,y,z,r,c=0x8b8f8c)=>{const geo=new T.IcosahedronGeometry(r,2),p=geo.attributes.position,v=new T.Vector3(),ph=rnd()*9;
     for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const k=1+.2*(Math.sin(v.x*9/r*.3+ph)*Math.cos(v.z*8/r*.3+ph)+.5*Math.sin(v.y*13/r*.3+ph));p.setXYZ(i,v.x*k,v.y*k,v.z*k);}
     geo.computeVertexNormals();
     const m=new T.Mesh(geo,new T.MeshStandardMaterial({color:c,map:tx.rock,bumpMap:tx.rock,bumpScale:1.5,roughness:.95}));m.scale.set(1,.7,.9);m.rotation.y=rnd()*3;add(m,x,y,z);};
-  const wood=(pts,r=.07)=>root.add(new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts.map(p=>new T.Vector3(...p))),32,r,8),M(0x6b4a2e,1)));
+  const wood=(pts,r=.07,leaves=0)=>{const cu=new T.CatmullRomCurve3(pts.map(p=>new T.Vector3(...p)));
+    const tg=new T.TubeGeometry(cu,48,r,10);{const q=tg.attributes.position,v=new T.Vector3();for(let i=0;i<q.count;i++){v.fromBufferAttribute(q,i);const k=1+.18*Math.sin(v.y*14+v.x*9)+.1*Math.sin(v.y*31);const c=cu.getPoint(Math.min(1,i/q.count));q.setXYZ(i,c.x+(v.x-c.x)*k,v.y,c.z+(v.z-c.z)*k);}tg.computeVertexNormals();}
+    root.add(new T.Mesh(tg,M(0x6b4a2e,1)));
+    if(leaves){const lg=leafMat(0xffffff,.4);root.add(inst(leafGeo,lg,leaves,(o,c,i)=>{const t=.1+rnd()*.9,p=cu.getPoint(t),a=rnd()*6.283;o.position.copy(p);o.rotation.order="YZX";o.rotation.set(0,a,-.5+rnd()*.5);const s=.14+rnd()*.12;o.scale.set(s*2,1,s*1.2);c.setHSL(.24+rnd()*.1,.5+rnd()*.25,.22+rnd()*.2);}));}
+    return cu;};
   let cam=6.8,look=1.1;
   if(type==="jar"){
     glass(new T.Mesh(new T.LatheGeometry([[0,0],[.8,0],[.96,.08],[1,.3],[1,1.5],[.9,1.75],[.62,1.95],[.58,2.2]].map(p=>new T.Vector2(...p)),48)));
     add(cyl(.94,.94,.2,0xb4643a),0,.2,0); add(cyl(.94,.94,.05,0x1c1c1c),0,.325,0); add(cyl(.94,.94,.5,0x4a3220),0,.6,0);
     moss(0,.85,0,.94); fern(-.25,.85,.1,.8,.3); fern(.3,.85,-.2,.55,.24,0x4fa85a); rock(.35,.9,.35,.18); rosette(-.4,.85,-.35,.7);
     add(cyl(.66,.58,.32,0xb08a5e,24),0,2.3,0); add(cyl(.7,.7,.06,0x8a6a44,24),0,2.5,0); cam=7.2;
-  }else if(type==="cube"){ // closed glass cube with a lid
-    const bx=new T.BoxGeometry(2,2,2), cb=new T.Mesh(bx); cb.position.y=1.1; glass(cb);
-    const fl=new T.LineSegments(new T.EdgesGeometry(bx),new T.LineBasicMaterial({color:0xdff3ea,transparent:true,opacity:.7})); fl.position.y=1.1; root.add(fl);
-    add(new T.Mesh(new T.BoxGeometry(2.2,.1,2.2),M(0x2b2b2b)),0,.05,0);
-    add(new T.Mesh(new T.BoxGeometry(1.9,.18,1.9),M(0xb4643a)),0,.19,0);
-    add(new T.Mesh(new T.BoxGeometry(1.9,.4,1.9),M(0x4a3220)),0,.48,0);
-    moss(0,.68,0,.9); fern(-.4,.68,.2,1.0,.34); fern(.4,.68,-.3,.7,.28,0x4fa85a); rock(.45,.72,.5,.22); wood([[-.6,.68,-.5],[-.1,.98,-.4],[.5,.83,-.6]],.08); rosette(-.5,.68,-.5,.7);
-    add(new T.Mesh(new T.BoxGeometry(2.1,.14,2.1),M(0x2b2b2b)),0,2.17,0); add(cyl(.12,.12,.12,0xb08a5e,16),0,2.3,0);
-    cam=8;look=1.2;
-  }else if(type==="tube"){ // tall closed cylinder with a cork
-    const g=glass(new T.Mesh(new T.LatheGeometry([[0,0],[.4,0],[.55,.12],[.55,2.8]].map(p=>new T.Vector2(...p)),40))); g.position.y=.1;
-    add(cyl(.72,.72,.1,0x3a2a1c,40),0,.05,0);
-    add(cyl(.5,.5,.15,0xb4643a),0,.26,0); add(cyl(.5,.5,.4,0x4a3220),0,.53,0); moss(0,.73,0,.5); fern(-.1,.73,.05,1.6,.3); fern(.15,.73,-.1,1.0,.24,0x4fa85a); rock(.2,.78,.2,.12);
-    add(cyl(.5,.5,.25,0xb08a5e,24),0,3.02,0); cam=8.2;look=1.6;
+  }else if(type==="jar2"){ // apothecary jar with a glass dome lid and knob
+    glass(new T.Mesh(new T.LatheGeometry([[0,0],[.78,0],[.92,.08],[.98,.3],[.98,1.35],[.9,1.55],[.74,1.62],[.74,1.7]].map(p=>new T.Vector2(...p)),56)));
+    add(cyl(.92,.92,.24,0xb4643a,48),0,.2,0); add(cyl(.92,.92,.05,0x1c1c1c,48),0,.34,0); add(cyl(.92,.92,.46,0x4a3220,48),0,.6,0);
+    moss(0,.83,0,.9); fern(-.2,.83,.1,.75,.3); fern(.3,.83,-.2,.5,.22,0x4fa85a); rock(.34,.88,.34,.17); rosette(-.4,.83,-.3,.65,0xd9577a);
+    const lid=glass(new T.Mesh(new T.LatheGeometry([[0,1.98],[.2,1.97],[.5,1.9],[.8,1.74],[.84,1.7],[.76,1.7],[.5,1.8],[.2,1.86],[0,1.87]].map(p=>new T.Vector2(...p)),48)));
+    const kn=glass(new T.Mesh(new T.SphereGeometry(.2,24,16))); kn.position.y=2.12;
+    cam=7.2;look=1.1;
+  }else if(["rect","tube","cube","tubes"].includes(type)){ // closed glass vessels with black LED lids
+    const cfg={rect:{k:"box",hw:.82,hd:.82,H:3.3,cam:7.6,look:1.7},tube:{k:"cyl",r:.7,H:3.5,cam:7.8,look:1.8},cube:{k:"box",hw:1.1,hd:1.1,H:2.2,cam:6.9,look:1.15},tubes:{k:"cyl",r:1.2,H:1.75,cam:7.2,look:.95}}[type];
+    const box=cfg.k==="box",hw=cfg.hw||cfg.r,hd=cfg.hd||cfg.r,H=cfg.H,y0=.07,u=Math.min(hw,hd);
+    const sm=(m=.9)=>{if(box)return [(rnd()*2-1)*hw*m,(rnd()*2-1)*hd*m];const a=rnd()*6.283,q=Math.sqrt(rnd())*cfg.r*m;return [Math.cos(a)*q,Math.sin(a)*q];};
+    const rim=()=>{if(box)return rnd()<.5?[(rnd()<.5?-1:1)*(hw-.05),(rnd()*2-1)*hd*.95]:[(rnd()*2-1)*hw*.95,(rnd()<.5?-1:1)*(hd-.05)];const a=rnd()*6.283,q=cfg.r-.05;return [Math.cos(a)*q,Math.sin(a)*q];};
+    const gm=new T.Mesh(box?new T.BoxGeometry(hw*2,H,hd*2):new T.CylinderGeometry(cfg.r,cfg.r,H,64,1,true));gm.position.y=y0+H/2;glass(gm);
+    if(box){const fl=new T.LineSegments(new T.EdgesGeometry(gm.geometry),new T.LineBasicMaterial({color:0x9fe8d2,transparent:true,opacity:.85}));fl.position.y=y0+H/2;root.add(fl);}
+    const bs=new T.Mesh(box?new T.BoxGeometry(hw*2+.04,.09,hd*2+.04):new T.CylinderGeometry(cfg.r+.02,cfg.r+.02,.09,64));bs.position.y=y0/2;glass(bs);
+    const lay=(h,y,m)=>add(new T.Mesh(box?new T.BoxGeometry(hw*2-.04,h,hd*2-.04):new T.CylinderGeometry(cfg.r-.02,cfg.r-.02,h,56),m),0,y,0);
+    lay(.26,y0+.13,M(0xb4643a)); lay(.06,y0+.29,M(0x1c1c1c,.7)); lay(.5,y0+.57,M(0x4a3220));
+    const gg=new T.IcosahedronGeometry(.05,0),gcol=[0xb4643a,0xc58a5a,0x8d4a2a,0xd2a073,0x6a3a22];
+    root.add(inst(gg,new T.MeshStandardMaterial({roughness:.85,flatShading:true}),Math.round(230*(box?hw*hd:cfg.r*cfg.r)+60),(o,c)=>{const [x,z]=rim();o.position.set(x,y0+.05+rnd()*.24,z);o.rotation.set(rnd()*3,rnd()*3,rnd()*3);o.scale.set(.8+rnd()*.9,.7+rnd()*.5,.8+rnd()*.9);c.setHex(gcol[(rnd()*5)|0]);}));
+    const ys=y0+.84;
+    moss(0,ys-.03,0,u*.95); moss(-u*.45,ys-.02,u*.35,u*.5); moss(u*.5,ys-.02,-u*.3,u*.45);
+    const tall=H>2.8;
+    if(type==="rect"||type==="tube"){
+      const cu=wood([[-u*.55,ys,-u*.25],[-u*.2,ys+H*.28,-u*.12],[u*.3,ys+H*.5,-u*.2],[u*.05,ys+H*.74,u*.05]],.07,tall?34:0);
+      fern(u*.4,ys,u*.25,H*.32,u*.38); fern(-u*.1,ys,u*.45,H*.2,u*.3,0x4fa85a);
+      rosette(-u*.35,ys,u*.3,u*.85,0xd9577a); rosette(u*.35,ys,-u*.4,u*.6,0x7fb069); rock(u*.5,ys+.04,u*.5,u*.2);
+    }else if(type==="cube"){
+      rock(u*.1,ys+.18,-u*.2,u*.38,0x7c7f7d); rock(u*.38,ys+.08,-u*.15,u*.26,0x6d706e); rock(-u*.15,ys+.06,-u*.1,u*.2,0x8b8f8c);
+      fern(-u*.5,ys,u*.3,H*.38,u*.4); fern(u*.55,ys,u*.4,H*.3,u*.34,0x4fa85a); fern(u*.1,ys,u*.55,H*.22,u*.28);
+      rosette(-u*.45,ys,-u*.5,u*.6,0x7fb069);
+    }else{
+      rosette(-u*.4,ys,-u*.1,u*.7,0xd23c4a); rosette(u*.35,ys,u*.15,u*.8,0x8fcb66); rosette(u*.05,ys,-u*.5,u*.5,0xe8c64a);
+      fern(u*.55,ys,-u*.3,H*.35,u*.3); rock(-u*.1,ys+.05,u*.55,u*.18);
+    }
+    const lm2=new T.MeshStandardMaterial({color:0x151515,roughness:.3,metalness:.55,envMapIntensity:1.3});
+    const lidY=y0+H;
+    if(box){add(new T.Mesh(new T.BoxGeometry(hw*2+.1,.14,hd*2+.1),lm2),0,lidY+.07,0);add(cyl(.2,.2,.06,0x101010,24),0,lidY+.17,0);
+      add(new T.Mesh(new T.BoxGeometry(hw*1.5,.03,.12),new T.MeshBasicMaterial({color:0xf4fbff})),0,lidY-.015,0);}
+    else{add(cyl(cfg.r+.07,cfg.r+.07,.16,0x151515,64).clone(),0,lidY+.08,0).material=lm2;add(cyl(cfg.r*.5,cfg.r*.5,.07,0x101010,40),0,lidY+.19,0);
+      const ring=new T.Mesh(new T.TorusGeometry(cfg.r*.62,.02,8,40),new T.MeshBasicMaterial({color:0xf4fbff}));ring.rotation.x=Math.PI/2;add(ring,0,lidY-.02,0);}
+    const led=new T.PointLight(0xeef8ff,.9,6);led.position.set(0,lidY-.2,0);root.add(led);
+    const dg=new T.SphereGeometry(1,8,6);
+    root.add(inst(dg,new T.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:.4,roughness:.05}),Math.round(22*H),(o,c)=>{const a=rnd()*6.283;const x=box?(rnd()*2-1)*(hw-.02):Math.cos(a)*(cfg.r-.02);const z=box?(rnd()<.5?-1:1)*(hd-.02):Math.sin(a)*(cfg.r-.02);o.position.set(x,y0+.9+rnd()*(H-1.1),z);o.scale.setScalar(.012+rnd()*.028);c.setRGB(1,1,1);}));
+    cam=cfg.cam;look=cfg.look;
   }else{ // mini: clear glass cube with a moss arch and a small plant
     const bx=new T.BoxGeometry(2,2,2), cb=new T.Mesh(bx); cb.position.y=1.06; glass(cb);
     const fl=new T.LineSegments(new T.EdgesGeometry(bx),new T.LineBasicMaterial({color:0xeaf8f1,transparent:true,opacity:.75})); fl.position.y=1.06; root.add(fl);
@@ -1270,14 +1333,14 @@ function build3D(type){
     for(let i=0;i<=14;i++){const a=i/14*Math.PI,x=Math.cos(a)*.74,y=.52+Math.sin(a)*.98;clump(x,y,-.2,.23+rnd()*.03);clump(x*1.02,y,.2,.23+rnd()*.03);clump(x*.98,y+.03,0,.23);}
     clump(-.62,.6,.3,.36); clump(.64,.6,.26,.38); clump(-.35,.55,.68,.2);
     rock(-.02,.58,.4,.2,0x3b2c33); rock(.24,.56,.28,.13,0x4a3a40); rock(-.28,.56,.2,.1,0x33262d);
-    const lm=new T.MeshStandardMaterial({color:0x6fbf4a,roughness:.22,side:T.DoubleSide});
-    const lf=(x,y,z,yaw,tilt,s)=>{const m=new T.Mesh(leafGeo,lm);m.rotation.order="YZX";m.rotation.set(0,yaw,tilt);m.scale.set(.36*s,.03,.19*s);add(m,x,y,z);};
+    const lm=leafMat(0x6fbf4a,.3);
+    const lf=(x,y,z,yaw,tilt,s)=>{const m=new T.Mesh(leafGeo,lm);m.rotation.order="YZX";m.rotation.set(0,yaw,tilt);m.scale.set(.72*s,1,.5*s);add(m,x,y,z);};
     add(cyl(.014,.02,.34,0x3b6a35,6),0,.78,.18); lf(0,.96,.18,.4,.55,1); lf(0,.9,.18,2.9,.6,.95); lf(0,.84,.18,5.0,.45,.7);
     const dg=new T.SphereGeometry(1,8,6);
     root.add(inst(dg,new T.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:.45,roughness:.05}),90,(o,c,i)=>{const front=i%2?1:-1;o.position.set((rnd()*2-1)*.9,.7+rnd()*1.3,front*.98);o.scale.setScalar(.012+rnd()*.03);o.scale.z*=.5;c.setRGB(1,1,1);}));
     cam=7;look=1.1;
   }
-  root.traverse(o=>{if(o.isMesh&&o.material!==glassMat&&!o.material.transparent){o.castShadow=true;o.receiveShadow=true;}});
+  root.traverse(o=>{if(o.isMesh&&o.material!==glassMat&&!o.material.transparent){o.castShadow=!o.isInstancedMesh;o.receiveShadow=true;}});
   return {root,cam,look};
 }
 function mount3D(host,type){
@@ -1289,8 +1352,15 @@ function mount3D(host,type){
     try{R=new T.WebGLRenderer({antialias:true,alpha:true});}catch(e){return;}
     R.setPixelRatio(Math.min(devicePixelRatio||1,2));
     const sc=new T.Scene(), cam=new T.PerspectiveCamera(36,1,.1,50);
-    R.shadowMap.enabled=true; R.shadowMap.type=T.PCFSoftShadowMap; R.toneMapping=T.ACESFilmicToneMapping; R.toneMappingExposure=.95;
-    sc.add(new T.HemisphereLight(0xeaf6ee,0x3a2a1c,.6));
+    R.shadowMap.enabled=true; R.shadowMap.type=T.PCFSoftShadowMap; R.toneMapping=T.ACESFilmicToneMapping; R.toneMappingExposure=1.05;
+    sc.add(new T.HemisphereLight(0xeaf6ee,0x3a2a1c,.38));
+    try{ // studio-style environment (soft boxes) so lids, rocks and leaves pick up real reflections
+      const ec=document.createElement("canvas");ec.width=512;ec.height=256;const ex=ec.getContext("2d");
+      const gr=ex.createLinearGradient(0,0,0,256);gr.addColorStop(0,"#9fb8b0");gr.addColorStop(.5,"#34413b");gr.addColorStop(1,"#120d08");ex.fillStyle=gr;ex.fillRect(0,0,512,256);
+      ex.fillStyle="#ffffff";ex.fillRect(60,40,90,60);ex.fillRect(330,50,120,50);ex.fillStyle="#fff2d8";ex.fillRect(220,20,60,30);
+      const et=new T.CanvasTexture(ec);et.mapping=T.EquirectangularReflectionMapping;
+      const pm=new T.PMREMGenerator(R);sc.environment=pm.fromEquirectangular(et).texture;pm.dispose();
+    }catch(e){}
     const key=new T.DirectionalLight(0xfff3dc,1.05); key.position.set(3,6,4); key.castShadow=true; key.shadow.mapSize.set(1024,1024);
     Object.assign(key.shadow.camera,{left:-4.5,right:4.5,top:4.5,bottom:-4.5,near:1,far:16}); key.shadow.bias=-.0008; key.shadow.normalBias=.02; key.shadow.radius=4; sc.add(key);
     const rim=new T.DirectionalLight(0x9ED44A,.5); rim.position.set(-4,2,-3); sc.add(rim);
@@ -1314,6 +1384,9 @@ function mount3D(host,type){
     t3Stop=()=>{cancelAnimationFrame(raf);ro.disconnect();io.disconnect();R.dispose();el.remove();hint.remove();};
   }).catch(()=>{});
 }
+document.addEventListener("click",e=>{const tv=e.target.closest("[data-view]"); if(!tv) return;
+  const dm=document.querySelector(".dleft .dmedia"); if(!dm) return; dm.classList.toggle("showphoto",tv.dataset.view==="photo");
+  tv.parentElement.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===tv));});
 document.addEventListener("click",e=>{const b=e.target.closest(".shapesw button"); if(!b) return;
   const w=b.parentElement,h=w.parentElement.querySelector(".m3d"); if(!h) return;
   w.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
@@ -1330,7 +1403,7 @@ function renderDetail(id){
   v.innerHTML=`<div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="#shop">Shop</a><span>/</span><a href="#shop" data-cat="${p.cat}">${catName(p.cat)}</a><span>/</span><b>${p.name}</b></nav>
     <div class="dtop">
-      <div class="dleft"><div class="dmedia" style="--tint:${tint(p.art)}">${favBtn(p)}${p.rare?'<span class="badge rare">Rare</span>':p.care?`<span class="badge">${p.care} care</span>`:""}${p.model?art(p.art)+`<div class="m3d" data-m3d="${p.model}"></div>${p.shapes?`<div class="shapesw" role="group" aria-label="Choose a shape">${p.shapes.map(([k,l],n)=>`<button type="button" data-shape="${k}" aria-pressed="${n?"false":"true"}">${l}</button>`).join("")}</div>`:""}`:p.video?`<video src="${p.video}" autoplay muted loop playsinline></video>`:art(p.art)+(p.photo?`<img class="main" src="${p.photo}" alt="${p.name}">`:"")}</div>${(p.gallery||[]).length?`<div class="thumbs">${[p.photo,...p.gallery].filter(Boolean).map((u,n)=>`<button data-thumb="${u}" class="${n?"":"on"}" aria-label="Photo ${n+1}"><img src="${u}" alt=""></button>`).join("")}</div>`:""}</div>
+      <div class="dleft"><div class="dmedia" style="--tint:${tint(p.art)}">${favBtn(p)}${p.rare?'<span class="badge rare">Rare</span>':p.care?`<span class="badge">${p.care} care</span>`:""}${p.model?art(p.art)+(p.photo?`<img class="main mphoto" src="${p.photo}" alt="${p.name}">`:"")+`<div class="m3d" data-m3d="${p.model}"></div>${p.shapes?`<div class="shapesw" role="group" aria-label="Choose a shape">${p.shapes.map(([k,l],n)=>`<button type="button" data-shape="${k}" aria-pressed="${n?"false":"true"}">${l}</button>`).join("")}</div>`:""}`:p.video?`<video src="${p.video}" autoplay muted loop playsinline></video>`:art(p.art)+(p.photo?`<img class="main" src="${p.photo}" alt="${p.name}">`:"")}</div>${p.model&&p.photo?`<div class="thumbs"><button type="button" class="tb3d on" data-view="3d" aria-label="3D preview">3D</button><button type="button" data-view="photo" aria-label="Showcase photo"><img src="${p.photo}" alt=""></button></div>`:""}${(p.gallery||[]).length?`<div class="thumbs">${[p.photo,...p.gallery].filter(Boolean).map((u,n)=>`<button data-thumb="${u}" class="${n?"":"on"}" aria-label="Photo ${n+1}"><img src="${u}" alt=""></button>`).join("")}</div>`:""}</div>
       <div class="dinfo">
         <div class="meta"><span class="care">${catName(p.cat)}</span>${stockLabel(p)}</div>
         <h1>${p.name}</h1>
@@ -1836,7 +1909,51 @@ async function loadSheet(){
   }catch(e){}
 }
 
+/* ===== top offers box: edit offers.csv on GitHub, or open /#edit-offers to edit here ===== */
+const OFFERS_CSV="/offers.csv";
+let OFFERS=[{text:"Beginner isopod pack: 10 Powder Orange + springtails + food for Rs 599",link:"#p-bpack",on:true}];
+const escO=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function offersToCSV(l){const q=v=>/[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;return "text,link,active\n"+l.map(o=>[q(o.text),q(o.link||""),o.on?"yes":"no"].join(",")).join("\n")+"\n";}
+let OWNER=false; try{OWNER=localStorage.getItem("et-owner")==="1";}catch(e){}
+function renderOffers(){
+  const bar=document.getElementById("offerbar"),box=document.getElementById("obList"),on=OFFERS.filter(o=>o.on&&o.text.trim());
+  bar.hidden=!on.length&&!OWNER;
+  if(!on.length&&OWNER){box.innerHTML='<span>No running offers. Tap Edit offers to add one.</span>';}
+  else box.innerHTML=on.map(o=>{const t=`<i>&#9733;</i>${escO(o.text)}`;return o.link?`<a href="${escO(o.link)}">${t}</a>`:`<span>${t}</span>`;}).join("");
+  document.getElementById("obEdit").hidden=!OWNER;
+}
+function setOffers(rows){OFFERS=rows;renderOffers();}
+async function loadOffers(){
+  let local=null; try{local=JSON.parse(localStorage.getItem("et-offers")||"null");}catch(e){}
+  if(OWNER&&Array.isArray(local)){setOffers(local);return;}
+  try{const res=await fetch(OFFERS_CSV+"?t="+Date.now(),{cache:"no-store"}); if(!res.ok) throw 0;
+    const rows=parseCSV(await res.text()); const head=(rows.shift()||[]).map(x=>x.trim().toLowerCase()); const col=k=>head.indexOf(k);
+    const list=rows.filter(r=>(r[col("text")]||"").trim()).map(r=>({text:r[col("text")].trim(),link:(r[col("link")]||"").trim(),on:!/^(no|off|false|0)$/i.test((r[col("active")]||"yes").trim())}));
+    setOffers(list);
+  }catch(e){renderOffers();}
+}
+function openOfferEditor(){
+  const back=document.createElement("div");back.className="oe-back";
+  let rows=OFFERS.map(o=>({...o}));
+  const draw=()=>{back.innerHTML=`<div class="oe" role="dialog" aria-label="Edit offers"><h3>Edit running offers</h3><p>Tick to show an offer. Link is optional (#shop, #p-bpack, or a full URL). Preview applies on this device only. To publish for everyone, copy the CSV and paste it into <b>offers.csv</b> on GitHub.</p>
+    ${rows.map((o,i)=>`<div class="oe-row"><input type="checkbox" data-i="${i}" data-f="on" ${o.on?"checked":""} aria-label="Show"><input type="text" data-i="${i}" data-f="text" value="${escO(o.text)}" placeholder="Offer text"><input class="lk" type="text" data-i="${i}" data-f="link" value="${escO(o.link||"")}" placeholder="link"><button type="button" data-del="${i}" aria-label="Remove">&times;</button></div>`).join("")}
+    <div class="oe-act"><button type="button" data-add>+ Add offer</button><button type="button" class="pri" data-prev>Preview here</button><button type="button" data-copy>Copy offers.csv</button><button type="button" data-gh>Open offers.csv on GitHub</button><button type="button" data-close>Close</button></div></div>`;};
+  draw();document.body.appendChild(back);
+  back.addEventListener("input",e=>{const t=e.target,i=t.dataset.i;if(i==null)return;rows[i][t.dataset.f]=t.dataset.f==="on"?t.checked:t.value;});
+  back.addEventListener("click",async e=>{const t=e.target;
+    if(t===back||t.dataset.close!=null){back.remove();return;}
+    if(t.dataset.add!=null){rows.push({text:"",link:"",on:true});draw();return;}
+    if(t.dataset.del!=null){rows.splice(+t.dataset.del,1);draw();return;}
+    if(t.dataset.prev!=null){const l=rows.filter(o=>o.text.trim());try{localStorage.setItem("et-offers",JSON.stringify(l));}catch(e){}setOffers(l);t.textContent="Previewed";return;}
+    if(t.dataset.copy!=null){const c=offersToCSV(rows.filter(o=>o.text.trim()));try{await navigator.clipboard.writeText(c);t.textContent="Copied";}catch(e){prompt("Copy this into offers.csv",c);}return;}
+    if(t.dataset.gh!=null){open("https://github.com/justathul/exoticterras/edit/main/offers.csv","_blank");}
+  });
+}
+document.getElementById("obEdit").addEventListener("click",openOfferEditor);
+function ownerCheck(){if(location.hash==="#edit-offers"){OWNER=true;try{localStorage.setItem("et-owner","1");}catch(e){}history.replaceState(null,"",location.pathname);renderOffers();openOfferEditor();}}
+addEventListener("hashchange",ownerCheck);
 renderGrid();renderCart();route();
+loadOffers();ownerCheck();
 loadSheet();
 </script>
 </body>
