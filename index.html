@@ -644,6 +644,25 @@ img[src$="bpack.jpg"]{object-position:center top}
 .tconcept{margin:0 0 22px;max-width:420px}.tconcept img{width:100%;height:auto;border-radius:20px;border:1px solid var(--line)}.tconcept figcaption{color:var(--muted);font-size:.88rem;margin-top:8px}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;transition-delay:var(--d,0ms)}
 .reveal.in{opacity:1;transform:none}
+
+/* ===== feature additions ===== */
+.igband{padding:56px 0}.igband .wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.igband h2{font-family:Fraunces,Georgia,serif;margin:0 0 8px}.igband p{color:var(--muted);margin:0 0 16px}
+.igtiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.igtiles img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;border:1px solid var(--line)}
+@media (max-width:760px){.igband .wrap{grid-template-columns:1fr}}
+.gift{margin:0 0 12px;font-size:.92rem}.gift label{display:flex;gap:8px;align-items:center;font-weight:700}.gift input[type=text]{width:100%;margin-top:8px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit}
+.cmpb{font:inherit;font-size:.8rem;font-weight:700;color:var(--muted);background:none;border:1px dashed var(--line);border-radius:999px;padding:3px 10px;margin:6px 0 0;cursor:pointer}.cmpb[aria-pressed="true"]{color:#03140C;background:var(--teal);border-color:var(--teal)}
+.cmpbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:15;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--teal);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:var(--shadow);font-weight:700}
+.cmpbar[hidden]{display:none}.cmpbar button{font:inherit;font-weight:800;border:0;border-radius:999px;padding:8px 14px;cursor:pointer}#cmpopen{background:var(--teal);color:#03140C}#cmpopen:disabled{opacity:.5;cursor:not-allowed}#cmpclear{background:none;color:var(--muted)}
+body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+#cmpd{border:1px solid var(--line);border-radius:20px;background:var(--surface);color:var(--ink);padding:20px;max-width:min(920px,94vw);width:100%}#cmpd::backdrop{background:rgba(0,0,0,.55)}
+#cmpd .ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}#cmpd h3{font-family:Fraunces,Georgia,serif;margin:0}
+#cmpd .x{border:0;background:none;color:var(--ink);font-size:1.6rem;cursor:pointer}
+.cmpwrap{overflow-x:auto}.cmpt{width:100%;border-collapse:collapse;min-width:520px}.cmpt th,.cmpt td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:.93rem}.cmpt th{color:var(--muted);font-weight:700;width:22%}.cmpt thead td{font-weight:800}.cmpt .add{margin-top:6px}
+.pairs{margin:48px 0}.pairs h2{font-family:Fraunces,Georgia,serif;margin:0 0 6px}.pairs>p{color:var(--muted);margin:0 0 14px}
+.carebtn{display:inline-flex;margin-top:14px;font:inherit;font-weight:800;color:var(--ink);background:none;border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer}.carebtn:hover{border-color:var(--teal)}
+#carecard{display:none}
+@media print{body.print-card>*:not(#carecard){display:none!important}body.print-card #carecard{display:block;color:#000;background:#fff;font-family:Georgia,serif;padding:24px}#carecard h2{margin:0 0 4px;font-size:28px}#carecard .sci{font-style:italic;color:#444;margin:0 0 16px}#carecard table{width:100%;border-collapse:collapse;margin:12px 0}#carecard td{border-bottom:1px solid #ccc;padding:6px 4px}#carecard td:first-child{width:32%;font-weight:700}#carecard li{margin:6px 0}#carecard footer{margin-top:24px;border-top:2px solid #000;padding-top:10px;font-size:14px}}
 </style>
 <script defer src="/analytics.js"></script></head>
 <body>
@@ -709,7 +728,7 @@ img[src$="bpack.jpg"]{object-position:center top}
           </select>
         </div>
       </div>
-      <div class="fchips" role="group" aria-label="Filters"><button class="fchip" id="fEasy" aria-pressed="false">Easy care</button><button class="fchip" id="fStock" aria-pressed="false">In stock</button><button class="fchip" id="fSaved" aria-pressed="false">♥ Saved <span>0</span></button></div>
+      <div class="fchips" role="group" aria-label="Filters"><button class="fchip" id="fEasy" aria-pressed="false">Easy care</button><button class="fchip" id="fStock" aria-pressed="false">In stock</button><button class="fchip" id="fRare" aria-pressed="false">Rare</button><button class="fchip" id="fCheap" aria-pressed="false">Under ₹100</button><button class="fchip" id="fSaved" aria-pressed="false">♥ Saved <span>0</span></button></div>
       <div class="grid" id="grid"></div>
     </div>
   </section>
@@ -807,6 +826,13 @@ img[src$="bpack.jpg"]{object-position:center top}
     </div>
   </section>
 
+  <section class="igband" id="insta">
+    <div class="wrap">
+      <div class="igtxt"><h2>Follow our builds on Instagram</h2><p>New terrariums, colony updates and restocks land on <b>@exoticterras</b> first.</p><a class="btn ghost" href="https://www.instagram.com/exoticterras" target="_blank" rel="noopener">Follow @exoticterras</a></div>
+      <a class="igtiles" href="https://www.instagram.com/exoticterras" target="_blank" rel="noopener" aria-label="Open Exotic Terras on Instagram"><img src="/images/buddha.jpg" alt="Terrarium Buddha miniature on moss" loading="lazy" width="300" height="300"><img src="/images/customised-terrariums-showcase.jpg" alt="Customised terrariums by Exotic Terras" loading="lazy" width="300" height="300"><img src="/images/terrarium-concept.jpg" alt="Moss arch cube terrarium" loading="lazy" width="300" height="300"></a>
+    </div>
+  </section>
+
   <section class="faq faqt" id="faq">
     <div class="wrap">
       <div>
@@ -870,6 +896,7 @@ img[src$="bpack.jpg"]{object-position:center top}
     <div class="lines" id="lines"></div>
     <div class="df">
       <div data-pinslot></div>
+      <div class="gift"><label><input type="checkbox" id="giftOn"> This order is a gift</label><input type="text" id="giftNote" maxlength="140" placeholder="Gift note (optional)" aria-label="Gift note" hidden></div>
       <div class="tot"><span>Subtotal</span><span id="sub">₹0</span></div>
       <p class="note">Shipping is worked out on WhatsApp from your pin code. By ordering you agree to our <a href="#legal">responsible keeping terms</a>, including never releasing animals into the wild.</p>
       <a class="wa" id="wa" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.5-.3z"/></svg>Send order on WhatsApp</a>
@@ -880,6 +907,8 @@ img[src$="bpack.jpg"]{object-position:center top}
 
 <a class="fab" id="fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.5-.3z"/></svg></a>
 <dialog id="qv" aria-labelledby="qvTitle"></dialog>
+<dialog id="cmpd" aria-labelledby="cmpTitle"></dialog>
+<div class="cmpbar" id="cmpbar" hidden><span id="cmptxt"></span><button type="button" id="cmpopen">Compare</button><button type="button" id="cmpclear" aria-label="Clear comparison">Clear</button></div>
 <div class="cartbar" id="cartbar"><span id="cbtxt"></span><button id="cbopen">View cart</button></div>
 <dialog id="quizdlg" aria-label="Isopod quiz"></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1064,6 +1093,7 @@ function buildTank(){
 
 /* ===== state ===== */
 let cat=null, query="", sort="feat";
+let gift={on:false,note:""}, cmp=[];
 let cart={};
 try{ cart=JSON.parse(localStorage.getItem("et-cart")||"{}")||{}; }catch(e){ cart={}; }
 const save=()=>{ try{ localStorage.setItem("et-cart",JSON.stringify(cart)); }catch(e){} };
@@ -1092,7 +1122,7 @@ document.getElementById("sort").addEventListener("change",e=>{sort=e.target.valu
 /* ===== grid ===== */
 function stockLabel(p){return isEnq(p)&&p.cat==="terra"?'<span class="st">Made to order</span>':p.stock==="out"?'<span class="st out">Sold out</span>':p.stock==="low"?'<span class="st low">Only a few left</span>':'<span class="st">In stock</span>';}
 function renderGrid(){
-  let list=PRODUCTS.filter(p=>(!cat||p.cat===cat)&&(!query||(p.name+" "+p.sci+" "+p.desc).toLowerCase().includes(query))&&(!fEasy||p.care==="Easy")&&(!fStock||p.stock!=="out")&&(!fSaved||saved.has(p.id)));
+  let list=PRODUCTS.filter(p=>(!cat||p.cat===cat)&&(!query||(p.name+" "+p.sci+" "+p.desc).toLowerCase().includes(query))&&(!fEasy||p.care==="Easy")&&(!fStock||p.stock!=="out")&&(!fSaved||saved.has(p.id))&&(!fRare||p.rare)&&(!fCheap||(!isEnq(p)&&p.price<100)));
   if(sort==="lo") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||a.price-b.price);
   if(sort==="hi") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||b.price-a.price);
   if(sort==="easy") list=[...list].sort((a,b)=>(careRank[a.care]??0)-(careRank[b.care]??0));
@@ -1109,6 +1139,7 @@ function renderGrid(){
       <div class="meta"><span class="care">${p.unit}</span>${stockLabel(p)}</div>
       <h3><a class="nm" href="#p-${p.id}">${p.name}</a></h3>
       <div class="sci">${p.sci}</div>
+      ${cmpBtn(p)}
       <div class="cfoot">
         <span class="price">${priceOf(p)}</span>
         ${isEnq(p)?enquireBtn(p):p.stock==="out"?notifyBtn(p):`<button class="add" data-id="${p.id}">+ Add</button>`}
@@ -1444,7 +1475,7 @@ function renderDetail(id){
       <div class="dmain">
         ${i?`<h2>About ${p.name}</h2><p>${i.about}</p>
         <h2>Care guide</h2><ul class="tips">${i.care.map(t=>`<li>${t}</li>`).join("")}</ul>
-        <h2>At a glance</h2><dl class="glance"><div><dt>Diet</dt><dd>${i.diet}</dd></div><div><dt>Enclosure</dt><dd>${i.box}</dd></div><div><dt>Behaviour</dt><dd>${i.behaviour}</dd></div><div><dt>Origin</dt><dd>${i.origin}</dd></div></dl>`
+        <h2>At a glance</h2><dl class="glance"><div><dt>Diet</dt><dd>${i.diet}</dd></div><div><dt>Enclosure</dt><dd>${i.box}</dd></div><div><dt>Behaviour</dt><dd>${i.behaviour}</dd></div><div><dt>Origin</dt><dd>${i.origin}</dd></div></dl><button type="button" class="carebtn" data-care="${p.id}">Print care card</button>`
         :`<h2>How to use</h2><ul class="tips">${(u||[p.desc]).map(t=>`<li>${t}</li>`).join("")}</ul>`}
       </div>
       <aside class="dside">
@@ -1452,6 +1483,7 @@ function renderDetail(id){
         <ul>${i?`<li>${p.cat==="spring"?p.unit+" in a live culture":"Isopods of mixed sizes, mostly juveniles and sub-adults"+(p.min?" (minimum order "+p.min+")":"")}</li><li>Packed with damp substrate and food for the journey</li>`:(INCL[p.id]||[p.unit]).map(t=>`<li>${t}</li>`).join("")}<li>${p.glass?"Carefully packed to protect the glass":"Insulated, ventilated packaging"}</li><li>1-day delivery in Kerala, fast delivery across India</li>${p.cat==="terra"?`<li>Direct pickup available</li>`:""}${i?`<li>Live arrival guarantee: send a video within 2 hours of delivery if anything arrives dead</li>`:""}</ul>
       </aside>
     </div>
+    ${pairsHTML(p)}
     ${related.length?`<div class="related"><h2>You may also like</h2><div class="grid">${related.map(r=>`<article class="card"><a class="art" href="#p-${r.id}" style="--tint:${tint(r.art)}" aria-label="${r.name}">${art(r.art)}${img(r)}</a><div class="cbody"><div class="meta"><span class="care">${r.unit}</span>${stockLabel(r)}</div><h3><a class="nm" href="#p-${r.id}">${r.name}</a></h3><div class="sci">${r.sci}</div><div class="cfoot"><span class="price">${priceOf(r)}</span>${isEnq(r)?enquireBtn(r):r.stock==="out"?notifyBtn(r):`<button class="add" data-id="${r.id}">+ Add</button>`}</div></div></article>`).join("")}</div></div>`:""}
   </div>`;
   const mh=v.querySelector("[data-m3d]"); if(mh) mount3D(mh,mh.dataset.m3d);
@@ -1507,9 +1539,12 @@ dlg.addEventListener("click",e=>{
 
 /* ===== cart ===== */
 function cartSuggest(ids){
-  const pick=["tw","fit","bpack","po","dw"].map(byId).filter(p=>p&&!isEnq(p)&&p.stock!=="out"&&!ids.includes(p.id)).slice(0,3);
+  const inCart=ids.map(byId).filter(Boolean);
+  const hasIso=inCart.some(p=>p.cat==="iso"&&!p.acc), hasTerra=inCart.some(p=>p.cat==="terra");
+  const order=hasTerra?["tw","fit","bpack"]:hasIso?["tw","batbowl","ventv2","fit"]:["tw","fit","bpack","po","dw"];
+  const pick=order.concat(["tw","fit","bpack","po","dw"]).filter((x,n,a)=>a.indexOf(x)===n).map(byId).filter(p=>p&&!isEnq(p)&&p.stock!=="out"&&!ids.includes(p.id)).slice(0,3);
   if(!pick.length) return "";
-  return `<div class="sugg"><h3>Customers also add</h3>${pick.map(p=>`<div class="sg"><span class="th" style="--tint:${tint(p.art)}">${art(p.art)}${img(p)}</span><div><b>${p.name}</b><small>${rupee(p.price)} · ${p.unit}</small></div><button class="add" data-id="${p.id}">+ Add</button></div>`).join("")}</div>`;
+  return `<div class="sugg"><h3>${hasTerra?"Finish your terrarium":hasIso?"Complete your isopod setup":"Customers also add"}</h3>${pick.map(p=>`<div class="sg"><span class="th" style="--tint:${tint(p.art)}">${art(p.art)}${img(p)}</span><div><b>${p.name}</b><small>${rupee(p.price)} · ${p.unit}</small></div><button class="add" data-id="${p.id}">+ Add</button></div>`).join("")}</div>`;
 }
 function renderCart(){
   const ids=Object.keys(cart).filter(id=>cart[id]>0&&byId(id)&&!isEnq(byId(id)));
@@ -1523,7 +1558,7 @@ function renderCart(){
         <div class="qty"><button data-d="-1" data-id="${id}" aria-label="Remove one ${p.name}">−</button><span>${cart[id]}</span><button data-d="1" data-id="${id}" aria-label="Add one ${p.name}">+</button></div></div>
       <div class="r"><b>${rupee(lineTotal(id,cart[id]))}</b>${isBulk(id,cart[id])?'<span class="bulk">10% bulk off</span>':""}</div>
     </div>`}).join("")+cartSuggest(ids):`<p class="empty" style="margin-top:16px">Your cart is empty. Add a culture from the shop to start an order.</p>`;
-  const msg=`Hi ${SHOP}, I’d like to order:\n`+ids.map(id=>`• ${byId(id).name} (${byId(id).unit}) × ${cart[id]} = ${rupee(lineTotal(id,cart[id]))}${isBulk(id,cart[id])?" (10% bulk discount)":""}`).join("\n")+`\nSubtotal: ${rupee(total)}\nMy pin code: ${savedPin}`;
+  const msg=`Hi ${SHOP}, I’d like to order:\n`+ids.map(id=>`• ${byId(id).name} (${byId(id).unit}) × ${cart[id]} = ${rupee(lineTotal(id,cart[id]))}${isBulk(id,cart[id])?" (10% bulk discount)":""}`).join("\n")+`\nSubtotal: ${rupee(total)}${gift.on?`\nThis is a gift order.${gift.note?` Gift note: ${gift.note}`:""}`:""}\nMy pin code: ${savedPin}`;
   const wa=document.getElementById("wa");
   wa.href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   wa.setAttribute("aria-disabled",ids.length?"false":"true");
@@ -1835,7 +1870,7 @@ document.getElementById("detail").addEventListener("click",e=>{
 const UPI_ID="";   // your UPI ID, e.g. "yourname@okaxis". The UPI pay button appears once this is filled in.
 
 /* filters + save for later */
-let fEasy=false,fStock=false,fSaved=false;
+let fEasy=false,fStock=false,fSaved=false,fRare=false,fCheap=false;
 let saved=new Set();try{saved=new Set(JSON.parse(localStorage.getItem("et-saved")||"[]"));}catch(e){}
 const saveSaved=()=>{try{localStorage.setItem("et-saved",JSON.stringify([...saved]));}catch(e){}};
 function favBtn(p){const on=saved.has(p.id);return `<button class="fav${on?" on":""}" data-fav="${p.id}" aria-pressed="${on}" aria-label="Save ${p.name} for later"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>`;}
@@ -1847,7 +1882,7 @@ document.addEventListener("click",e=>{
   updateSavedChip(); toast(saved.has(id)?`Saved ${byId(id).name}`:`Removed ${byId(id).name}`);
   if(fSaved) renderGrid();
 },true);
-[["fEasy",v=>fEasy=v],["fStock",v=>fStock=v],["fSaved",v=>fSaved=v]].forEach(([id,set])=>{const b=document.getElementById(id); if(b) b.addEventListener("click",()=>{const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",on);set(on);renderGrid();});});
+[["fEasy",v=>fEasy=v],["fStock",v=>fStock=v],["fSaved",v=>fSaved=v],["fRare",v=>fRare=v],["fCheap",v=>fCheap=v]].forEach(([id,set])=>{const b=document.getElementById(id); if(b) b.addEventListener("click",()=>{const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",on);set(on);renderGrid();});});
 updateSavedChip();
 
 /* real-size viewer (₹1 coin = 20 mm) */
@@ -1930,6 +1965,54 @@ async function loadSheet(){
   }catch(e){}
 }
 
+
+/* ===== feature additions: pairings, compare, care card, gift ===== */
+const PAIRS={iso:["tw","batbowl","ventv2","fit"],spring:["po","dw","fit","btank"],btank:["tw","fit","buddha","batbowl"],buddha:["btank","mini","tjar","fit"],mini:["buddha","tw","fit"],tjar:["buddha","tw","fit"],fit:["btank","tw","buddha"],bpack:["batbowl","ventv2","fit"],batbowl:["po","dw","ventv2","tw"],ventv2:["po","dw","batbowl","bpack"]};
+function pairsHTML(p){
+  const ids=(PAIRS[p.id]||PAIRS[p.cat]||[]).filter(x=>x!==p.id),list=ids.map(byId).filter(Boolean).slice(0,4);
+  if(!list.length) return "";
+  return `<div class="pairs"><h2>Goes well with</h2><p>Items customers pair with ${p.name}.</p><div class="grid">${list.map(r=>`<article class="card"><a class="art" href="#p-${r.id}" style="--tint:${tint(r.art)}" aria-label="${r.name}">${art(r.art)}${img(r)}</a><div class="cbody"><div class="meta"><span class="care">${r.unit}</span>${stockLabel(r)}</div><h3><a class="nm" href="#p-${r.id}">${r.name}</a></h3><div class="sci">${r.sci}</div><div class="cfoot"><span class="price">${priceOf(r)}</span>${isEnq(r)?enquireBtn(r):r.stock==="out"?notifyBtn(r):`<button class="add" data-id="${r.id}">+ Add</button>`}</div></div></article>`).join("")}</div></div>`;
+}
+/* compare (species only, up to 3) */
+function cmpBtn(p){return INFO[p.id]?`<button type="button" class="cmpb" data-cmp="${p.id}" aria-pressed="${cmp.includes(p.id)}">${cmp.includes(p.id)?"✓ Comparing":"+ Compare"}</button>`:"";}
+function cmpSync(){
+  const bar=document.getElementById("cmpbar");bar.hidden=!cmp.length;
+  document.getElementById("cmptxt").textContent=cmp.length+" selected"+(cmp.length<2?" (pick 2 or 3)":"");
+  document.getElementById("cmpopen").disabled=cmp.length<2;
+  document.querySelectorAll("[data-cmp]").forEach(b=>{const on=cmp.includes(b.dataset.cmp);b.setAttribute("aria-pressed",on);b.textContent=on?"✓ Comparing":"+ Compare";});
+}
+function cmpOpen(){
+  const d=document.getElementById("cmpd"),L=cmp.map(byId).filter(Boolean);
+  const row=(k,f)=>`<tr><th scope="row">${k}</th>${L.map(p=>`<td>${f(p)||"–"}</td>`).join("")}</tr>`;
+  d.innerHTML=`<div class="ch"><h3 id="cmpTitle">Compare species</h3><button class="x" data-cclose aria-label="Close">×</button></div><div class="cmpwrap"><table class="cmpt"><thead><tr><th></th>${L.map(p=>`<td><a href="#p-${p.id}" data-cclose>${p.name}</a><br><small>${p.sci}</small></td>`).join("")}</tr></thead><tbody>${row("Price",p=>priceOf(p)+" / "+p.unit)}${row("Care level",p=>p.care)}${row("Temperature",p=>INFO[p.id].temp)}${row("Humidity",p=>p.hum)}${row("Adult size",p=>p.size)}${row("Breeding",p=>p.breed)}${row("Diet",p=>INFO[p.id].diet)}${row("Lifespan",p=>INFO[p.id].life)}<tr><th></th>${L.map(p=>`<td>${p.stock==="out"?notifyBtn(p):`<button class="add" data-id="${p.id}">+ Add</button>`}</td>`).join("")}</tr></tbody></table></div>`;
+  d.showModal();
+}
+document.addEventListener("click",e=>{
+  const c=e.target.closest("[data-cmp]");
+  if(c){e.preventDefault();const id=c.dataset.cmp,n=cmp.indexOf(id);if(n>-1)cmp.splice(n,1);else if(cmp.length>=3)toast("Compare up to 3 at a time");else cmp.push(id);cmpSync();return;}
+  if(e.target.id==="cmpopen"&&cmp.length>1){cmpOpen();return;}
+  if(e.target.id==="cmpclear"){cmp=[];cmpSync();return;}
+  const d=document.getElementById("cmpd");
+  if(d.open&&(e.target===d||e.target.closest("[data-cclose]"))){d.close();return;}
+  if(d.open&&e.target.closest(".add[data-id]")){addToCart(e.target.closest(".add").dataset.id);d.close();}
+  const cb=e.target.closest("[data-care]");if(cb)printCare(cb.dataset.care);
+});
+/* printable care card */
+function printCare(id){
+  const p=byId(id),i=INFO[id];if(!p||!i)return;
+  let el=document.getElementById("carecard");if(!el){el=document.createElement("div");el.id="carecard";document.body.appendChild(el);}
+  const rows=[["Care level",p.care],["Temperature",i.temp],["Humidity",p.hum],["Adult size",p.size],["Diet",i.diet],["Enclosure",i.box],["Behaviour",i.behaviour]].filter(r=>r[1]);
+  el.innerHTML=`<h2>${p.name} care card</h2><div class="sci">${p.sci}</div><table>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table><ul>${i.care.map(t=>`<li>${t}</li>`).join("")}</ul><footer>Exotic Terras, Kerala · www.exoticterras.in · @exoticterras · WhatsApp +${WHATSAPP}</footer>`;
+  document.body.classList.add("print-card");
+  window.print();
+}
+window.addEventListener("afterprint",()=>document.body.classList.remove("print-card"));
+/* gift option */
+(function(){
+  const on=document.getElementById("giftOn"),note=document.getElementById("giftNote");if(!on)return;
+  on.addEventListener("change",()=>{gift.on=on.checked;note.hidden=!on.checked;renderCart();});
+  note.addEventListener("input",()=>{gift.note=note.value.trim();renderCart();});
+})();
 renderGrid();renderCart();route();
 loadSheet();
 </script>
