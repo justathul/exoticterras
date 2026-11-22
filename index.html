@@ -888,9 +888,7 @@ footer .links a:hover{color:var(--gold)}
 
   <section class="tsec pgonly" id="terrariums">
     <div class="wrap">
-      <h2>Ready-made &amp; made-to-order terrariums</h2>
-      <p>Pick a style and message us with your size, plants and budget. We build it, confirm the price on WhatsApp and deliver it across India, or you can pick it up directly from us. Prices depend on size and planting.</p>
-      <figure class="tconcept"><img src="/images/terrarium-concept.jpg" alt="Closed glass cube terrarium with a moss arch and a small plant, a design concept by Exotic Terras" width="900" height="900" loading="lazy"><figcaption>Design concept: a moss-arch cube. Every terrarium is made to order, so yours will vary.</figcaption></figure>
+      <h2>Our terrariums</h2>
       <div class="grid tcards" id="tcards"></div>
     </div>
   </section>
@@ -908,6 +906,14 @@ footer .links a:hover{color:var(--gold)}
         <div class="calcout" id="bOut" aria-live="polite"></div>
       </div>
     </div></div>
+  </section>
+
+  <section class="tsec pgonly" id="tinfo">
+    <div class="wrap">
+      <h2>Ready-made &amp; made-to-order terrariums</h2>
+      <p>Pick a style and message us with your size, plants and budget. We build it, confirm the price on WhatsApp and deliver it across India, or you can pick it up directly from us. Prices depend on size and planting.</p>
+      <figure class="tconcept"><img src="/images/terrarium-concept.jpg" alt="Closed glass cube terrarium with a moss arch and a small plant, a design concept by Exotic Terras" width="900" height="900" loading="lazy"><figcaption>Design concept: a moss-arch cube. Every terrarium is made to order, so yours will vary.</figcaption></figure>
+    </div>
   </section>
 
   <section class="how pgonly" id="how">
@@ -1625,7 +1631,7 @@ function route(){
   const h=location.hash.slice(1);
   const wasPage=document.body.classList.contains("on-page");
   document.body.classList.remove("on-page");document.querySelectorAll(".pg-active").forEach(x=>x.classList.remove("pg-active"));closeMenus();
-  if(PAGES[h]){stop3D();document.body.classList.remove("on-detail","on-legal","on-guide");(h==="terrariums"||h==="builder"?["terrariums","builder"]:[h]).forEach(x=>document.getElementById(x).classList.add("pg-active"));document.body.classList.add("on-page");document.getElementById("cartRoot").classList.remove("open");document.title=PAGES[h]+" – "+SHOP;window.scrollTo(0,0);if(h==="builder")document.getElementById("builder").scrollIntoView();return;}
+  if(PAGES[h]){stop3D();document.body.classList.remove("on-detail","on-legal","on-guide");(h==="terrariums"||h==="builder"?["terrariums","builder","tinfo"]:[h]).forEach(x=>document.getElementById(x).classList.add("pg-active"));document.body.classList.add("on-page");document.getElementById("cartRoot").classList.remove("open");document.title=PAGES[h]+" – "+SHOP;window.scrollTo(0,0);if(h==="builder")document.getElementById("builder").scrollIntoView();return;}
   if(h.startsWith("guide-")){showGuide(h.slice(6));return;}
   document.body.classList.remove("on-guide");
   if(h.startsWith("p-")){document.body.classList.remove("on-legal");renderDetail(h.slice(2));return;}
