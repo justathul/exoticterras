@@ -663,6 +663,26 @@ body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 .carebtn{display:inline-flex;margin-top:14px;font:inherit;font-weight:800;color:var(--ink);background:none;border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer}.carebtn:hover{border-color:var(--teal)}
 #carecard{display:none}
 @media print{body.print-card>*:not(#carecard){display:none!important}body.print-card #carecard{display:block;color:#000;background:#fff;font-family:Georgia,serif;padding:24px}#carecard h2{margin:0 0 4px;font-size:28px}#carecard .sci{font-style:italic;color:#444;margin:0 0 16px}#carecard table{width:100%;border-collapse:collapse;margin:12px 0}#carecard td{border-bottom:1px solid #ccc;padding:6px 4px}#carecard td:first-child{width:32%;font-weight:700}#carecard li{margin:6px 0}#carecard footer{margin-top:24px;border-top:2px solid #000;padding-top:10px;font-size:14px}}
+
+/* ===== menu + page views ===== */
+body:not(.on-page) main>.pgonly{display:none!important}
+body.on-page main>section:not(.pg-active){display:none!important}
+.pgbar{display:none;padding-top:18px;padding-bottom:0}body.on-page .pgbar{display:block}
+.pgbar a{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--muted);text-decoration:none}.pgbar a:hover{color:var(--teal-2)}
+.dd{position:relative}
+.ddb{font:inherit;font-weight:600;color:var(--ink);background:none;border:0;cursor:pointer;padding:6px 2px}.ddb:hover,.ddb[aria-expanded="true"]{color:var(--teal-2)}
+.ddp{position:absolute;top:calc(100% + 12px);left:-14px;min-width:230px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:8px;display:grid;gap:2px;z-index:20}
+.ddp[hidden]{display:none}
+.ddp a,.ddp button{display:block;width:100%;text-align:left;font:inherit;font-weight:600;color:var(--ink);background:none;border:0;border-radius:10px;padding:10px 12px;cursor:pointer;text-decoration:none}
+.ddp a:hover,.ddp button:hover{background:var(--chip)}
+.menubtn{display:none;place-items:center;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;padding:0}.menubtn svg{width:22px;height:22px}
+.mmenu{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 68px);z-index:7;max-height:calc(100vh - 68px);overflow:auto;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow);padding:8px 20px 20px}
+.mmenu[hidden]{display:none}
+.mgroup{display:grid;padding:10px 0;border-bottom:1px solid var(--line)}.mgroup:last-child{border-bottom:0}
+.mgroup span{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:4px 0}
+.mgroup a,.mgroup button{display:block;text-align:left;font:inherit;font-weight:700;font-size:1.05rem;color:var(--ink);background:none;border:0;padding:11px 0;text-decoration:none;cursor:pointer}
+@media (max-width:720px){.menubtn{display:grid}nav{gap:12px}}
+@media (min-width:721px){.mmenu{display:none!important}}
 </style>
 <script defer src="/analytics.js"></script></head>
 <body>
@@ -672,18 +692,35 @@ body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
     <a class="logo" href="#top" aria-label="Exotic Terras home">
       <img class="mark jar" src="/images/logo-jar.webp" alt=""><span class="wm"><span class="wm1">Exotic</span><span class="wm2">Terras</span></span>
     </a>
-    <nav>
+    <nav aria-label="Main">
       <a class="hide-sm" href="#shop">Shop</a>
       <a class="hide-sm" href="#terrariums">Terrariums</a>
-      <a class="hide-sm" href="#how">How to order</a>
-      <a class="hide-sm" href="#guides">Guides</a>
-      <a class="hide-sm" href="/faq/">FAQ</a>
+      <div class="dd hide-sm"><button type="button" class="ddb" aria-expanded="false" aria-haspopup="true">Tools <span aria-hidden="true">▾</span></button><div class="ddp" hidden>
+        <button type="button" data-quiz>Find my isopod (quiz)</button>
+        <a href="#calc">Colony calculator</a>
+        <a href="#builder">Design your terrarium</a>
+      </div></div>
+      <div class="dd hide-sm"><button type="button" class="ddb" aria-expanded="false" aria-haspopup="true">Learn <span aria-hidden="true">▾</span></button><div class="ddp" hidden>
+        <a href="#guides">Care guides</a>
+        <a href="#how">How to order</a>
+        <a href="#packing">Packing &amp; delivery</a>
+        <a href="/faq/">FAQ</a>
+        <a href="#about">About us</a>
+        <a href="#legal">Responsible keeping</a>
+      </div></div>
       <button class="cartbtn" id="openCart" aria-label="Open cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="n" id="count">0</span></button>
+      <button type="button" class="menubtn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </nav>
   </div>
 </header>
+<div class="mmenu" id="mmenu" hidden>
+  <div class="mgroup"><a href="#shop">Shop</a><a href="#terrariums">Terrariums</a></div>
+  <div class="mgroup"><span>Tools</span><button type="button" data-quiz>Find my isopod (quiz)</button><a href="#calc">Colony calculator</a><a href="#builder">Design your terrarium</a></div>
+  <div class="mgroup"><span>Learn</span><a href="#guides">Care guides</a><a href="#how">How to order</a><a href="#packing">Packing &amp; delivery</a><a href="/faq/">FAQ</a><a href="#about">About us</a><a href="#legal">Responsible keeping</a></div>
+</div>
 
 <main id="top">
+  <div class="wrap pgbar" id="pgbar"><a href="#shop">← Back to shop</a></div>
   <section class="hero">
     <div class="wrap">
       <div>
@@ -733,7 +770,7 @@ body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
     </div>
   </section>
 
-  <section class="packing" id="packing">
+  <section class="packing pgonly" id="packing">
     <div class="wrap">
       <h2>Packed with care, delivered alive</h2>
       <div class="pgrid">
@@ -752,7 +789,7 @@ body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
     </div></div>
   </section>
 
-  <section class="calc" id="calc">
+  <section class="calc pgonly" id="calc">
     <div class="wrap"><div class="calcbox">
       <div class="calcintro"><h2>Colony calculator</h2><p>Tell us about your setup and we’ll suggest how many isopods and springtails to start with.</p></div>
       <div class="calcform">
@@ -784,7 +821,7 @@ body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
     </div>
   </section>
 
-  <section class="builder" id="builder">
+  <section class="builder pgonly" id="builder">
     <div class="wrap"><div class="calcbox">
       <div class="calcintro"><h2>Design your terrarium</h2><p>Choose a style, size and planting and we’ll turn it into a ready-made WhatsApp enquiry. We confirm the price before you pay. Delivered across India, or pick up directly.</p><img class="bshow" src="/images/customised-terrariums-showcase.jpg" alt="Customised terrariums by Exotic Terras: vertical rectangle, tall and short cylinders, cube and mini jars" width="1000" height="1000" loading="lazy"></div>
       <div class="calcform">
@@ -799,7 +836,7 @@ body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
     </div></div>
   </section>
 
-  <section class="how" id="how">
+  <section class="how pgonly" id="how">
     <div class="wrap">
       <h2>How ordering works</h2>
       <div class="steps">
@@ -810,7 +847,7 @@ body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
     </div>
   </section>
 
-  <section class="guides" id="guides">
+  <section class="guides pgonly" id="guides">
     <div class="wrap">
       <h2>Isopod care guides</h2>
       <p class="lead">Practical advice from our own colonies in Kerala.</p>
@@ -818,7 +855,7 @@ body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
     </div>
   </section>
 
-  <section class="about" id="about">
+  <section class="about pgonly" id="about">
     <div class="wrap">
       <h2>Captive-bred isopods from Kerala, shipped across India</h2>
       <p>Exotic Terras is a small isopod breeder in Kerala. We keep and breed every colony ourselves, from easy beginner species like Powder Orange and Dwarf White to collector favourites like Rubber Ducky, Gestroi and Cubaris murina morphs such as Papaya, Glacier and Orange. Our isopods and springtails work as a natural cleanup crew in bioactive terrariums, paludariums and reptile or dart frog vivariums, and they are fascinating pets on their own.</p>
@@ -833,7 +870,7 @@ body.hasbar .cmpbar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
     </div>
   </section>
 
-  <section class="faq faqt" id="faq">
+  <section class="faq faqt pgonly" id="faq">
     <div class="wrap">
       <div>
         <h2>Questions?</h2>
@@ -1494,13 +1531,25 @@ function renderDetail(id){
 }
 function showHome(){stop3D();{const md=document.querySelector('meta[name=description]');if(md&&window.HOME_DESC)md.content=HOME_DESC;}document.body.classList.remove("on-detail","on-legal","on-guide");document.title=HOME_TITLE;}
 const HOME_TITLE=document.title;window.HOME_DESC=(document.querySelector('meta[name=description]')||{}).content;
+const PAGES={how:"How ordering works",packing:"Packing & delivery",calc:"Colony calculator",builder:"Design your terrarium",about:"About us",faq:"FAQ",guides:"Care guides"};
+function closeMenus(){document.querySelectorAll(".ddb[aria-expanded=true]").forEach(b=>{b.setAttribute("aria-expanded","false");b.nextElementSibling.hidden=true;});const m=document.getElementById("mmenu");if(m)m.hidden=true;const mb=document.getElementById("menuBtn");if(mb)mb.setAttribute("aria-expanded","false");}
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".ddb");
+  if(b){const open=b.getAttribute("aria-expanded")==="true";closeMenus();if(!open){b.setAttribute("aria-expanded","true");b.nextElementSibling.hidden=false;}return;}
+  if(e.target.closest("#menuBtn")){const m=document.getElementById("mmenu"),o=!m.hidden;closeMenus();if(!o){m.hidden=false;document.getElementById("menuBtn").setAttribute("aria-expanded","true");}return;}
+  if(e.target.closest("#mmenu a,#mmenu button,.ddp a,.ddp button")||!e.target.closest(".ddp,#mmenu"))closeMenus();
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenus();});
 function route(){
   const h=location.hash.slice(1);
+  const wasPage=document.body.classList.contains("on-page");
+  document.body.classList.remove("on-page");document.querySelectorAll(".pg-active").forEach(x=>x.classList.remove("pg-active"));closeMenus();
+  if(PAGES[h]){stop3D();document.body.classList.remove("on-detail","on-legal","on-guide");document.getElementById(h).classList.add("pg-active");document.body.classList.add("on-page");document.getElementById("cartRoot").classList.remove("open");document.title=PAGES[h]+" – "+SHOP;window.scrollTo(0,0);return;}
   if(h.startsWith("guide-")){showGuide(h.slice(6));return;}
   document.body.classList.remove("on-guide");
   if(h.startsWith("p-")){document.body.classList.remove("on-legal");renderDetail(h.slice(2));return;}
   if(h==="legal"){document.body.classList.remove("on-detail");document.body.classList.add("on-legal");document.getElementById("cartRoot").classList.remove("open");document.title="Responsible keeping & legal disclaimer – "+SHOP;window.scrollTo(0,0);return;}
-  const was=["on-detail","on-legal","on-guide"].some(c=>document.body.classList.contains(c));
+  const was=wasPage||["on-detail","on-legal","on-guide"].some(c=>document.body.classList.contains(c));
   showHome();
   if(was&&h){const t=document.getElementById(h);t&&t.scrollIntoView();}
 }
