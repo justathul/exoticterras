@@ -698,7 +698,6 @@ body.on-page main>section:not(.pg-active){display:none!important}
       <div class="dd hide-sm"><button type="button" class="ddb" aria-expanded="false" aria-haspopup="true">Tools <span aria-hidden="true">▾</span></button><div class="ddp" hidden>
         <button type="button" data-quiz>Find my isopod (quiz)</button>
         <a href="#calc">Colony calculator</a>
-        <a href="#builder">Design your terrarium</a>
       </div></div>
       <div class="dd hide-sm"><button type="button" class="ddb" aria-expanded="false" aria-haspopup="true">Learn <span aria-hidden="true">▾</span></button><div class="ddp" hidden>
         <a href="#guides">Care guides</a>
@@ -715,7 +714,7 @@ body.on-page main>section:not(.pg-active){display:none!important}
 </header>
 <div class="mmenu" id="mmenu" hidden>
   <div class="mgroup"><a href="#shop">Shop</a><a href="#terrariums">Terrariums</a></div>
-  <div class="mgroup"><span>Tools</span><button type="button" data-quiz>Find my isopod (quiz)</button><a href="#calc">Colony calculator</a><a href="#builder">Design your terrarium</a></div>
+  <div class="mgroup"><span>Tools</span><button type="button" data-quiz>Find my isopod (quiz)</button><a href="#calc">Colony calculator</a></div>
   <div class="mgroup"><span>Learn</span><a href="#guides">Care guides</a><a href="#how">How to order</a><a href="#packing">Packing &amp; delivery</a><a href="/faq/">FAQ</a><a href="#about">About us</a><a href="#legal">Responsible keeping</a></div>
 </div>
 
@@ -807,7 +806,7 @@ body.on-page main>section:not(.pg-active){display:none!important}
     </div>
   </section>
 
-  <section class="tsec" id="terrariums">
+  <section class="tsec pgonly" id="terrariums">
     <div class="wrap">
       <h2>Ready-made &amp; made-to-order terrariums</h2>
       <p>Pick a style and message us with your size, plants and budget. We build it, confirm the price on WhatsApp and deliver it across India, or you can pick it up directly from us. Prices depend on size and planting.</p>
@@ -1531,7 +1530,7 @@ function renderDetail(id){
 }
 function showHome(){stop3D();{const md=document.querySelector('meta[name=description]');if(md&&window.HOME_DESC)md.content=HOME_DESC;}document.body.classList.remove("on-detail","on-legal","on-guide");document.title=HOME_TITLE;}
 const HOME_TITLE=document.title;window.HOME_DESC=(document.querySelector('meta[name=description]')||{}).content;
-const PAGES={how:"How ordering works",packing:"Packing & delivery",calc:"Colony calculator",builder:"Design your terrarium",about:"About us",faq:"FAQ",guides:"Care guides"};
+const PAGES={terrariums:"Terrariums",builder:"Design your terrarium",how:"How ordering works",packing:"Packing & delivery",calc:"Colony calculator",builder:"Design your terrarium",about:"About us",faq:"FAQ",guides:"Care guides"};
 function closeMenus(){document.querySelectorAll(".ddb[aria-expanded=true]").forEach(b=>{b.setAttribute("aria-expanded","false");b.nextElementSibling.hidden=true;});const m=document.getElementById("mmenu");if(m)m.hidden=true;const mb=document.getElementById("menuBtn");if(mb)mb.setAttribute("aria-expanded","false");}
 document.addEventListener("click",e=>{
   const b=e.target.closest(".ddb");
@@ -1544,7 +1543,7 @@ function route(){
   const h=location.hash.slice(1);
   const wasPage=document.body.classList.contains("on-page");
   document.body.classList.remove("on-page");document.querySelectorAll(".pg-active").forEach(x=>x.classList.remove("pg-active"));closeMenus();
-  if(PAGES[h]){stop3D();document.body.classList.remove("on-detail","on-legal","on-guide");document.getElementById(h).classList.add("pg-active");document.body.classList.add("on-page");document.getElementById("cartRoot").classList.remove("open");document.title=PAGES[h]+" – "+SHOP;window.scrollTo(0,0);return;}
+  if(PAGES[h]){stop3D();document.body.classList.remove("on-detail","on-legal","on-guide");(h==="terrariums"||h==="builder"?["terrariums","builder"]:[h]).forEach(x=>document.getElementById(x).classList.add("pg-active"));document.body.classList.add("on-page");document.getElementById("cartRoot").classList.remove("open");document.title=PAGES[h]+" – "+SHOP;window.scrollTo(0,0);if(h==="builder")document.getElementById("builder").scrollIntoView();return;}
   if(h.startsWith("guide-")){showGuide(h.slice(6));return;}
   document.body.classList.remove("on-guide");
   if(h.startsWith("p-")){document.body.classList.remove("on-legal");renderDetail(h.slice(2));return;}
