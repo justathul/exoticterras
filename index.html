@@ -683,6 +683,86 @@ body.on-page main>section:not(.pg-active){display:none!important}
 .mgroup a,.mgroup button{display:block;text-align:left;font:inherit;font-weight:700;font-size:1.05rem;color:var(--ink);background:none;border:0;padding:11px 0;text-decoration:none;cursor:pointer}
 @media (max-width:720px){.menubtn{display:grid}nav{gap:12px}}
 @media (min-width:721px){.mmenu{display:none!important}}
+
+/* ===== premium dark redesign (polish layer) ===== */
+html:root:not([data-theme="x"]){--gold:#E7C46B;--gold-2:#F3DB9B;--sun:#E7C46B;--sun-ink:#2A1E00;--bg:#070F0B;--surface:#0F1914;--line:#1D2B24;--muted:#93A89C;--shadow:0 22px 50px rgba(0,0,0,.55)}
+::selection{background:var(--gold);color:#1B1200}
+body{font-size:16.5px;letter-spacing:.005em}
+/* typography */
+h1,h2,h3{font-weight:600;letter-spacing:-.02em}
+.hero h1{font-size:clamp(2.7rem,6.4vw,5.1rem);line-height:1.02;background:linear-gradient(180deg,#FFFFFF 30%,#BFD6C5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:1.16rem;line-height:1.6}
+main>section:not(.hero):not(.cats):not(.quizcta):not(.detail):not(.guide):not(.legal) h2::before{content:"";display:block;width:40px;height:2px;margin-bottom:14px;border-radius:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.shophead h2,.tsec h2,.reviews h2,.igband h2{font-size:clamp(1.9rem,4vw,2.7rem)}
+/* header */
+header{background:rgba(7,15,11,.72);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid rgba(231,196,107,.14)}
+nav a,.ddb{font-size:.96rem;letter-spacing:.01em}
+nav a:hover,.ddb:hover{color:var(--gold)}
+.cartbtn{border-radius:999px;padding:9px 16px}
+.cartbtn:hover{border-color:var(--gold)}
+/* hero */
+.hero{position:relative;padding:64px 0 40px}
+.hero::before{content:"";position:absolute;inset:-10% -10% auto 35%;height:90%;background:radial-gradient(50% 50% at 50% 45%,rgba(158,212,74,.16),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative}
+.trust b{color:var(--gold)}
+.pill{border-color:rgba(231,196,107,.25)}
+/* buttons */
+.btn{border-radius:999px;padding:14px 26px;letter-spacing:.01em;transition:transform .15s,box-shadow .2s,border-color .2s}
+.btn.primary{background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#CFA53F);color:var(--sun-ink);box-shadow:0 8px 26px rgba(231,196,107,.28)}
+.btn.primary:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(231,196,107,.38);filter:none}
+.btn.ghost{border:1px solid rgba(236,243,238,.22)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold-2)}
+.add{border-radius:999px;padding:10px 18px;font-weight:800;transition:transform .15s,background .2s}
+.add:hover:not(:disabled){transform:translateY(-1px)}
+.add.notify{background:transparent;color:var(--gold);border:1px solid rgba(231,196,107,.45)}
+.add.notify:hover{background:rgba(231,196,107,.1);color:var(--gold-2)}
+/* categories + chips */
+.cat{border-radius:22px;padding:18px}
+.cat:hover,.cat[aria-pressed="true"]{border-color:rgba(231,196,107,.55);box-shadow:0 0 0 1px rgba(231,196,107,.45),0 14px 34px rgba(0,0,0,.4)}
+.fchip{padding:8px 16px}
+.fchip:hover{border-color:var(--gold)}
+.fchip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1B1200}
+.tools input,.tools select{border-radius:999px;padding:11px 18px}
+.tools input:focus,.tools select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(231,196,107,.15)}
+/* product cards */
+.grid{gap:22px}
+.card{border-radius:26px;border-color:var(--line)}
+.card:hover{transform:translateY(-5px);border-color:rgba(231,196,107,.4);box-shadow:0 26px 54px rgba(0,0,0,.55)}
+.art{aspect-ratio:1/1}
+.art img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card:hover .art img{transform:scale(1.06)}
+.cbody{padding:16px 18px 18px}
+.card h3{font-size:1.18rem}
+.cfoot{border-top:1px solid var(--line);margin-top:14px;padding-top:14px}
+.price{color:var(--gold);font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.3rem}
+.badge{border-color:rgba(231,196,107,.25)}
+.badge.rare{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#1B1200}
+.dprice{color:var(--gold)}
+.fav{border-color:rgba(231,196,107,.25)}
+.cmpb:hover{border-color:var(--gold);color:var(--gold)}
+/* sections */
+.shop{padding:56px 0 88px}
+main>section+section{border-top:1px solid rgba(255,255,255,.035)}
+.how,.packing,.about,.reviews{padding-top:64px;padding-bottom:64px}
+.step{border-radius:22px;border-color:var(--line);transition:border-color .2s,transform .2s}
+.step:hover{border-color:rgba(231,196,107,.35);transform:translateY(-2px)}
+.rev{border-radius:20px}
+.igband{background:linear-gradient(180deg,transparent,rgba(231,196,107,.04))}
+.igtiles img{transition:transform .4s}.igtiles img:hover{transform:scale(1.03)}
+/* detail pages */
+.dmedia{border-radius:28px;border-color:rgba(231,196,107,.12)}
+.facts div,.glance div{border-radius:16px}
+.dside{border-radius:24px}
+/* dialogs, toast, footer */
+dialog{border-radius:24px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.toast{background:var(--gold);color:#1B1200;border-radius:999px;font-weight:700}
+footer{border-top:1px solid rgba(231,196,107,.14);background:linear-gradient(180deg,transparent,rgba(0,0,0,.25))}
+footer .links a:hover{color:var(--gold)}
+.ddp{border-color:rgba(231,196,107,.18);border-radius:18px}
+.ddp a:hover,.ddp button:hover{background:rgba(231,196,107,.1);color:var(--gold-2)}
+:focus-visible{outline-color:var(--gold)}
+@media (max-width:720px){.hero{padding:40px 0 24px}.hero::before{inset:-5% -20% auto -20%}.shop{padding:40px 0 64px}.grid{gap:16px}}
+@media (prefers-reduced-motion:reduce){.card,.card:hover,.art img,.btn,.add,.step{transition:none;transform:none}.card:hover .art img{transform:none}}
 </style>
 <script defer src="/analytics.js"></script></head>
 <body>
@@ -811,12 +891,7 @@ body.on-page main>section:not(.pg-active){display:none!important}
       <h2>Ready-made &amp; made-to-order terrariums</h2>
       <p>Pick a style and message us with your size, plants and budget. We build it, confirm the price on WhatsApp and deliver it across India, or you can pick it up directly from us. Prices depend on size and planting.</p>
       <figure class="tconcept"><img src="/images/terrarium-concept.jpg" alt="Closed glass cube terrarium with a moss arch and a small plant, a design concept by Exotic Terras" width="900" height="900" loading="lazy"><figcaption>Design concept: a moss-arch cube. Every terrarium is made to order, so yours will vary.</figcaption></figure>
-      <div class="tgrid">
-        <a href="/terrariums/mini-terrarium/"><b>Mini terrarium</b><span>Price on enquiry</span></a>
-        <a href="/terrariums/black-frame-glass-terrarium-tank/"><b>Black Frame Glass Terrarium Tank</b><span>₹1,999 · 20 × 13 × 21 cm</span></a>
-        <a href="/terrariums/custom-closed-terrarium/"><b>Custom closed terrarium</b><span>Price on enquiry</span></a>
-        <a href="/terrariums/terrarium-buddha-miniature/"><b>Terrarium Buddha Miniature</b><span>Price on enquiry</span></a>
-      </div>
+      <div class="grid tcards" id="tcards"></div>
     </div>
   </section>
 
@@ -1156,8 +1231,9 @@ document.getElementById("q").addEventListener("input",e=>{query=e.target.value.t
 document.getElementById("sort").addEventListener("change",e=>{sort=e.target.value;renderGrid();});
 
 /* ===== grid ===== */
-function stockLabel(p){return isEnq(p)&&p.cat==="terra"?'<span class="st">Made to order</span>':p.stock==="out"?'<span class="st out">Sold out</span>':p.stock==="low"?'<span class="st low">Only a few left</span>':'<span class="st">In stock</span>';}
+function stockLabel(p){return isEnq(p)&&p.cat==="terra"&&!p.acc?'<span class="st">Made to order</span>':p.stock==="out"?'<span class="st out">Sold out</span>':p.stock==="low"?'<span class="st low">Only a few left</span>':'<span class="st">In stock</span>';}
 function renderGrid(){
+  renderTCards();
   let list=PRODUCTS.filter(p=>(!cat||p.cat===cat)&&(!query||(p.name+" "+p.sci+" "+p.desc).toLowerCase().includes(query))&&(!fEasy||p.care==="Easy")&&(!fStock||p.stock!=="out")&&(!fSaved||saved.has(p.id))&&(!fRare||p.rare)&&(!fCheap||(!isEnq(p)&&p.price<100)));
   if(sort==="lo") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||a.price-b.price);
   if(sort==="hi") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||b.price-a.price);
@@ -1166,7 +1242,9 @@ function renderGrid(){
   document.getElementById("shopCount").textContent=`${list.length} ${list.length===1?"item":"items"}${cat?" · tap the category again to show everything":""}`;
   const g=document.getElementById("grid");
   if(!list.length){g.innerHTML=`<p class="empty">${query?`Nothing matches “${esc(query)}”. Try a common name like “orange”.`:(fSaved&&!saved.size?"You haven’t saved anything yet. Tap the heart on any product.":"Nothing matches these filters.")} Clear the search or filters to see everything.</p>`;return;}
-  g.innerHTML=list.map((p,i)=>`<article class="card" style="--i:${i}">${favBtn(p)}
+  g.innerHTML=list.map(cardHTML).join("");
+}
+function cardHTML(p,i){return `<article class="card" style="--i:${i}">${favBtn(p)}
     <a class="art" href="#p-${p.id}" style="--tint:${tint(p.art)}" aria-label="See details for ${p.name}">
       ${p.rare?'<span class="badge rare">Rare</span>':p.care?`<span class="badge">${p.care} care</span>`:""}
       ${art(p.art)}${img(p)}
@@ -1181,9 +1259,13 @@ function renderGrid(){
         ${isEnq(p)?enquireBtn(p):p.stock==="out"?notifyBtn(p):`<button class="add" data-id="${p.id}">+ Add</button>`}
       </div>
     </div>
-  </article>`).join("");
-}
+  </article>`;}
+function renderTCards(){const t=document.getElementById("tcards");if(t)t.innerHTML=PRODUCTS.filter(p=>p.cat==="terra").map(cardHTML).join("");}
+
 function addToCart(id){const mn=byId(id).min||1;cart[id]=Math.max((cart[id]||0)+1,mn);save();renderCart();flyToCart();toast(`Added ${byId(id).name}`);}
+document.getElementById("tcards").addEventListener("click",e=>{
+  const a=e.target.closest(".add"); if(a&&!a.disabled){addToCart(a.dataset.id);}
+});
 document.getElementById("grid").addEventListener("click",e=>{
   const a=e.target.closest(".add"); if(a&&!a.disabled){addToCart(a.dataset.id);return;}
   const q=e.target.closest("[data-qv]"); if(q) openQV(q.dataset.qv);
