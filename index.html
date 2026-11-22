@@ -763,6 +763,7 @@ footer .links a:hover{color:var(--gold)}
 :focus-visible{outline-color:var(--gold)}
 @media (max-width:720px){.hero{padding:40px 0 24px}.hero::before{inset:-5% -20% auto -20%}.shop{padding:40px 0 64px}.grid{gap:16px}}
 @media (prefers-reduced-motion:reduce){.card,.card:hover,.art img,.btn,.add,.step{transition:none;transform:none}.card:hover .art img{transform:none}}
+.badge.new{background:linear-gradient(135deg,#B8E86A,var(--teal));color:#0B1A08;border-color:transparent;font-weight:800}
 </style>
 <script defer src="/analytics.js"></script></head>
 <body>
@@ -1060,14 +1061,14 @@ const PRODUCTS = [
   {id:"aga",cat:"iso",photo:"/images/aga.jpg",name:"Aganara",sci:"Aganara madagascariensis",price:90,unit:"piece",stock:"in",care:"Moderate",hum:"Medium–high",size:"Ask us",breed:"Ask us",desc:"A Madagascar isopod with a warm orange-brown banded body. Message us for current size and availability.",art:{tint:"#C8733A",t:"iso",b:"#C8733A",s:"#5A2E14",p:"#3A2A22",pat:"stripe"}},
   {id:"tw",cat:"spring",photo:"/images/tw.jpg",name:"Temperate white springtails",sci:"Folsomia candida",price:299,unit:"culture",stock:"low",care:"Easy",hum:"High",size:"2 mm",breed:"Very fast",desc:"They eat mould before it spreads. A must for any bioactive setup.",art:{tint:"#2A8C82",t:"spring",c:"#FFFFFF"}},
   {id:"mini",cat:"terra",glass:true,model:"mini",photo:"/images/terrarium-concept.jpg",enquiry:true,name:"Mini terrarium",sci:"Ready-made living terrarium",unit:"piece",stock:"in",care:"Easy",desc:"A small, ready-made living terrarium in a clear glass cube with a moss arch, plants and a springtail cleanup crew. Perfect for a desk or shelf.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
-  {id:"hut",cat:"terra",glass:true,photo:"/images/hut.jpg",gallery:["/images/hut-info.jpg"],name:"Hut Glass Tank",sci:"Glass & metal-frame house terrarium · 18 × 13 × 15 cm",price:1399,unit:"piece",stock:"in",facts:[["Size","18 × 13 × 15 cm"],["Finish","Black frame"],["Opening","Hinged lid"]],desc:"A house-shaped glass terrarium with a black metal frame and a hinged triangular lid with handle. Compact at 18 × 13 × 15 cm, it is ideal for moss, small plants, isopods and mini eco setups.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
+  {id:"hut",cat:"terra",isNew:true,glass:true,photo:"/images/hut.jpg",gallery:["/images/hut-info.jpg"],name:"Hut Glass Tank",sci:"Glass & metal-frame house terrarium · 18 × 13 × 15 cm",price:1399,unit:"piece",stock:"in",facts:[["Size","18 × 13 × 15 cm"],["Finish","Black frame"],["Opening","Hinged lid"]],desc:"A house-shaped glass terrarium with a black metal frame and a hinged triangular lid with handle. Compact at 18 × 13 × 15 cm, it is ideal for moss, small plants, isopods and mini eco setups.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   {id:"btank",cat:"terra",glass:true,photo:"/images/btank.jpg",gallery:["/images/btank-angles.jpg","/images/btank-size.jpg"],name:"Black Frame Glass Terrarium Tank",sci:"Premium glass cube tank · 20 × 13 × 21 cm",price:1699,unit:"piece",stock:"in",facts:[["Size","20 × 13 × 21 cm"],["Material","Glass, black frame"],["Brand","Deco Point"]],desc:"A sleek black-framed glass terrarium that turns moss, ferns and a piece of driftwood into a living work of art. Compact at 20 × 13 × 21 cm, it sits happily on a desk, shelf or bedside table, and clear glass on every side shows off every layer you build.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   // model: interactive 3D viewer on the detail page (see build3D). enquiry:true = no fixed price, shows an Enquire button.
   {id:"tjar",cat:"terra",glass:true,model:"rect",photo:"/images/customised-terrariums-showcase.jpg",shapes:[["rect","Vertical rectangle"],["tube","Tall cylinder"],["cube","Cube"],["tubes","Short cylinder"],["jar","Cork jar"],["jar2","Glass-lid jar"]],enquiry:true,name:"Custom closed terrarium",sci:"Sealed glass terrarium made to your design",unit:"piece",stock:"in",care:"Easy",desc:"A self-watering mini rainforest in a sealed glass container of your choice, such as a jar, cube or cylinder with a lid. Pick the size, moss, ferns and plants, and we build it to order with a springtail cleanup crew. Use the 3D preview to try each shape: vertical rectangle, tall or short cylinder, cube and mini jars.",art:{tint:"#9ED44A",t:"jar",c:"#6BD88A"}},
   {id:"bpack",cat:"pack",photo:"/images/bpack.jpg",name:"Beginner isopod pack",sci:"10 Powder Orange + springtails + food",price:599,unit:"pack",stock:"low",care:"Easy",desc:"Everything to start your first colony: 10 Powder Orange, a temperate white springtail culture and a bag of isopod food. Cheaper than buying them separately.",art:{tint:"#E07B2A",t:"box",c:"#E07B2A"}},
   {id:"batbowl",cat:"iso",acc:true,photo:"/images/bat-feeder.jpg",gallery:["/images/bat-feeder-info.jpg"],name:"Bat Shaped Feeding Bowl with Stairs",sci:"Feeding bowl for isopods and other insects · 65 × 54 × 12 mm",price:59,unit:"piece",stock:"in",facts:[["Size","65 × 54 × 12 mm"],["Colour","Black"],["Built-in","Stairs"]],desc:"A practical and fun bat-shaped feeding bowl for isopods and other insects. Built-in stairs give easy access for all sizes, the raised dish helps keep food drier to reduce mould growth, and the tough black finish suits long-term use in enclosures.",art:{tint:"#9ED44A",t:"box",c:"#1E1C1A"}},
   {id:"ventv2",cat:"iso",acc:true,photo:"/images/vent-v2.jpg",gallery:["/images/vent-v2-info.jpg"],name:"2\" Terrarium Vent V2",sci:"Threaded vent cover and lock ring · 2 inch",price:89,unit:"set",stock:"in",facts:[["Size","2 inch"],["Parts","Vent cover + lock ring"],["Colour","White"]],desc:"A 2 inch screw-in vent that improves airflow in terrariums, tubs and isopod boxes. Two parts, a perforated vent cover and a lock ring, fit together with a threaded fit that starts loose, then tightens for a secure hold. Quick and easy to install.",art:{tint:"#9ED44A",t:"box",c:"#F2F2F2"}},
-  {id:"buddha",cat:"terra",acc:true,enquiry:true,photo:"/images/buddha.jpg",gallery:["/images/buddha-info.jpg"],name:"Terrarium Buddha Miniature",sci:"Resin miniature · antique bronze finish · 5.0 × 3.5 cm",unit:"piece",stock:"in",facts:[["Height","5.0 cm"],["Width","3.5 cm"],["Material","Resin"]],desc:"A peaceful accent for your terrarium. A 5.0 × 3.5 cm resin Buddha miniature with an antique bronze finish, lightweight, non-toxic and plant friendly. Perfect for terrariums, paludariums, mini gardens and DIY landscapes.",art:{tint:"#9ED44A",t:"box",c:"#8A5A34"}},
+  {id:"buddha",cat:"terra",isNew:true,acc:true,enquiry:true,photo:"/images/buddha.jpg",gallery:["/images/buddha-info.jpg"],name:"Terrarium Buddha Miniature",sci:"Resin miniature · antique bronze finish · 5.0 × 3.5 cm",unit:"piece",stock:"in",facts:[["Height","5.0 cm"],["Width","3.5 cm"],["Material","Resin"]],desc:"A peaceful accent for your terrarium. A 5.0 × 3.5 cm resin Buddha miniature with an antique bronze finish, lightweight, non-toxic and plant friendly. Perfect for terrariums, paludariums, mini gardens and DIY landscapes.",art:{tint:"#9ED44A",t:"box",c:"#8A5A34"}},
   {id:"fit",cat:"plant",photo:"/images/fit.jpg",name:"Fittonia",sci:"Fittonia albivenis",price:49,unit:"small pot",stock:"out",desc:"Compact and humidity-loving, with veins that glow under light.",art:{t:"plant",c:"#3F7A3A",v:"#F2C4C4"}}
 ];
 
@@ -1242,6 +1243,7 @@ function stockLabel(p){return isEnq(p)&&p.cat==="terra"&&!p.acc?'<span class="st
 function renderGrid(){
   renderTCards();
   let list=PRODUCTS.filter(p=>(!cat||p.cat===cat)&&(!query||(p.name+" "+p.sci+" "+p.desc).toLowerCase().includes(query))&&(!fEasy||p.care==="Easy")&&(!fStock||p.stock!=="out")&&(!fSaved||saved.has(p.id))&&(!fRare||p.rare)&&(!fCheap||(!isEnq(p)&&p.price<100)));
+  if(sort==="feat") list=[...list].sort((a,b)=>(!!b.isNew)-(!!a.isNew));
   if(sort==="lo") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||a.price-b.price);
   if(sort==="hi") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||b.price-a.price);
   if(sort==="easy") list=[...list].sort((a,b)=>(careRank[a.care]??0)-(careRank[b.care]??0));
@@ -1253,7 +1255,7 @@ function renderGrid(){
 }
 function cardHTML(p,i){return `<article class="card" style="--i:${i}">${favBtn(p)}
     <a class="art" href="#p-${p.id}" style="--tint:${tint(p.art)}" aria-label="See details for ${p.name}">
-      ${p.rare?'<span class="badge rare">Rare</span>':p.care?`<span class="badge">${p.care} care</span>`:""}
+      ${p.isNew?'<span class="badge new">New</span>':p.rare?'<span class="badge rare">Rare</span>':p.care?`<span class="badge">${p.care} care</span>`:""}
       ${art(p.art)}${img(p)}
     </a>
     <div class="cbody">
@@ -1267,7 +1269,7 @@ function cardHTML(p,i){return `<article class="card" style="--i:${i}">${favBtn(p
       </div>
     </div>
   </article>`;}
-function renderTCards(){const t=document.getElementById("tcards");if(t)t.innerHTML=PRODUCTS.filter(p=>p.cat==="terra").map(cardHTML).join("");}
+function renderTCards(){const t=document.getElementById("tcards");if(t)t.innerHTML=PRODUCTS.filter(p=>p.cat==="terra").sort((a,b)=>(!!b.isNew)-(!!a.isNew)).map(cardHTML).join("");}
 
 function addToCart(id){const mn=byId(id).min||1;cart[id]=Math.max((cart[id]||0)+1,mn);save();renderCart();flyToCart();toast(`Added ${byId(id).name}`);}
 document.getElementById("tcards").addEventListener("click",e=>{
