@@ -1,7 +1,7 @@
 /* Google Tag Manager. Loaded on every page via this file.
    GA4 and other tags are configured inside the GTM container (tagmanager.google.com). */
 (function () {
-  var GTM_ID = "GTM-MM3LR2ZR";
+  var GTM_ID = "GTM-N2XQNB45";
   if (!GTM_ID || /^(localhost|127\.)/.test(location.hostname)) return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
