@@ -28,4 +28,5 @@ Static shop for exoticterras.in (GitHub Pages, custom domain in `CNAME`). Orders
 - `REVIEWS`: add real reviews, or WhatsApp screenshots with `{img:"/images/reviews/name.jpg",name:"Anu",place:"Kochi"}`. The section shows a placeholder until you do.
 - `GOOGLE_REVIEW_URL`: your Google review link for the Leave a review button.
 - `INSTAGRAM_URL`: shows an Instagram link in the footer.
+- `WHATSAPP_JOIN_URL`: WhatsApp channel link for the Follow on WhatsApp button (also update the `href` on `#joinWa`).
 - `GUIDES`: care guides. Each also has a static page in `guides/<slug>/` and a line in `sitemap.xml`.

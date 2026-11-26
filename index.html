@@ -648,7 +648,7 @@ img[src$="bpack.jpg"]{object-position:center top}
 
 /* ===== feature additions ===== */
 .igband{padding:56px 0}.igband .wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
-.igband h2{font-family:Fraunces,Georgia,serif;margin:0 0 8px}.igband p{color:var(--muted);margin:0 0 16px}
+.igband h2{font-family:Fraunces,Georgia,serif;margin:0 0 8px}.igband p{color:var(--muted);margin:0 0 16px}.igbtns{display:flex;flex-wrap:wrap;gap:12px}
 .igtiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.igtiles img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;border:1px solid var(--line)}
 @media (max-width:760px){.igband .wrap{grid-template-columns:1fr}}
 .gift{margin:0 0 12px;font-size:.92rem}.gift label{display:flex;gap:8px;align-items:center;font-weight:700}.gift input[type=text]{width:100%;margin-top:8px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit}
@@ -949,7 +949,7 @@ footer .links a:hover{color:var(--gold)}
 
   <section class="igband" id="insta">
     <div class="wrap">
-      <div class="igtxt"><h2>Follow our builds on Instagram</h2><p>New terrariums, colony updates and restocks land on <b>@exoticterras</b> first.</p><a class="btn ghost" href="https://www.instagram.com/exoticterras" target="_blank" rel="noopener">Follow @exoticterras</a></div>
+      <div class="igtxt"><h2>Join and follow us for discounted offers</h2><p>Follow <b>@exoticterras</b> on Instagram and the Exotic Terras | Isopods | Terrariums channel on WhatsApp for discounted offers, new terrariums, colony updates and restocks.</p><div class="igbtns"><a class="btn primary" id="joinWa" href="https://whatsapp.com/channel/0029VbCf3wXDjiOgL2F1Sl3w" target="_blank" rel="noopener">Follow on WhatsApp</a><a class="btn ghost" href="https://www.instagram.com/exoticterras" target="_blank" rel="noopener">Follow on Instagram</a></div></div>
       <a class="igtiles" href="https://www.instagram.com/exoticterras" target="_blank" rel="noopener" aria-label="Open Exotic Terras on Instagram"><img src="/images/buddha.jpg" alt="Terrarium Buddha miniature on moss" loading="lazy" width="300" height="300"><img src="/images/customised-terrariums-showcase.jpg" alt="Customised terrariums by Exotic Terras" loading="lazy" width="300" height="300"><img src="/images/terrarium-concept.jpg" alt="Moss arch cube terrarium" loading="lazy" width="300" height="300"></a>
     </div>
   </section>
@@ -1747,6 +1747,8 @@ let tt;function toast(t){const el=document.getElementById("toast");el.textConten
 const hi=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi "+SHOP+", I have a question about your isopods.")}`;
 const INSTAGRAM_URL="https://www.instagram.com/exoticterras";                    // paste your Instagram page link to show it in the footer
 if(INSTAGRAM_URL){const ig=document.getElementById("footIg");ig.href=INSTAGRAM_URL;ig.hidden=false;}
+const WHATSAPP_JOIN_URL="https://whatsapp.com/channel/0029VbCf3wXDjiOgL2F1Sl3w";  // WhatsApp channel for the Follow button
+if(WHATSAPP_JOIN_URL)document.getElementById("joinWa").href=WHATSAPP_JOIN_URL;
 document.getElementById("fab").href=hi;document.getElementById("footWa").href=hi;
 buildTank();
 const fp=byId("po");
