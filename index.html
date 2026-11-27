@@ -750,6 +750,13 @@ main>section+section{border-top:1px solid rgba(255,255,255,.035)}
 .rev{border-radius:20px}
 .igband{background:linear-gradient(180deg,transparent,rgba(231,196,107,.04))}
 .igtiles img{transition:transform .4s}.igtiles img:hover{transform:scale(1.03)}
+/* compact follow band */
+.igband{padding:28px 0}.igband .wrap{gap:24px}
+.igband h2{font-size:clamp(1.25rem,2.2vw,1.6rem);margin:0 0 6px}
+.igband p{font-size:.9rem;margin:0 0 12px}
+.igband .btn{padding:9px 14px;font-size:.85rem}
+.igtiles{width:100%;max-width:360px;justify-self:end;gap:8px}.igtiles img{border-radius:10px}
+@media (max-width:760px){.igtiles{max-width:300px;justify-self:start}}
 /* detail pages */
 .dmedia{border-radius:28px;border-color:rgba(231,196,107,.12)}
 .facts div,.glance div{border-radius:16px}
