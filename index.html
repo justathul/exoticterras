@@ -198,6 +198,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
 .qty button{width:28px;height:28px;border:0;border-radius:8px;background:transparent;font-weight:800}
 .qty button:hover{background:var(--surface)}
 .qty span{min-width:20px;text-align:center;font-weight:700}
+.ln .rm{display:block;margin:8px 0 0 auto;padding:4px 0;border:0;background:none;color:var(--muted);font-size:.8rem;text-decoration:underline;cursor:pointer}
+.ln .rm:hover{color:#e5685c}
 .df{padding:20px;border-top:1px solid var(--line)}
 .tot{display:flex;justify-content:space-between;font-weight:800;font-size:1.25rem}
 .note{color:var(--muted);font-size:.88rem;margin:4px 0 14px}
@@ -649,7 +651,6 @@ img[src$="bpack.jpg"]{object-position:center top}
 /* ===== feature additions ===== */
 .igband{padding:56px 0}.igband .wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
 .igband h2{font-family:Fraunces,Georgia,serif;margin:0 0 8px}.igband p{color:var(--muted);margin:0 0 16px}.igbtns{display:flex;flex-wrap:wrap;gap:12px}
-.igtiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.igtiles img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;border:1px solid var(--line)}
 @media (max-width:760px){.igband .wrap{grid-template-columns:1fr}}
 .gift{margin:0 0 12px;font-size:.92rem}.gift label{display:flex;gap:8px;align-items:center;font-weight:700}.gift input[type=text]{width:100%;margin-top:8px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit}
 .cmpb{font:inherit;font-size:.8rem;font-weight:700;color:var(--muted);background:none;border:1px dashed var(--line);border-radius:999px;padding:3px 10px;margin:6px 0 0;cursor:pointer}.cmpb[aria-pressed="true"]{color:#03140C;background:var(--teal);border-color:var(--teal)}
@@ -749,14 +750,11 @@ main>section+section{border-top:1px solid rgba(255,255,255,.035)}
 .step:hover{border-color:rgba(231,196,107,.35);transform:translateY(-2px)}
 .rev{border-radius:20px}
 .igband{background:linear-gradient(180deg,transparent,rgba(231,196,107,.04))}
-.igtiles img{transition:transform .4s}.igtiles img:hover{transform:scale(1.03)}
 /* compact follow band */
-.igband{padding:28px 0}.igband .wrap{gap:24px}
+.igband{padding:28px 0}.igband .wrap{grid-template-columns:1fr}
 .igband h2{font-size:clamp(1.25rem,2.2vw,1.6rem);margin:0 0 6px}
 .igband p{font-size:.9rem;margin:0 0 12px}
 .igband .btn{padding:9px 14px;font-size:.85rem}
-.igtiles{width:100%;max-width:360px;justify-self:end;gap:8px}.igtiles img{border-radius:10px}
-@media (max-width:760px){.igtiles{max-width:300px;justify-self:start}}
 /* detail pages */
 .dmedia{border-radius:28px;border-color:rgba(231,196,107,.12)}
 .facts div,.glance div{border-radius:16px}
@@ -957,7 +955,6 @@ footer .links a:hover{color:var(--gold)}
   <section class="igband" id="insta">
     <div class="wrap">
       <div class="igtxt"><h2>Join and follow us for discounted offers</h2><p>Follow <b>@exoticterras</b> on Instagram and the Exotic Terras | Isopods | Terrariums channel on WhatsApp for discounted offers, new terrariums, colony updates and restocks.</p><div class="igbtns"><a class="btn primary" id="joinWa" href="https://whatsapp.com/channel/0029VbCf3wXDjiOgL2F1Sl3w" target="_blank" rel="noopener">Follow on WhatsApp</a><a class="btn ghost" href="https://www.instagram.com/exoticterras" target="_blank" rel="noopener">Follow on Instagram</a></div></div>
-      <a class="igtiles" href="https://www.instagram.com/exoticterras" target="_blank" rel="noopener" aria-label="Open Exotic Terras on Instagram"><img src="/images/buddha.jpg" alt="Terrarium Buddha miniature on moss" loading="lazy" width="300" height="300"><img src="/images/customised-terrariums-showcase.jpg" alt="Customised terrariums by Exotic Terras" loading="lazy" width="300" height="300"><img src="/images/terrarium-concept.jpg" alt="Moss arch cube terrarium" loading="lazy" width="300" height="300"></a>
     </div>
   </section>
 
@@ -1728,7 +1725,7 @@ function renderCart(){
       <span class="th" style="--tint:${tint(p.art)}">${art(p.art)}${img(p)}</span>
       <div><div class="nm">${p.name}</div><div class="u">${p.unit}</div>
         <div class="qty"><button data-d="-1" data-id="${id}" aria-label="Remove one ${p.name}">−</button><span>${cart[id]}</span><button data-d="1" data-id="${id}" aria-label="Add one ${p.name}">+</button></div></div>
-      <div class="r"><b>${rupee(lineTotal(id,cart[id]))}</b>${isBulk(id,cart[id])?'<span class="bulk">10% bulk off</span>':""}</div>
+      <div class="r"><b>${rupee(lineTotal(id,cart[id]))}</b>${isBulk(id,cart[id])?'<span class="bulk">10% bulk off</span>':""}<button type="button" class="rm" data-rm="${id}" aria-label="Remove ${p.name} from cart">Remove</button></div>
     </div>`}).join("")+cartSuggest(ids):`<p class="empty" style="margin-top:16px">Your cart is empty. Add a culture from the shop to start an order.</p>`;
   const msg=`Hi ${SHOP}, I’d like to order:\n`+ids.map(id=>`• ${byId(id).name} (${byId(id).unit}) × ${cart[id]} = ${rupee(lineTotal(id,cart[id]))}${isBulk(id,cart[id])?" (10% bulk discount)":""}`).join("\n")+`\nSubtotal: ${rupee(total)}${gift.on?`\nThis is a gift order.${gift.note?` Gift note: ${gift.note}`:""}`:""}\nMy pin code: ${savedPin}`;
   const wa=document.getElementById("wa");
@@ -1737,6 +1734,8 @@ function renderCart(){
   updateBar(count,total);renderUPI(total);
 }
 document.getElementById("lines").addEventListener("click",e=>{
+  const x=e.target.closest("button[data-rm]");
+  if(x){delete cart[x.dataset.rm];save();renderCart();toast(`Removed ${byId(x.dataset.rm).name}`);return;}
   const b=e.target.closest("button[data-d]"); if(!b) return;
   const id=b.dataset.id; cart[id]=Math.max(0,(cart[id]||0)+Number(b.dataset.d));
   if(!cart[id]||cart[id]<(byId(id).min||1)) delete cart[id]; save(); renderCart();
