@@ -156,7 +156,10 @@
     var byName = {};
     Object.keys(P).forEach(function (id) { byName[P[id].name] = P[id]; });
     document.querySelectorAll("a.rcard").forEach(function (card) {
-      var title = card.querySelector("b"), p = title && byName[title.textContent.trim()];
+      var title = card.querySelector("b"), pic = card.querySelector("img"), p = null;
+      // match on the photo first: card titles can differ from product names ("Zebra Isopod")
+      if (pic) Object.keys(P).some(function (id) { if (P[id].photo === pic.getAttribute("src")) { p = P[id]; return true; } return false; });
+      if (!p && title) p = byName[title.textContent.trim().replace(/ Isopod$/, "")];
       if (!p) return;
       var wrap = el("div", "sh-card");
       card.parentNode.insertBefore(wrap, card);
