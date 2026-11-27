@@ -771,7 +771,36 @@ footer .links a:hover{color:var(--gold)}
 @media (prefers-reduced-motion:reduce){.card,.card:hover,.art img,.btn,.add,.step{transition:none;transform:none}.card:hover .art img{transform:none}}
 .badge.new{background:linear-gradient(135deg,#B8E86A,var(--teal));color:#0B1A08;border-color:transparent;font-weight:800}
 .seo-intro{max-width:78ch;margin:44px auto 0;color:var(--muted)}.seo-intro h2{font-size:1.25rem;margin:0 0 8px}.seo-intro p{margin:0;line-height:1.7}.seo-intro a{color:var(--teal)}
+/* ===== photo cover, highlight cards, round categories ===== */
+.hero.cover{display:flex;align-items:center;min-height:min(78vh,640px);padding:48px 0;overflow:hidden;isolation:isolate;background:#0B1410 url(/images/cover.jpg) 72% center/cover no-repeat}
+.hero.cover::before{inset:0;height:auto;z-index:-1;background:linear-gradient(90deg,rgba(5,12,8,.88) 0%,rgba(5,12,8,.6) 36%,transparent 62%)}
+.hero.cover .wrap{display:block;width:100%}.hero.cover .wrap>div:first-child{max-width:520px}
+.hero.cover .tank{display:none!important}
+.hero.cover h1{font-size:clamp(2rem,3.6vw,3.1rem);margin-top:6px}
+.hero.cover p{color:#E3EEE6}
+.hero.cover .script{display:block;margin-top:18px;font:400 clamp(2.8rem,6vw,4.6rem)/1.1 "Dancing Script","Segoe Script",cursive;color:#fff}
+.statband{padding:24px 0 0}
+.statband .trust.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0;overflow:visible}
+.statband .trust.cards div{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:20px 12px;border-radius:20px;border:0;font-size:.9rem;background:#D3EADC;color:#1F5C3C}
+.statband .trust.cards div:nth-child(2){background:#D5DEF6;color:#2B428C}.statband .trust.cards div:nth-child(3){background:#E5DAF6;color:#54358F}
+.statband .trust.cards b{display:block;font-size:1.1rem;color:#0D1612}
+.statband .trust.cards svg{width:30px;height:30px;color:inherit;margin:0}
+.catrow .cat{align-items:center;text-align:center;background:none;border:0;box-shadow:none;padding:6px}
+.catrow .cat .ic{position:relative;overflow:hidden;width:132px;height:132px;border-radius:50%;border:2px solid var(--line)}
+.catrow .cat .ic svg{width:80px}.catrow .cat .ic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.catrow .cat:hover .ic,.catrow .cat[aria-pressed="true"] .ic{border-color:var(--teal)}
+@media (max-width:760px){
+.hero.cover{min-height:0;padding:270px 0 20px;background-position:68% top;background-size:auto 300px}
+.hero.cover::before{background:linear-gradient(180deg,transparent 210px,#0B1410 300px)}
+.hero.cover .script{margin-top:0}
+.hero.cover h1{font-size:1.7rem}
+.statband{padding-top:14px}.statband .trust.cards{gap:8px}
+.statband .trust.cards div{padding:12px 6px;border-radius:14px;font-size:.72rem}.statband .trust.cards b{font-size:.82rem}
+.catrow .cat{width:96px;flex-direction:column;gap:6px;border-radius:14px;padding:4px}
+.catrow .cat .ic{width:80px;height:80px;border-radius:50%}.catrow .cat .ic svg{width:52px}
+.catrow .cat b{white-space:normal;font-size:.8rem;line-height:1.2}}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap">
 <script defer src="/analytics.js"></script></head>
 <body>
 <div class="notice"><b>1-day delivery across Kerala</b> · Fast delivery all over India · Live arrival guaranteed</div>
@@ -808,10 +837,11 @@ footer .links a:hover{color:var(--gold)}
 
 <main id="top">
   <div class="wrap pgbar" id="pgbar"><a href="#shop">← Back to shop</a></div>
-  <section class="hero">
+  <section class="hero cover">
     <div class="wrap">
       <div>
         <span class="pill"><i></i>New cultures ready this week</span>
+        <span class="script" aria-hidden="true">Live nature</span>
         <h1>Isopods, springtails and terrariums from Kerala</h1>
         <p>Captive-bred cleanup crews, colourful morphs and made-to-order terrariums. Raised in Kerala, shipped live across India.</p>
         <div class="ctas">
@@ -820,11 +850,6 @@ footer .links a:hover{color:var(--gold)}
           <a class="btn ghost" href="#how">How to order</a>
         </div>
         <div data-pinslot></div>
-        <div class="trust">
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><span><b>Live arrival</b>guaranteed</span></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg><span><b>Captive bred</b>never wild-caught</span></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><b>1-day delivery</b>in Kerala, fast all-India</span></div>
-        </div>
       </div>
       <div class="tank">
         <div id="tankScene"></div>
@@ -833,6 +858,14 @@ footer .links a:hover{color:var(--gold)}
       </div>
     </div>
   </section>
+
+  <div class="statband"><div class="wrap">
+        <div class="trust cards">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><span><b>Live arrival</b>guaranteed</span></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg><span><b>Captive bred</b>never wild-caught</span></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><b>1-day delivery</b>in Kerala, fast all-India</span></div>
+        </div>
+  </div></div>
 
   <section class="cats" aria-label="Categories">
     <div class="wrap catrow" id="catrow"></div>
@@ -1244,7 +1277,7 @@ const careRank={Easy:0,Moderate:1,Expert:2};
 
 /* ===== categories ===== */
 const catrow=document.getElementById("catrow");
-catrow.innerHTML=CATS.map(c=>`<button class="cat" data-c="${c.id}" aria-pressed="false"><span class="ic">${art(c.icon)}</span><b>${c.name}</b><span>${((n)=>n+(n===1?" item":" items"))(PRODUCTS.filter(p=>p.cat===c.id&&!p.variantOf).length)}</span></button>`).join("");
+catrow.innerHTML=CATS.map(c=>`<button class="cat" data-c="${c.id}" aria-pressed="false"><span class="ic">${art(c.icon)}${img(PRODUCTS.find(p=>p.cat===c.id&&p.photo)||{})}</span><b>${c.name}</b><span>${((n)=>n+(n===1?" item":" items"))(PRODUCTS.filter(p=>p.cat===c.id&&!p.variantOf).length)}</span></button>`).join("");
 catrow.addEventListener("click",e=>{
   const b=e.target.closest(".cat"); if(!b) return;
   cat = cat===b.dataset.c ? null : b.dataset.c;
