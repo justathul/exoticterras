@@ -840,6 +840,39 @@ footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.
 .fab{width:50px;height:50px;right:14px}}
 @media (max-width:360px){.cartbar span,.cartbar button{white-space:nowrap;font-size:.85rem}.hero.cover .ctas .btn{font-size:.78rem!important;padding-inline:4px!important;white-space:nowrap}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* ===== highlight bar and photo category tiles ===== */
+.statband{position:relative;z-index:2;padding:0;margin-top:-34px}
+.statband .trust.cards{gap:0;background:rgba(14,28,20,.92);border:1px solid rgba(231,196,107,.35);border-radius:22px;box-shadow:0 18px 40px rgba(0,0,0,.45);backdrop-filter:blur(12px)}
+.statband .trust.cards div,.statband .trust.cards div:nth-child(n){flex-direction:row;justify-content:center;gap:14px;text-align:left;background:none;border-radius:0;padding:18px 14px;color:var(--muted)}
+.statband .trust.cards div+div{border-left:1px solid rgba(231,196,107,.2)}
+.statband .trust.cards b{color:var(--ink);font-size:1.05rem}
+.statband .trust.cards svg{box-sizing:content-box;flex:none;width:24px;height:24px;padding:11px;border-radius:50%;color:#1B1200;background:linear-gradient(135deg,#F2D98B,#D9AF45)}
+.cats{padding:48px 0 16px}
+.cathead{text-align:center;margin-bottom:22px}.cathead h2{font-family:Fraunces,Georgia,serif;font-size:clamp(1.7rem,3.4vw,2.4rem);margin:0}.cathead p{margin:6px 0 0;color:var(--muted)}
+.cats .cathead h2::before{display:none}
+.cats .catrow{display:grid;grid-template-columns:1.35fr 1fr 1fr;grid-auto-rows:210px;gap:14px;overflow:visible;padding-bottom:0}
+.cats .catrow .cat{position:relative;isolation:isolate;overflow:hidden;width:auto;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;gap:2px;padding:18px 20px;border:1px solid var(--line);border-radius:22px;background:#101C15}
+.cats .catrow .cat:first-child{grid-row:span 2}
+.cats .catrow .cat .ic{position:absolute;inset:0;z-index:-1;width:100%;height:100%;border:0;border-radius:0}
+.cats .catrow .cat .ic img{transition:transform .35s ease}
+.cats .catrow .cat .ic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(3,9,6,.92))}
+.cats .catrow .cat b{font:600 1.35rem/1.2 Fraunces,Georgia,serif;color:#fff;white-space:normal}
+.cats .catrow .cat:first-child b{font-size:2rem}
+.cats .catrow .cat>span:last-child{display:inline-block;margin-top:6px;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);color:#fff;font-size:.8rem;font-weight:700}
+.cats .catrow .cat>span:last-child::after{content:" →"}
+.cats .catrow .cat:hover,.cats .catrow .cat[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.cats .catrow .cat:hover .ic img{transform:scale(1.06)}
+@media (max-width:760px){
+.statband{margin-top:0;padding-top:4px}
+.statband .trust.cards{display:grid;gap:0;border-radius:18px}
+.statband .trust.cards div,.statband .trust.cards div:nth-child(n){flex-direction:column;gap:6px;text-align:center;padding:14px 6px;font-size:.72rem}
+.statband .trust.cards b{font-size:.8rem}.statband .trust.cards svg{width:18px;height:18px;padding:9px}
+.cats{padding:30px 0 8px}
+.cats .catrow{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-auto-rows:150px;gap:10px}
+.cats .catrow .cat:first-child{grid-row:auto;grid-column:1/-1}
+.cats .catrow .cat{padding:12px;border-radius:18px}
+.cats .catrow .cat b{font-size:1.02rem}.cats .catrow .cat:first-child b{font-size:1.5rem}
+.cats .catrow .cat>span:last-child{font-size:.72rem;padding:3px 9px}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap">
 <script defer src="/analytics.js"></script></head>
@@ -909,6 +942,7 @@ footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.
   </div></div>
 
   <section class="cats" aria-label="Categories">
+    <div class="wrap cathead"><h2>Shop by category</h2><p>Pick where your little ecosystem starts</p></div>
     <div class="wrap catrow" id="catrow"></div>
   </section>
 
