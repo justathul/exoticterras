@@ -867,13 +867,16 @@ footer .fcols a:hover{color:var(--ink);text-decoration:underline}
 @media (max-width:600px){footer .fcols{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}footer .fcols a{min-height:44px;font-size:.88rem}}
 .seoband{padding:28px 0 36px}.seoband .seo-intro{margin:0 auto;font-size:.92rem;text-align:center}
 /* ===== seven categories ===== */
-.cats .catrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;overflow:visible}
+.cats .catrow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;overflow:visible}
 .cats .catrow .cat{width:auto;min-width:0;justify-content:flex-start}
 .cats .catrow .cat .ic{width:min(100%,118px);height:auto;aspect-ratio:1/1}
 .cats .catrow .cat b{white-space:normal;line-height:1.25}
 @media (max-width:900px){.cats .catrow{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 6px;padding-inline:12px}
-.cats .catrow .cat{flex:0 0 calc(25% - 6px);width:auto;padding:2px 0;gap:6px}
+.cats .catrow .cat{flex:0 0 calc(33.33% - 6px);width:auto;padding:2px 0;gap:6px}
 .cats .catrow .cat .ic{width:min(100%,84px);height:auto}.cats .catrow .cat b{font-size:.74rem}}
+.tsubs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.tsubs[hidden]{display:none}
+.tsubs button{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--gold);background:none;color:var(--ink);font:inherit;font-weight:800;font-size:.9rem;cursor:pointer}
+.tsubs button[aria-pressed="true"]{background:var(--gold);color:#1B1200}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap">
 <script defer src="/analytics.js"></script></head>
@@ -1121,7 +1124,7 @@ footer .fcols a:hover{color:var(--ink);text-decoration:underline}
     <span>Captive-bred only. We never ship wild-collected animals.</span>
     <span class="legalnote">Captive-bred hobby invertebrates only. No species protected under the Wildlife (Protection) Act, 1972 or CITES. Not for release into the wild. <a href="#legal">Responsible keeping &amp; legal disclaimer</a></span>
     <nav class="fcols" aria-label="Footer">
-      <div><h3>Shop</h3><a href="/isopods/">All isopods</a><a href="/springtails/temperate-white-springtails/">Springtails</a><a href="/terrariums/">Terrariums</a><a href="/packs/beginner-isopod-pack/">Beginner isopod pack</a><a href="/plants/">Terrarium plants</a><a href="/terrarium-accessories/">Terrarium accessories</a><a href="/isopod-accessories/">Isopod accessories</a></div>
+      <div><h3>Shop</h3><a href="/isopods/">All isopods</a><a href="/springtails/temperate-white-springtails/">Springtails</a><a href="/terrariums/">Terrariums &amp; Accessories</a><a href="/packs/beginner-isopod-pack/">Beginner isopod pack</a><a href="/plants/">Terrarium plants</a><a href="/isopod-accessories/">Isopod accessories</a></div>
       <div><h3>Guides</h3><a href="/guides/buy-isopods-in-kerala/">Buy isopods in Kerala</a><a href="/guides/isopod-price-list-india/">Isopod price list</a><a href="/guides/best-isopods-for-bioactive-terrariums/">Best bioactive isopods</a><a href="/guides/how-to-build-a-bioactive-terrarium/">Build a bioactive terrarium</a><a href="/guides/terrarium-plants-for-beginners-india/">Terrarium plants</a><a href="/guides/isopod-enclosure-setup/">Enclosure setup</a></div>
       <div><h3>Help</h3><a href="/contact/">Contact Us</a><a href="/refund-policy/">Refund &amp; Cancellation</a><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms &amp; Conditions</a><a href="/faq/">FAQ</a><a href="#how">How to order</a><a id="footWa" target="_blank" rel="noopener">WhatsApp us</a><a id="footIg" hidden target="_blank" rel="noopener">Instagram</a></div>
     </nav>
@@ -1162,14 +1165,18 @@ const SHOP = "Exotic Terras";
 const CATS = [
   {id:"iso", name:"Isopods", photo:"/images/categories/isopods.jpg", icon:{t:"iso",b:"#E07B2A",s:"#9E4C12",pat:"none"}},
   {id:"spring", name:"Springtails", photo:"/images/tw.jpg", icon:{t:"spring",c:"#FFFFFF"}},
-  {id:"terra", name:"Terrariums", photo:"/images/terrarium-concept.jpg", icon:{t:"jar",c:"#4FA85A"}},
+  {id:"terra", name:"Terrariums & Accessories", photo:"/images/terrarium-concept.jpg", icon:{t:"jar",c:"#4FA85A"}},
   {id:"plant", name:"Terrarium Plants", photo:"/images/fit.jpg", icon:{t:"plant",c:"#3F7A3A",v:"#F2C4C4"}},
-  {id:"terraacc", name:"Terrarium Accessories", photo:"/images/buddha.jpg", icon:{t:"jar",c:"#4FA85A"}},
   {id:"isoacc", name:"Isopod Accessories", photo:"/images/bat-feeder.jpg", icon:{t:"box",c:"#E07B2A"}},
   {id:"pack", name:"Starter packs", photo:"/images/bpack.jpg", icon:{t:"box",c:"#E07B2A"}}
 ];
 // accessories keep their product type but are listed in their own category
-const catOf=p=>p.acc?(p.cat==="terra"?"terraacc":"isoacc"):p.cat;
+const catOf=p=>p.acc&&p.cat!=="terra"?"isoacc":p.cat;
+// the three groups inside Terrariums & Accessories; anything not listed here counts as a terrarium
+const TSUBS=[["terr","Terrariums"],["tank","Terrarium Tanks"],["mini","Miniatures"]];
+const TSUB_OF={btank:"tank",hut:"tank",buddha:"mini"};
+const subOf=p=>TSUB_OF[p.id]||(p.acc?"mini":"terr");
+let tsub=null;
 
 // care: Easy | Moderate | Expert. art.t = iso drawing {b body, s outline, p pattern colour, pat cow|stripe|dots|duck|none}
 const PRODUCTS = [
@@ -1376,14 +1383,24 @@ document.getElementById("q").addEventListener("input",e=>{query=e.target.value.t
 document.getElementById("sort").addEventListener("change",e=>{sort=e.target.value;renderGrid();});
 
 /* ===== grid ===== */
+function renderSubs(){
+  let box=document.getElementById("tsubs");
+  if(!box){box=document.createElement("div");box.id="tsubs";box.className="tsubs";box.setAttribute("role","group");box.setAttribute("aria-label","Terrarium groups");
+    document.querySelector("#shop .fchips").before(box);
+    box.addEventListener("click",e=>{const b=e.target.closest("[data-sub]");if(!b)return;tsub=b.dataset.sub||null;renderGrid();});}
+  if(cat!=="terra")tsub=null;
+  box.hidden=cat!=="terra";
+  box.innerHTML=[["","All"],...TSUBS].map(([id,n])=>`<button type="button" data-sub="${id}" aria-pressed="${(tsub||"")===id}">${n}</button>`).join("");
+}
 function stockLabel(p){return isEnq(p)&&p.cat==="terra"&&!p.acc?'<span class="st">Made to order</span>':p.stock==="out"?'<span class="st out">Sold out</span>':p.stock==="low"?'<span class="st low">Only a few left</span>':'<span class="st">In stock</span>';}
 function renderGrid(){
   renderTCards();
-  let list=PRODUCTS.filter(p=>!p.variantOf&&(!cat||catOf(p)===cat)&&(!query||(p.name+" "+p.sci+" "+p.desc).toLowerCase().includes(query))&&(!fEasy||p.care==="Easy")&&(!fStock||p.stock!=="out")&&(!fSaved||saved.has(p.id))&&(!fRare||p.rare)&&(!fCheap||(!isEnq(p)&&p.price<100)));
+  let list=PRODUCTS.filter(p=>!p.variantOf&&(!cat||catOf(p)===cat)&&(cat!=="terra"||!tsub||subOf(p)===tsub)&&(!query||(p.name+" "+p.sci+" "+p.desc).toLowerCase().includes(query))&&(!fEasy||p.care==="Easy")&&(!fStock||p.stock!=="out")&&(!fSaved||saved.has(p.id))&&(!fRare||p.rare)&&(!fCheap||(!isEnq(p)&&p.price<100)));
   if(sort==="feat") list=[...list].sort((a,b)=>((b.id==="btank")-(a.id==="btank"))||((!!b.isNew)-(!!a.isNew)));
   if(sort==="lo") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||a.price-b.price);
   if(sort==="hi") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||b.price-a.price);
   if(sort==="easy") list=[...list].sort((a,b)=>(careRank[a.care]??0)-(careRank[b.care]??0));
+  renderSubs();
   document.getElementById("shopTitle").textContent=cat?CATS.find(c=>c.id===cat).name:"All products";
   document.getElementById("shopCount").textContent=`${list.length} ${list.length===1?"item":"items"}${cat?" · tap the category again to show everything":""}`;
   const g=document.getElementById("grid");
