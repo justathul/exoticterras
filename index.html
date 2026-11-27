@@ -848,21 +848,33 @@ footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.
 /* ===== highlights sit below the shop ===== */
 .statband,.statband:not(#x){margin-top:0;padding:8px 0 36px}
 
-/* ===== categories: white band with cut-out photos ===== */
-.cats.tz{margin:0;padding:34px 0 30px;background:#fff;border:0}
-.cats.tz .tzhead{margin:0 0 18px;font-family:inherit;font-size:clamp(1.35rem,2.6vw,1.9rem);font-weight:800;color:#0F0F0F}
-.cats.tz .tzhead::before{display:none}
-.cats.tz .catrow{display:flex;justify-content:flex-start;align-items:flex-start;gap:30px;overflow:visible}
-.cats.tz .catrow .cat{flex:0 1 150px;min-width:0;width:auto;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0;background:none;border:0;border-radius:12px;box-shadow:none;text-align:center}
-.cats.tz .catrow .cat .ic{display:block;width:100%;height:auto;aspect-ratio:1/1;background:none;border:0;border-radius:0}
-.cats.tz .catrow .cat .ic img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .25s ease}
-.cats.tz .catrow .cat:hover .ic img,.cats.tz .catrow .cat[aria-pressed="true"] .ic img{transform:translateY(-5px) scale(1.05)}
-.cats.tz .catrow .cat b{font-family:inherit;font-size:.98rem;font-weight:500;line-height:1.25;color:#4A5056;white-space:normal}
-.cats.tz .catrow .cat[aria-pressed="true"] b{color:#0F5132;font-weight:800;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
-.cats.tz .catrow .cat>span:last-child{display:none}
-@media (max-width:760px){.cats.tz{padding:22px 0 18px}.cats.tz .tzhead{margin-bottom:12px}
-.cats.tz .catrow{gap:4px;padding-inline:10px}.cats.tz .catrow .cat{flex:1 1 0}.cats.tz .catrow .cat b{font-size:.7rem}}
-@media (max-width:360px){.cats.tz .catrow{padding-inline:6px}.cats.tz .catrow .cat b{font-size:.58rem}}
+/* ===== categories: themed cards with cut-out photos ===== */
+.cats.tz{margin:0;padding:40px 0 12px;background:none;border:0}
+.cats.tz .tzhead{margin:0 0 20px;font-family:Fraunces,Georgia,serif;font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:600;color:var(--ink)}
+.cats.tz .tzhead::before{content:"";display:block;width:40px;height:2px;margin-bottom:12px;border-radius:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.cats.tz .catrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;overflow:visible}
+.cats.tz .catrow .cat{width:auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 12px 18px;text-align:center;border:1px solid rgba(231,196,107,.18);border-radius:22px;background:linear-gradient(180deg,#14241A,#0C1711);box-shadow:none;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.cats.tz .catrow .cat .ic{display:block;width:min(100%,132px);height:auto;aspect-ratio:1/1;margin-bottom:6px;background:none;border:0;border-radius:0}
+.cats.tz .catrow .cat .ic img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 10px rgba(0,0,0,.45));transition:transform .25s ease}
+.cats.tz .catrow .cat b{font-family:Fraunces,Georgia,serif;font-size:1.08rem;font-weight:600;line-height:1.25;color:var(--ink);white-space:normal}
+.cats.tz .catrow .cat>span:last-child{display:block;font-size:.8rem;color:var(--muted)}
+.cats.tz .catrow .cat:hover{transform:translateY(-4px);border-color:rgba(231,196,107,.6);box-shadow:0 14px 30px rgba(0,0,0,.4)}
+.cats.tz .catrow .cat:hover .ic img{transform:scale(1.07)}
+.cats.tz .catrow .cat[aria-pressed="true"]{border-color:var(--gold);background:linear-gradient(180deg,#2A3118,#141C0F);box-shadow:0 0 0 1px var(--gold),0 14px 30px rgba(0,0,0,.4)}
+.cats.tz .catrow .cat[aria-pressed="true"] b{color:var(--gold)}
+@media (max-width:760px){.cats.tz{padding:26px 0 0}.cats.tz .tzhead{margin-bottom:12px}
+.cats.tz .catrow{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;padding-inline:14px}
+.cats.tz .catrow .cat{grid-column:span 2;padding:10px 4px 12px;border-radius:16px}
+.cats.tz .catrow .cat:nth-child(n+4){grid-column:span 3}
+.cats.tz .catrow .cat .ic{width:min(100%,88px);margin-bottom:2px}
+.cats.tz .catrow .cat b{font-size:.82rem}.cats.tz .catrow .cat>span:last-child{font-size:.7rem}}
+/* ===== grouped footer columns ===== */
+footer .fcols{display:grid;align-items:start;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;width:100%;margin:12px 0;padding:24px 0;border-block:1px solid var(--line)}
+footer .fcols h3{margin:0 0 6px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+footer .fcols a{display:flex;align-items:center;min-height:38px;color:var(--muted);text-decoration:none;line-height:1.3}
+footer .fcols a[hidden]{display:none}
+footer .fcols a:hover{color:var(--ink);text-decoration:underline}
+@media (max-width:600px){footer .fcols{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}footer .fcols a{min-height:44px;font-size:.88rem}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap">
 <script defer src="/analytics.js"></script></head>
@@ -924,7 +936,7 @@ footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.
   </section>
 
   <section class="cats tz" aria-label="Categories">
-    <div class="wrap"><h2 class="tzhead">Shop by Categories</h2></div>
+    <div class="wrap"><h2 class="tzhead">Shop by category</h2></div>
     <div class="wrap catrow" id="catrow"></div>
   </section>
 
@@ -1107,8 +1119,12 @@ footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.
     <span>© Exotic Terras, Kerala</span>
     <span>Captive-bred only. We never ship wild-collected animals.</span>
     <span class="legalnote">Captive-bred hobby invertebrates only. No species protected under the Wildlife (Protection) Act, 1972 or CITES. Not for release into the wild. <a href="#legal">Responsible keeping &amp; legal disclaimer</a></span>
-    <nav class="species" aria-label="All products"><a href="/isopods/">Isopods for sale in India</a><a href="/isopods/powder-orange/">Powder Orange isopods</a><a href="/isopods/dairy-cow/">Dairy Cow isopods</a><a href="/isopods/orange-dalmatian/">Orange Dalmatian isopods</a><a href="/isopods/magic-potion/">Magic Potion isopods</a><a href="/isopods/dwarf-white/">Dwarf White isopods</a><a href="/isopods/rubber-ducky/">Rubber Ducky isopods</a><a href="/isopods/gestroi/">Gestroi isopods</a><a href="/isopods/sevilla/">Sevilla isopods</a><a href="/isopods/zebra/">Zebra isopods</a><a href="/isopods/aganara/">Aganara isopods</a><a href="/isopods/murina-papaya/">Murina Papaya isopods</a><a href="/isopods/glacier/">Glacier isopods</a><a href="/isopods/murina-orange/">Murina Orange isopods</a><a href="/springtails/temperate-white-springtails/">Temperate white springtails</a><a href="/terrariums/">Terrariums in India</a><a href="/terrariums/hut-glass-tank/">Hut Glass Tank</a><a href="/terrariums/mini-terrarium/">Mini terrarium</a><a href="/terrariums/black-frame-glass-terrarium-tank/">Black Frame Glass Terrarium Tank</a><a href="/isopods/bat-shaped-feeding-bowl-with-stairs/">Bat Shaped Feeding Bowl with Stairs</a><a href="/isopods/terrarium-vent-v2/">Isopod Airflow Vent (2 inch)</a><a href="/terrariums/terrarium-buddha-miniature/">Terrarium Buddha Miniature</a><a href="/terrariums/custom-closed-terrarium/">Custom closed terrarium</a><a href="/packs/beginner-isopod-pack/">Beginner isopod pack</a><a href="/plants/fittonia/">Fittonia</a><a href="/guides/isopod-enclosure-setup/">Isopod enclosure setup guide</a><a href="/guides/isopods-for-reptile-vivariums-india/">Isopods for reptile and frog vivariums</a><a href="/guides/isopod-care-kerala-climate/">Isopod care in Kerala</a><a href="/guides/how-to-build-a-bioactive-terrarium/">How to build a bioactive terrarium</a><a href="/guides/springtails-cleanup-crew-guide/">Springtails guide</a><a href="/guides/open-vs-closed-terrarium/">Open vs closed terrarium</a><a href="/guides/buy-isopods-in-kerala/">Buy isopods in Kerala: prices and delivery</a><a href="/guides/best-isopods-for-bioactive-terrariums/">Best isopods for a bioactive terrarium in India</a><a href="/guides/isopod-price-list-india/">Isopod price list India: our species and prices</a><a href="/guides/terrarium-plants-for-beginners-india/">Terrarium plants for beginners in India</a></nav>
-    <span class="links"><a id="footIg" hidden target="_blank" rel="noopener">Instagram</a><a id="footWa" target="_blank" rel="noopener">WhatsApp us</a><a href="/faq/">FAQ</a><a href="#top">Back to top</a></span>
+    <nav class="fcols" aria-label="Footer">
+      <div><h3>Shop</h3><a href="/isopods/">All isopods</a><a href="/springtails/temperate-white-springtails/">Springtails</a><a href="/terrariums/">Terrariums</a><a href="/packs/beginner-isopod-pack/">Beginner isopod pack</a><a href="/plants/fittonia/">Fittonia plants</a></div>
+      <div><h3>Guides</h3><a href="/guides/buy-isopods-in-kerala/">Buy isopods in Kerala</a><a href="/guides/isopod-price-list-india/">Isopod price list</a><a href="/guides/best-isopods-for-bioactive-terrariums/">Best bioactive isopods</a><a href="/guides/how-to-build-a-bioactive-terrarium/">Build a bioactive terrarium</a><a href="/guides/terrarium-plants-for-beginners-india/">Terrarium plants</a><a href="/guides/isopod-enclosure-setup/">Enclosure setup</a></div>
+      <div><h3>Help</h3><a href="/faq/">FAQ</a><a href="#how">How to order</a><a id="footWa" target="_blank" rel="noopener">WhatsApp us</a><a id="footIg" hidden target="_blank" rel="noopener">Instagram</a></div>
+    </nav>
+    <span class="links"><a href="#top">Back to top ↑</a></span>
   </div>
 </footer>
 
@@ -1342,7 +1358,7 @@ const careRank={Easy:0,Moderate:1,Expert:2};
 
 /* ===== categories ===== */
 const catrow=document.getElementById("catrow");
-catrow.innerHTML=CATS.map(c=>`<button class="cat" data-c="${c.id}" aria-pressed="false"><span class="ic"><img src="/images/cat/${c.id}.webp" alt="" width="360" height="360"></span><b>${c.name}</b><span>${((n)=>n+(n===1?" item":" items"))(PRODUCTS.filter(p=>p.cat===c.id&&!p.variantOf).length)}</span></button>`).join("");
+catrow.innerHTML=CATS.map(c=>`<button class="cat" data-c="${c.id}" aria-pressed="false"><span class="ic"><img src="/images/cat/${c.id}.webp?v=2" alt="" width="360" height="360"></span><b>${c.name}</b><span>${((n)=>n+(n===1?" item":" items"))(PRODUCTS.filter(p=>p.cat===c.id&&!p.variantOf).length)}</span></button>`).join("");
 catrow.addEventListener("click",e=>{
   const b=e.target.closest(".cat"); if(!b) return;
   cat = cat===b.dataset.c ? null : b.dataset.c;
