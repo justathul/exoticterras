@@ -467,7 +467,7 @@ footer .species a:hover{color:var(--teal)}
 .legal{display:none;padding:28px 0 72px}
 body.on-legal .legal{display:block}
 body.on-legal main>section:not(.legal){display:none}
-.legal h1{font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;margin:0 0 6px}
+.legal h2.ltitle{font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;margin:0 0 6px}
 .legal .lu{color:var(--muted);font-size:.9rem;margin:0 0 28px}
 .legal h2{font-size:1.35rem;margin:28px 0 8px}
 .legal p{color:var(--muted);max-width:70ch;margin:0;font-size:1.02rem}
@@ -1070,7 +1070,7 @@ footer .fcols a:hover{color:var(--ink);text-decoration:underline}
   <section class="legal" id="legal">
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="#shop">Shop</a><span>/</span><b>Responsible keeping &amp; legal</b></nav>
-      <h1>Responsible keeping &amp; legal disclaimer</h1>
+      <h2 class="ltitle">Responsible keeping &amp; legal disclaimer</h2>
       <p class="lu">Last updated: October 2026</p>
 
       <h2>Captive-bred animals only</h2>
@@ -1167,7 +1167,7 @@ const PRODUCTS = [
   {id:"dw",cat:"iso",photo:"/images/dw.jpg",name:"Dwarf White",sci:"Trichorhina tomentosa",price:60,unit:"piece",stock:"low",care:"Easy",hum:"High",size:"0.5 cm",breed:"Very fast",desc:"Tiny, blind and all-female. Ideal cleanup crew for frog and gecko tanks.",art:{tint:"#2A8C82",t:"iso",b:"#F4F1EC",s:"#B8B0A2",p:"#ffffff",pat:"none"}},
   {id:"rd",cat:"iso",photo:"/images/rd.jpg",name:"Rubber Ducky",sci:"Cubaris sp.",price:360,unit:"piece (min. 6)",min:6,stock:"out",care:"Expert",hum:"Very high",size:"1.2 cm",breed:"Slow",rare:true,desc:"The famous yellow-faced Cubaris. Needs high humidity and patience.",art:{tint:"#F2C230",t:"iso",b:"#7C8A93",s:"#56626A",p:"#F2C230",pat:"duck"}},
   {id:"ges",cat:"iso",photo:"/images/ges.jpg",name:"Gestroi",sci:"Armadillidium gestroi",price:99,unit:"piece",stock:"in",care:"Moderate",hum:"Low–medium",size:"1.8 cm",breed:"Slow",rare:true,desc:"Glossy black with bright yellow spots. One of the most striking pill bugs.",art:{tint:"#F2C230",t:"iso",b:"#1E1C1A",s:"#000000",p:"#F2C230",pat:"dots"}},
-  {id:"mpp",cat:"iso",photo:"/images/mpp.jpg",name:"Murina Papaya",sci:"Cubaris murina ‘Papaya’",price:70,unit:"piece",stock:"in",care:"Easy",hum:"High",size:"1 cm",breed:"Moderate",desc:"Soft papaya-peach with a glassy, translucent shell. A beautiful, easy Cubaris.",art:{tint:"#F08A3A",t:"iso",b:"#F2BE9C",s:"#B57A55",p:"#F8DCC6",pat:"none"}},
+  {id:"mpp",cat:"iso",photo:"/images/mpp.jpg",name:"Murina Papaya",sci:"Cubaris murina ‘Papaya’",price:60,unit:"piece",stock:"in",care:"Easy",hum:"High",size:"1 cm",breed:"Moderate",desc:"Soft papaya-peach with a glassy, translucent shell. A beautiful, easy Cubaris.",art:{tint:"#F08A3A",t:"iso",b:"#F2BE9C",s:"#B57A55",p:"#F8DCC6",pat:"none"}},
   {id:"gla",cat:"iso",photo:"/images/gla.jpg",name:"Glacier",sci:"Cubaris murina ‘Glacier’",price:60,unit:"piece",stock:"low",care:"Easy",hum:"High",size:"1 cm",breed:"Moderate",desc:"Milky, translucent white like frosted glass. Glows against dark substrate.",art:{tint:"#7FA3B8",t:"iso",b:"#EEF2F4",s:"#94A2AB",p:"#C7D3DB",pat:"dots"}},
   {id:"mor",cat:"iso",photo:"/images/mor.jpg",name:"Murina Orange",sci:"Cubaris murina ‘Orange’",price:60,unit:"piece",stock:"low",care:"Easy",hum:"High",size:"1 cm",breed:"Moderate",desc:"Solid warm orange. A great first Cubaris for tropical setups.",art:{t:"iso",b:"#E8892E",s:"#9E5212",p:"#F4B27A",pat:"none"}},
   {id:"sev",cat:"iso",photo:"/images/sev.jpg",name:"Sevilla",sci:"Porcellio sp. ‘Sevilla’",price:180,unit:"piece",stock:"in",care:"Easy",hum:"Medium",size:"1.5 cm",breed:"Moderate",desc:"A dark, slate-blue Porcellio with pale edges and a textured shell. A hardy, active isopod that stays out and about.",art:{tint:"#6B7C93",t:"iso",b:"#2A3140",s:"#10141C",p:"#C9D3E0",pat:"none"}},
@@ -1966,7 +1966,7 @@ const GUIDES=[
   desc:"Typical isopod prices in India, from ₹40 starter species to rare Cubaris, what changes the price, and what to check before you buy.",
   body:`<p>Isopod prices in India range from about ₹40 for a common starter species to several hundred rupees for a rare one. The price depends mostly on how fast the species breeds and how hard it is to keep. Here is what you can expect to pay, and what to check before you order.</p>
 <h2>Typical prices per isopod</h2>
-<ul><li><b>₹30–₹45:</b> Dwarf White and Powder Orange. Fast breeders, very hardy, ideal first colonies.</li><li><b>₹60–₹80:</b> Glacier, Murina Orange, Murina Papaya, Dairy Cow and Orange Dalmatian. Easy to keep and popular for display tanks.</li><li><b>₹99–₹190:</b> Gestroi and Magic Potion. Slower to multiply, so they cost more.</li><li><b>₹300 and up:</b> Rubber Ducky and other rare Cubaris. These breed slowly and need very humid, stable conditions, so most sellers ask for a minimum quantity.</li></ul>
+<ul><li><b>About ₹40:</b> Powder Orange. Fast breeders, very hardy, ideal first colonies.</li><li><b>₹60–₹80:</b> Dwarf White, Glacier, Murina Orange, Murina Papaya, Dairy Cow and Orange Dalmatian. Easy to keep and popular for display tanks.</li><li><b>₹99–₹190:</b> Gestroi and Magic Potion. Slower to multiply, so they cost more.</li><li><b>₹300 and up:</b> Rubber Ducky and other rare Cubaris. These breed slowly and need very humid, stable conditions, so most sellers ask for a minimum quantity.</li></ul>
 <p>These are our prices at the time of writing. <a href="/#shop">Check the shop</a> for what is available today.</p>
 <h2>Why prices differ</h2>
 <ul><li><b>Breeding speed.</b> A species that doubles its colony every couple of months is cheap. One that produces a few babies at a time is not.</li><li><b>Rarity and morph.</b> New colour morphs and imported lines cost more until more keepers breed them.</li><li><b>Care difficulty.</b> Species that need high humidity and steady temperatures are riskier to ship and keep, which raises the price.</li><li><b>Quantity.</b> Starter groups of 10 or more usually work out cheaper per isopod than buying one or two.</li></ul>
@@ -2055,7 +2055,7 @@ const GUIDES=[
   desc:"A simple isopod price list for India: Powder Orange, Dairy Cow, Zebra, Sevilla, Rubber Ducky and more, with prices per isopod.",
   body:`<p>This is a quick price list of the isopods we breed in Kerala. Prices are per isopod at the time of writing, and stock changes, so always check the <a href="/isopods/">shop</a> for what is available today.</p>
 <h2>Starter and easy species</h2>
-<ul><li><b>Dwarf White:</b> ₹30</li><li><b>Powder Orange:</b> ₹40</li><li><b>Glacier:</b> ₹60</li><li><b>Murina Orange:</b> ₹60</li><li><b>Murina Papaya:</b> ₹70</li><li><b>Dairy Cow:</b> ₹75</li><li><b>Orange Dalmatian:</b> ₹80</li></ul>
+<ul><li><b>Dwarf White:</b> ₹60</li><li><b>Powder Orange:</b> ₹40</li><li><b>Glacier:</b> ₹60</li><li><b>Murina Orange:</b> ₹60</li><li><b>Murina Papaya:</b> ₹60</li><li><b>Dairy Cow:</b> ₹75</li><li><b>Orange Dalmatian:</b> ₹80</li></ul>
 <h2>Mid-range species</h2>
 <ul><li><b>Aganara:</b> ₹90</li><li><b>Gestroi:</b> ₹99</li></ul>
 <h2>Collector species</h2>
