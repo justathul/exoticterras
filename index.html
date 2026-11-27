@@ -848,26 +848,16 @@ footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.
 /* ===== highlights sit below the shop ===== */
 .statband,.statband:not(#x){margin-top:0;padding:8px 0 36px}
 
-/* ===== categories: themed cards with cut-out photos ===== */
-.cats.tz{margin:0;padding:40px 0 12px;background:none;border:0}
-.cats.tz .tzhead{margin:0 0 20px;font-family:Fraunces,Georgia,serif;font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:600;color:var(--ink)}
-.cats.tz .tzhead::before{content:"";display:block;width:40px;height:2px;margin-bottom:12px;border-radius:2px;background:linear-gradient(90deg,var(--gold),transparent)}
-.cats.tz .catrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;overflow:visible}
-.cats.tz .catrow .cat{width:auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 12px 18px;text-align:center;border:1px solid rgba(231,196,107,.18);border-radius:22px;background:linear-gradient(180deg,#14241A,#0C1711);box-shadow:none;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
-.cats.tz .catrow .cat .ic{display:block;width:min(100%,132px);height:auto;aspect-ratio:1/1;margin-bottom:6px;background:none;border:0;border-radius:0}
-.cats.tz .catrow .cat .ic img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 10px rgba(0,0,0,.45));transition:transform .25s ease}
-.cats.tz .catrow .cat b{font-family:Fraunces,Georgia,serif;font-size:1.08rem;font-weight:600;line-height:1.25;color:var(--ink);white-space:normal}
-.cats.tz .catrow .cat>span:last-child{display:block;font-size:.8rem;color:var(--muted)}
-.cats.tz .catrow .cat:hover{transform:translateY(-4px);border-color:rgba(231,196,107,.6);box-shadow:0 14px 30px rgba(0,0,0,.4)}
-.cats.tz .catrow .cat:hover .ic img{transform:scale(1.07)}
-.cats.tz .catrow .cat[aria-pressed="true"]{border-color:var(--gold);background:linear-gradient(180deg,#2A3118,#141C0F);box-shadow:0 0 0 1px var(--gold),0 14px 30px rgba(0,0,0,.4)}
-.cats.tz .catrow .cat[aria-pressed="true"] b{color:var(--gold)}
-@media (max-width:760px){.cats.tz{padding:26px 0 0}.cats.tz .tzhead{margin-bottom:12px}
-.cats.tz .catrow{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;padding-inline:14px}
-.cats.tz .catrow .cat{grid-column:span 2;padding:10px 4px 12px;border-radius:16px}
-.cats.tz .catrow .cat:nth-child(n+4){grid-column:span 3}
-.cats.tz .catrow .cat .ic{width:min(100%,88px);margin-bottom:2px}
-.cats.tz .catrow .cat b{font-size:.82rem}.cats.tz .catrow .cat>span:last-child{font-size:.7rem}}
+/* ===== round photo categories ===== */
+.catrow .cat{align-items:center;text-align:center;background:none;border:0;box-shadow:none;padding:6px}
+.catrow .cat .ic{position:relative;overflow:hidden;width:132px;height:132px;border-radius:50%;border:2px solid var(--line)}
+.catrow .cat .ic svg{width:80px}.catrow .cat .ic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.catrow .cat:hover,.catrow .cat[aria-pressed="true"]{box-shadow:none}
+.catrow .cat:hover .ic,.catrow .cat[aria-pressed="true"] .ic{border-color:var(--teal)}
+@media (max-width:760px){
+.catrow .cat{width:96px;flex-direction:column;gap:6px;border-radius:14px;padding:4px}
+.catrow .cat .ic{width:80px;height:80px;border-radius:50%}.catrow .cat .ic svg{width:52px}
+.catrow .cat b{white-space:normal;font-size:.8rem;line-height:1.2}}
 /* ===== grouped footer columns ===== */
 footer .fcols{display:grid;align-items:start;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;width:100%;margin:12px 0;padding:24px 0;border-block:1px solid var(--line)}
 footer .fcols h3{margin:0 0 6px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
@@ -935,8 +925,7 @@ footer .fcols a:hover{color:var(--ink);text-decoration:underline}
     </div>
   </section>
 
-  <section class="cats tz" aria-label="Categories">
-    <div class="wrap"><h2 class="tzhead">Shop by category</h2></div>
+  <section class="cats" aria-label="Categories">
     <div class="wrap catrow" id="catrow"></div>
   </section>
 
@@ -1358,7 +1347,7 @@ const careRank={Easy:0,Moderate:1,Expert:2};
 
 /* ===== categories ===== */
 const catrow=document.getElementById("catrow");
-catrow.innerHTML=CATS.map(c=>`<button class="cat" data-c="${c.id}" aria-pressed="false"><span class="ic"><img src="/images/cat/${c.id}.webp?v=2" alt="" width="360" height="360"></span><b>${c.name}</b><span>${((n)=>n+(n===1?" item":" items"))(PRODUCTS.filter(p=>p.cat===c.id&&!p.variantOf).length)}</span></button>`).join("");
+catrow.innerHTML=CATS.map(c=>`<button class="cat" data-c="${c.id}" aria-pressed="false"><span class="ic">${art(c.icon)}${img(PRODUCTS.find(p=>p.cat===c.id&&p.photo)||{})}</span><b>${c.name}</b><span>${((n)=>n+(n===1?" item":" items"))(PRODUCTS.filter(p=>p.cat===c.id&&!p.variantOf).length)}</span></button>`).join("");
 catrow.addEventListener("click",e=>{
   const b=e.target.closest(".cat"); if(!b) return;
   cat = cat===b.dataset.c ? null : b.dataset.c;
@@ -1860,6 +1849,7 @@ const closeCart=()=>{root.classList.remove("open");document.getElementById("open
 document.getElementById("openCart").onclick=openCart;
 document.getElementById("closeCart").onclick=closeCart;
 document.getElementById("scrim").onclick=closeCart;
+const cartLink=()=>{if(location.hash==="#cart")openCart();};addEventListener("hashchange",cartLink);setTimeout(cartLink,300);
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&root.classList.contains("open"))closeCart();});
 
 let tt;function toast(t){const el=document.getElementById("toast");el.textContent=t;el.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>el.classList.remove("show"),1600);}
