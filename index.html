@@ -799,6 +799,47 @@ footer .links a:hover{color:var(--gold)}
 .catrow .cat{width:96px;flex-direction:column;gap:6px;border-radius:14px;padding:4px}
 .catrow .cat .ic{width:80px;height:80px;border-radius:50%}.catrow .cat .ic svg{width:52px}
 .catrow .cat b{white-space:normal;font-size:.8rem;line-height:1.2}}
+/* ===== responsive and usability fixes ===== */
+a,button,input,select,summary{touch-action:manipulation}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+/* tablet: photo above the text */
+@media (min-width:761px) and (max-width:900px){
+.hero.cover{min-height:0;padding:50vw 0 32px;background-position:80% top;background-size:130% auto}
+.hero.cover::before{background:linear-gradient(180deg,transparent 42vw,#0B1410 60vw)}
+.hero.cover .wrap>div:first-child{max-width:620px}.hero.cover .script{margin-top:0}}
+/* small laptop and landscape tablet: text left, photo right, stronger shade */
+@media (min-width:901px) and (max-width:1100px){
+.hero.cover{min-height:0;padding:20px 0;background-position:100% center;background-size:cover}
+.hero.cover .pill{display:none}.hero.cover p{font-size:1rem;margin:10px 0 16px}.hero.cover .script{font-size:2.8rem;margin-top:0}
+.hero.cover .ctas{flex-wrap:nowrap;gap:8px}.hero.cover .ctas .btn{padding:12px 14px;font-size:.9rem;white-space:nowrap}
+.hero.cover::before{background:linear-gradient(90deg,rgba(5,12,8,.94) 0%,rgba(5,12,8,.8) 44%,transparent 72%)}
+.hero.cover .wrap>div:first-child{max-width:460px}.hero.cover h1{font-size:2.2rem}}
+/* cart: one scrolling column so items are never squeezed */
+.drawer{overflow-y:auto;overscroll-behavior:contain}
+.drawer .dh{position:sticky;top:0;z-index:2;background:var(--surface);flex:none}
+.drawer .lines{flex:1 0 auto;overflow:visible}.drawer .df{flex:none}
+.ln .qty button{width:40px;height:40px}.ln .rm{min-height:40px;margin-top:0;padding:0 0 0 12px}
+body:has(#mmenu:not([hidden])) :is(.fab,.cartbar){display:none}
+/* comfortable tap targets */
+.menubtn{width:44px;height:44px}.fchip{min-height:44px}
+.fav,.grid .fav{width:44px;height:44px}
+.cmpb{min-height:40px;padding:6px 14px}
+.grid .nm{display:inline-block;padding:2px 0}
+.igband .btn{min-height:44px}
+.grid .badge,.grid .st,.grid .care{font-size:.75rem}
+.grid .add{white-space:nowrap}
+footer .links{flex-wrap:wrap}
+footer .links a{display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:760px){
+.grid .sci{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.grid .add.notify{font-size:.85rem;padding-inline:6px;gap:4px}
+footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+footer nav.species{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;width:100%}
+footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.84rem;line-height:1.3;margin:0}
+.igbtns .btn{flex:1;justify-content:center;min-width:150px}
+.fab{width:50px;height:50px;right:14px}}
+@media (max-width:360px){.cartbar span,.cartbar button{white-space:nowrap;font-size:.85rem}.hero.cover .ctas .btn{font-size:.78rem!important;padding-inline:4px!important;white-space:nowrap}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap">
 <script defer src="/analytics.js"></script></head>
@@ -1681,7 +1722,7 @@ function closeMenus(){document.querySelectorAll(".ddb[aria-expanded=true]").forE
 document.addEventListener("click",e=>{
   const b=e.target.closest(".ddb");
   if(b){const open=b.getAttribute("aria-expanded")==="true";closeMenus();if(!open){b.setAttribute("aria-expanded","true");b.nextElementSibling.hidden=false;}return;}
-  if(e.target.closest("#menuBtn")){const m=document.getElementById("mmenu"),o=!m.hidden;closeMenus();if(!o){m.hidden=false;document.getElementById("menuBtn").setAttribute("aria-expanded","true");}return;}
+  if(e.target.closest("#menuBtn")){const m=document.getElementById("mmenu"),o=!m.hidden;closeMenus();if(!o){const t=Math.max(0,document.querySelector("header").getBoundingClientRect().bottom);m.style.top=t+"px";m.style.maxHeight=`calc(100dvh - ${t}px)`;m.hidden=false;document.getElementById("menuBtn").setAttribute("aria-expanded","true");}return;}
   if(e.target.closest("#mmenu a,#mmenu button,.ddp a,.ddp button")||!e.target.closest(".ddp,#mmenu"))closeMenus();
 });
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenus();});
