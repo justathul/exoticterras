@@ -866,6 +866,14 @@ footer .fcols a[hidden]{display:none}
 footer .fcols a:hover{color:var(--ink);text-decoration:underline}
 @media (max-width:600px){footer .fcols{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}footer .fcols a{min-height:44px;font-size:.88rem}}
 .seoband{padding:28px 0 36px}.seoband .seo-intro{margin:0 auto;font-size:.92rem;text-align:center}
+/* ===== seven categories ===== */
+.cats .catrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;overflow:visible}
+.cats .catrow .cat{width:auto;min-width:0;justify-content:flex-start}
+.cats .catrow .cat .ic{width:min(100%,118px);height:auto;aspect-ratio:1/1}
+.cats .catrow .cat b{white-space:normal;line-height:1.25}
+@media (max-width:900px){.cats .catrow{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 6px;padding-inline:12px}
+.cats .catrow .cat{flex:0 0 calc(25% - 6px);width:auto;padding:2px 0;gap:6px}
+.cats .catrow .cat .ic{width:min(100%,84px);height:auto}.cats .catrow .cat b{font-size:.74rem}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap">
 <script defer src="/analytics.js"></script></head>
@@ -1150,13 +1158,18 @@ footer .fcols a:hover{color:var(--ink);text-decoration:underline}
 const WHATSAPP = "919074282206"; // your number with country code, no + or spaces
 const SHOP = "Exotic Terras";
 
+// photo: the round picture shown for each category. Put new pictures in /images/categories/ and change the path.
 const CATS = [
-  {id:"iso", name:"Isopods", icon:{t:"iso",b:"#E07B2A",s:"#9E4C12",pat:"none"}},
-  {id:"spring", name:"Springtails", icon:{t:"spring",c:"#FFFFFF"}},
-  {id:"terra", name:"Terrariums", icon:{t:"jar",c:"#4FA85A"}},
-  {id:"pack", name:"Starter packs", icon:{t:"box",c:"#E07B2A"}},
-  {id:"plant", name:"Plants & moss", icon:{t:"plant",c:"#3F7A3A",v:"#F2C4C4"}}
+  {id:"iso", name:"Isopods", photo:"/images/po.jpg", icon:{t:"iso",b:"#E07B2A",s:"#9E4C12",pat:"none"}},
+  {id:"spring", name:"Springtails", photo:"/images/tw.jpg", icon:{t:"spring",c:"#FFFFFF"}},
+  {id:"terra", name:"Terrariums", photo:"/images/terrarium-concept.jpg", icon:{t:"jar",c:"#4FA85A"}},
+  {id:"plant", name:"Terrarium Plants", photo:"/images/fit.jpg", icon:{t:"plant",c:"#3F7A3A",v:"#F2C4C4"}},
+  {id:"terraacc", name:"Terrarium Accessories", photo:"/images/buddha.jpg", icon:{t:"jar",c:"#4FA85A"}},
+  {id:"isoacc", name:"Isopod Accessories", photo:"/images/bat-feeder.jpg", icon:{t:"box",c:"#E07B2A"}},
+  {id:"pack", name:"Starter packs", photo:"/images/bpack.jpg", icon:{t:"box",c:"#E07B2A"}}
 ];
+// accessories keep their product type but are listed in their own category
+const catOf=p=>p.acc?(p.cat==="terra"?"terraacc":"isoacc"):p.cat;
 
 // care: Easy | Moderate | Expert. art.t = iso drawing {b body, s outline, p pattern colour, pat cow|stripe|dots|duck|none}
 const PRODUCTS = [
@@ -1351,7 +1364,7 @@ const careRank={Easy:0,Moderate:1,Expert:2};
 
 /* ===== categories ===== */
 const catrow=document.getElementById("catrow");
-catrow.innerHTML=CATS.map(c=>`<button class="cat" data-c="${c.id}" aria-pressed="false"><span class="ic">${art(c.icon)}${img(PRODUCTS.find(p=>p.cat===c.id&&p.photo)||{})}</span><b>${c.name}</b><span>${((n)=>n+(n===1?" item":" items"))(PRODUCTS.filter(p=>p.cat===c.id&&!p.variantOf).length)}</span></button>`).join("");
+catrow.innerHTML=CATS.map(c=>`<button class="cat" data-c="${c.id}" aria-pressed="false"><span class="ic">${art(c.icon)}<img src="${c.photo}" alt="" loading="lazy"></span><b>${c.name}</b><span>${((n)=>n+(n===1?" item":" items"))(PRODUCTS.filter(p=>catOf(p)===c.id&&!p.variantOf).length)}</span></button>`).join("");
 catrow.addEventListener("click",e=>{
   const b=e.target.closest(".cat"); if(!b) return;
   cat = cat===b.dataset.c ? null : b.dataset.c;
@@ -1366,7 +1379,7 @@ document.getElementById("sort").addEventListener("change",e=>{sort=e.target.valu
 function stockLabel(p){return isEnq(p)&&p.cat==="terra"&&!p.acc?'<span class="st">Made to order</span>':p.stock==="out"?'<span class="st out">Sold out</span>':p.stock==="low"?'<span class="st low">Only a few left</span>':'<span class="st">In stock</span>';}
 function renderGrid(){
   renderTCards();
-  let list=PRODUCTS.filter(p=>!p.variantOf&&(!cat||p.cat===cat)&&(!query||(p.name+" "+p.sci+" "+p.desc).toLowerCase().includes(query))&&(!fEasy||p.care==="Easy")&&(!fStock||p.stock!=="out")&&(!fSaved||saved.has(p.id))&&(!fRare||p.rare)&&(!fCheap||(!isEnq(p)&&p.price<100)));
+  let list=PRODUCTS.filter(p=>!p.variantOf&&(!cat||catOf(p)===cat)&&(!query||(p.name+" "+p.sci+" "+p.desc).toLowerCase().includes(query))&&(!fEasy||p.care==="Easy")&&(!fStock||p.stock!=="out")&&(!fSaved||saved.has(p.id))&&(!fRare||p.rare)&&(!fCheap||(!isEnq(p)&&p.price<100)));
   if(sort==="feat") list=[...list].sort((a,b)=>((b.id==="btank")-(a.id==="btank"))||((!!b.isNew)-(!!a.isNew)));
   if(sort==="lo") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||a.price-b.price);
   if(sort==="hi") list=[...list].sort((a,b)=>(isEnq(a)-isEnq(b))||b.price-a.price);
@@ -1703,15 +1716,15 @@ function renderDetail(id){
   if(p.variantOf){location.hash="p-"+p.variantOf;return;}
   const sel=p.variants?byId(p.variants[0]):p;
   const i=INFO[p.id], u=USE[p.id];
-  const facts=p.facts?p.facts:i?[["Care level",p.care],["Temperature",i.temp],["Humidity",p.hum],["Adult size",p.size],["Breeding",p.breed],["Lifespan",i.life]]:isEnq(p)?[["Price","On enquiry"],["Category",catName(p.cat)],["Care level",p.care]]:[["Pack size",p.unit],["Category",catName(p.cat)],["Availability",p.stock==="out"?"Sold out":p.stock==="low"?"Only a few left":"In stock"]];
+  const facts=p.facts?p.facts:i?[["Care level",p.care],["Temperature",i.temp],["Humidity",p.hum],["Adult size",p.size],["Breeding",p.breed],["Lifespan",i.life]]:isEnq(p)?[["Price","On enquiry"],["Category",catName(catOf(p))],["Care level",p.care]]:[["Pack size",p.unit],["Category",catName(catOf(p))],["Availability",p.stock==="out"?"Sold out":p.stock==="low"?"Only a few left":"In stock"]];
   const related=PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==p.id&&!x.variantOf).slice(0,4);
   const ask=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hi ${SHOP}, I have a question about ${p.name} (${p.unit}).`)}`;
   v.innerHTML=`<div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="#shop">Shop</a><span>/</span><a href="#shop" data-cat="${p.cat}">${catName(p.cat)}</a><span>/</span><b>${p.name}</b></nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#shop">Shop</a><span>/</span><a href="#shop" data-cat="${catOf(p)}">${catName(catOf(p))}</a><span>/</span><b>${p.name}</b></nav>
     <div class="dtop">
       <div class="dleft"><div class="dmedia" style="--tint:${tint(p.art)}">${favBtn(p)}${p.rare?'<span class="badge rare">Rare</span>':p.care?`<span class="badge">${p.care} care</span>`:""}${p.model?art(p.art)+(p.photo?`<img class="main mphoto" src="${p.photo}" alt="${p.name}">`:"")+`<div class="m3d" data-m3d="${p.model}"></div>${p.shapes?`<div class="shapesw" role="group" aria-label="Choose a shape">${p.shapes.map(([k,l],n)=>`<button type="button" data-shape="${k}" aria-pressed="${n?"false":"true"}">${l}</button>`).join("")}</div>`:""}`:p.video?`<video src="${p.video}" autoplay muted loop playsinline></video>`:art(p.art)+(p.photo?`<img class="main" src="${p.photo}" alt="${p.name}">`:"")}</div>${p.model&&p.photo?`<div class="thumbs"><button type="button" class="tb3d on" data-view="3d" aria-label="3D preview">3D</button><button type="button" data-view="photo" aria-label="Showcase photo"><img src="${p.photo}" alt=""></button></div>`:""}${(p.gallery||[]).length?`<div class="thumbs">${[p.photo,...p.gallery].filter(Boolean).map((u,n)=>`<button data-thumb="${u}" class="${n?"":"on"}" aria-label="Photo ${n+1}"><img src="${u}" alt=""></button>`).join("")}</div>`:""}</div>
       <div class="dinfo">
-        <div class="meta"><span class="care">${catName(p.cat)}</span>${stockLabel(sel)}</div>
+        <div class="meta"><span class="care">${catName(catOf(p))}</span>${stockLabel(sel)}</div>
         <h1>${p.name}</h1>
         <div class="sci">${sel.sci}</div>
         <div class="dprice">${priceOf(sel)}${isEnq(p)?"":`<small>per ${p.unit}</small>`}</div>
