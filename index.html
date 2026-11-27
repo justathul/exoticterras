@@ -862,6 +862,18 @@ footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.
 .cats .catrow{gap:4px;overflow:visible;padding-inline:10px}
 .cats .catrow .cat{flex:1 1 0;min-width:0;padding:4px 0}.cats .catrow .cat .ic{width:52px;height:52px}
 .cats .catrow .cat b{font-size:.68rem;text-align:center}}
+/* ===== highlighted category box; highlights moved below the shop ===== */
+.statband,.statband:not(#x){margin-top:0;padding:8px 0 36px}
+.cats{position:relative;z-index:2;margin-top:-44px;padding:0 0 8px;border:0;background:none}
+.cats .catrow{max-width:min(760px,calc(100% - 40px));justify-content:space-around;gap:8px;padding:16px 18px 12px;border:2px solid var(--gold);border-radius:24px;background:linear-gradient(180deg,#1B3022,#0F1D15);box-shadow:0 0 0 5px rgba(231,196,107,.12),0 18px 40px rgba(0,0,0,.5)}
+.cats .catrow .cat .ic{border:2px solid rgba(231,196,107,.7)}
+.cats .catrow .cat b{color:#fff}
+.cats .catrow .cat:hover,.cats .catrow .cat[aria-pressed="true"]{border:0;box-shadow:none}
+.cats .catrow .cat:hover b,.cats .catrow .cat[aria-pressed="true"] b{color:var(--gold)}
+.cats .catrow .cat:hover .ic,.cats .catrow .cat[aria-pressed="true"] .ic{border-color:var(--gold);box-shadow:0 0 18px rgba(231,196,107,.6)}
+@media (max-width:760px){.cats{margin-top:4px;padding:0}
+.cats .catrow{max-width:calc(100% - 20px);gap:2px;padding:12px 6px 8px;border-radius:18px;margin-inline:auto}}
+@media (max-width:360px){.cats .catrow{max-width:calc(100% - 12px);padding-inline:2px}.cats .catrow .cat .ic{width:44px;height:44px}.cats .catrow .cat b{font-size:.56rem;letter-spacing:-.01em}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap">
 <script defer src="/analytics.js"></script></head>
@@ -922,14 +934,6 @@ footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.
     </div>
   </section>
 
-  <div class="statband"><div class="wrap">
-        <div class="trust cards">
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><span><b>Live arrival</b>guaranteed</span></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg><span><b>Captive bred</b>never wild-caught</span></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><b>1-day delivery</b>in Kerala, fast all-India</span></div>
-        </div>
-  </div></div>
-
   <section class="cats" aria-label="Categories">
     <div class="wrap catrow" id="catrow"></div>
   </section>
@@ -953,6 +957,14 @@ footer nav.species a{display:flex;align-items:center;min-height:44px;font-size:.
       <div class="seo-intro"><h2>Captive-bred isopods, springtails and terrariums from Kerala</h2><p>Exotic Terras breeds <a href="/isopods/">live isopods</a> such as Powder Orange, Dairy Cow, Zebra and Sevilla, <a href="/springtails/temperate-white-springtails/">springtail cultures</a> and plants for bioactive setups, and builds <a href="/terrariums/">made-to-order terrariums</a>. We ship across India with careful packing and 1-day delivery in Kerala. New to the hobby? Read how to <a href="/guides/buy-isopods-in-kerala/">buy isopods in Kerala</a>, our <a href="/guides/isopod-price-list-india/">isopod price list</a> or the <a href="/guides/best-isopods-for-bioactive-terrariums/">best isopods for a bioactive terrarium</a>.</p></div>
     </div>
   </section>
+
+  <section class="statband" aria-label="Why buy from us"><div class="wrap">
+        <div class="trust cards">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><span><b>Live arrival</b>guaranteed</span></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg><span><b>Captive bred</b>never wild-caught</span></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><b>1-day delivery</b>in Kerala, fast all-India</span></div>
+        </div>
+  </div></section>
 
   <section class="packing pgonly" id="packing">
     <div class="wrap">
