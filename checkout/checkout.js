@@ -104,13 +104,47 @@
     return first;
   }
 
+  // order number: date plus four random characters, e.g. ET-261128-K7QD.
+  // Sending the same order again keeps its number.
+  function orderNumber(order) {
+    var last = read("sessionStorage", "et-order", {});
+    if (last.order === order) return last.no;
+    var d = new Date(), two = function (n) { return ("0" + n).slice(-2); };
+    var chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", code = ""; // no 0/O or 1/I, which look alike
+    for (var i = 0; i < 4; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
+    var no = "ET-" + two(d.getFullYear() % 100) + two(d.getMonth() + 1) + two(d.getDate()) + "-" + code;
+    try { sessionStorage.setItem("et-order", JSON.stringify({ order: order, no: no })); } catch (e) {}
+    return no;
+  }
+  function showNumber(no) {
+    $("orderno").hidden = !no;
+    $("orderno").textContent = no ? "Your order number: " + no : "";
+  }
+
+  // delivery details are kept on this device only if the customer ticks the box
+  var SAVED = ["name", "phone", "street", "city", "state", "pin", "courier"];
+  function remember() {
+    try {
+      if (!$("remember").checked) { localStorage.removeItem("et-details"); return; }
+      var data = {};
+      SAVED.forEach(function (id) { data[id] = $(id).value; });
+      localStorage.setItem("et-details", JSON.stringify(data));
+    } catch (e) {}
+  }
+  $("remember").addEventListener("change", function () {
+    if (!$("remember").checked) remember(); // unticking deletes the saved copy straight away
+  });
+
   $("courier").addEventListener("change", function () {
     saveForm();
     render();
   });
 
   // keep what was typed if the page is reloaded; cleared when the tab is closed
-  var kept = read("sessionStorage", "et-checkout", {});
+  var stored = read("localStorage", "et-details", null);
+  $("remember").checked = !!stored;
+  var kept = read("sessionStorage", "et-checkout", stored || {});
+  showNumber(read("sessionStorage", "et-order", {}).no);
   try { if (!kept.pin) kept.pin = localStorage.getItem("et-pin") || ""; } catch (e) {}
   FIELDS.forEach(function (id) { if (kept[id]) $(id).value = kept[id]; });
   form.addEventListener("input", saveForm);
@@ -127,7 +161,7 @@
     var bad = problem();
     $("err").hidden = !bad;
     if (bad) { $("err").textContent = bad[2]; $(bad[0]).focus(); return; }
-    var msg = "Hi Exotic Terras, I’d like to order:\n" + lines.join("\n") +
+    var order = lines.join("\n") +
       discountText +
       "\nItems total: " + rupee(total) +
       "\nPreferred courier: " + $("courier").value +
@@ -135,6 +169,10 @@
       "\nPhone: " + phoneOf(value("phone")) +
       "\nAddress: " + value("street") + ", " + value("city") + ", " + value("state") + " - " + value("pin") +
       (value("note") ? "\nNote: " + value("note") : "");
+    var no = orderNumber(order);
+    var msg = "Hi Exotic Terras, I’d like to order:\nOrder no: " + no + "\n" + order;
+    remember();
+    showNumber(no);
     // opened from script, not a link, so click tracking never sees the address in a URL
     if (window.dataLayer) window.dataLayer.push({ event: "whatsapp_click", page_path: location.pathname });
     location.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
