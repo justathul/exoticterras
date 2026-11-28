@@ -4,7 +4,7 @@
   var WHATSAPP = "919074282206";
   var BULK = { min: 20, off: 0.10 }; // keep in step with BULK in index.html
   // order discount: [minimum subtotal, percent off], largest first
-  var TIERS = [[5000, 20], [2000, 15], [1000, 10]];
+  var TIERS = [[5000, 15], [2000, 10], [1000, 5]];
   var P = {}, lines = [], total = 0, discountText = "";
   var $ = function (id) { return document.getElementById(id); };
   var form = $("co");
