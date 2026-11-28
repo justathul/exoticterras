@@ -5,7 +5,6 @@
   var BULK = { min: 20, off: 0.10 }; // keep in step with BULK in index.html
   // order discount: [minimum subtotal, percent off], largest first
   var TIERS = [[5000, 20], [2000, 15], [1000, 10]];
-  var COURIERS = ["Speed Post", "DTDC", "Professional Couriers"]; // customer's preference
   var P = {}, lines = [], total = 0, discountText = "";
   var $ = function (id) { return document.getElementById(id); };
   var form = $("co");
@@ -105,11 +104,6 @@
     return first;
   }
 
-  COURIERS.forEach(function (name) {
-    var o = el("option", name);
-    o.value = name;
-    $("courier").appendChild(o);
-  });
   $("courier").addEventListener("change", function () {
     saveForm();
     render();
