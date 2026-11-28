@@ -150,6 +150,18 @@
     box.appendChild(saveButton(main.id, true));
     ctas.parentNode.insertBefore(box, ctas);
     if (link) link.remove(); // replaced by the controls above
+    var order = ctas.querySelector("a.btn.primary");
+    if (order && canBuy(chosen)) { // order through the checkout page, where delivery details are filled in
+      order.textContent = "Buy now";
+      order.href = "/checkout/";
+      order.removeAttribute("target");
+      order.addEventListener("click", function (e) {
+        e.stopPropagation(); // not a WhatsApp tap any more
+        var cart = read("et-cart", {});
+        cart[chosen.id] = Math.max(cart[chosen.id] || 0, qty);
+        write("et-cart", cart);
+      });
+    }
   }
 
   function cardControls() {
