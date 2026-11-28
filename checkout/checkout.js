@@ -5,9 +5,8 @@
   var BULK = { min: 20, off: 0.10 }; // keep in step with BULK in index.html
   // order discount: [minimum subtotal, percent off], largest first
   var TIERS = [[5000, 20], [2000, 15], [1000, 10]];
-  // shipping charge in rupees for each courier; null shows "Confirmed on WhatsApp"
-  var COURIERS = { "Speed Post": null, "DTDC": null, "Professional Couriers": null };
-  var P = {}, lines = [], total = 0, discountText = "", ship = null;
+  var COURIERS = ["Speed Post", "DTDC", "Professional Couriers"]; // customer's preference
+  var P = {}, lines = [], total = 0, discountText = "";
   var $ = function (id) { return document.getElementById(id); };
   var form = $("co");
   var FIELDS = ["name", "phone", "email", "street", "city", "state", "pin", "note", "courier"];
@@ -71,15 +70,11 @@
     var label = "Bulk discount";
     if (orderOff && orderOff >= discount) { discount = orderOff; label = tier[1] + "% order discount"; }
     discountText = discount ? "\n" + label + ": −" + rupee(discount) : "";
-    ship = COURIERS[$("courier").value];
-    var known = typeof ship === "number";
-    total = subtotal - discount + (known ? ship : 0);
+    total = subtotal - discount;
     $("sub").textContent = rupee(subtotal);
     $("discrow").hidden = !discount;
     $("disclabel").textContent = label;
     $("disc").textContent = "−" + rupee(discount);
-    $("ship").textContent = known ? rupee(ship) : "Confirmed on WhatsApp";
-    $("totallabel").textContent = known ? "Total" : "Total before shipping";
     $("total").textContent = rupee(total);
     var next = TIERS.slice().reverse().filter(function (t) { return subtotal < t[0] && Math.round(t[0] * t[1] / 100) > discount; })[0];
     $("offer").hidden = !next || !lines.length;
@@ -111,8 +106,8 @@
     return first;
   }
 
-  Object.keys(COURIERS).forEach(function (name) {
-    var o = el("option", name + (typeof COURIERS[name] === "number" ? " · " + rupee(COURIERS[name]) : ""));
+  COURIERS.forEach(function (name) {
+    var o = el("option", name);
     o.value = name;
     $("courier").appendChild(o);
   });
@@ -141,14 +136,13 @@
     if (bad) { $("err").textContent = bad[2]; $(bad[0]).focus(); return; }
     var msg = "Hi Exotic Terras, I’d like to order:\n" + lines.join("\n") +
       discountText +
-      "\nCourier: " + $("courier").value + (typeof ship === "number" ? " (" + rupee(ship) + ")" : "") +
-      "\n" + (typeof ship === "number" ? "Total: " : "Total before shipping: ") + rupee(total) +
+      "\nItems total: " + rupee(total) +
+      "\nPreferred courier: " + $("courier").value +
       "\n\nName: " + value("name") +
       "\nPhone: " + phoneOf(value("phone")) +
       (value("email") ? "\nEmail: " + value("email") : "") +
       "\nAddress: " + value("street") + ", " + value("city") + ", " + value("state") + " - " + value("pin") +
-      (value("note") ? "\nNote: " + value("note") : "") +
-      (typeof ship === "number" ? "" : "\n\nPlease confirm the shipping cost.");
+      (value("note") ? "\nNote: " + value("note") : "");
     // opened from script, not a link, so click tracking never sees the address in a URL
     if (window.dataLayer) window.dataLayer.push({ event: "whatsapp_click", page_path: location.pathname });
     location.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
