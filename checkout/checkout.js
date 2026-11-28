@@ -9,7 +9,7 @@
   var P = {}, lines = [], total = 0, discountText = "";
   var $ = function (id) { return document.getElementById(id); };
   var form = $("co");
-  var FIELDS = ["name", "phone", "email", "street", "city", "state", "pin", "note", "courier"];
+  var FIELDS = ["name", "phone", "street", "city", "state", "pin", "note", "courier"];
 
   function read(store, key, fallback) {
     try { return JSON.parse(window[store].getItem(key)) || fallback; } catch (e) { return fallback; }
@@ -93,7 +93,6 @@
     var checks = [
       ["name", value("name").length > 1, "Enter your full name."],
       ["phone", /^[6-9]\d{9}$/.test(phoneOf(value("phone"))), "Enter a valid 10-digit mobile number."],
-      ["email", !value("email") || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value("email")), "Check your email address, or leave it empty."],
       ["street", value("street").length > 3, "Enter your house name and street."],
       ["city", value("city").length > 1, "Enter your city or town."],
       ["pin", /^[1-9]\d{5}$/.test(value("pin")), "Enter a valid 6-digit pin code."]
@@ -140,7 +139,6 @@
       "\nPreferred courier: " + $("courier").value +
       "\n\nName: " + value("name") +
       "\nPhone: " + phoneOf(value("phone")) +
-      (value("email") ? "\nEmail: " + value("email") : "") +
       "\nAddress: " + value("street") + ", " + value("city") + ", " + value("state") + " - " + value("pin") +
       (value("note") ? "\nNote: " + value("note") : "");
     // opened from script, not a link, so click tracking never sees the address in a URL
