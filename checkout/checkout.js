@@ -117,7 +117,7 @@
       (value("email") ? "\nEmail: " + value("email") : "") +
       "\nAddress: " + value("street") + ", " + value("city") + ", " + value("state") + " - " + value("pin") +
       (value("note") ? "\nNote: " + value("note") : "") +
-      "\n\nPlease confirm availability and shipping cost.";
+      "\n\nPlease confirm the shipping cost.";
     // opened from script, not a link, so click tracking never sees the address in a URL
     if (window.dataLayer) window.dataLayer.push({ event: "whatsapp_click", page_path: location.pathname });
     location.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
